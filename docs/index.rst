@@ -6,6 +6,9 @@
 Welcome to Open edX OARS's documentation!
 =========================================
 
+.. image:: _static/OARS_logo.jpg
+  :alt: An AI generated image of a person in old style clothing navigating a small boat diagonally up a turbulent body of water with chart lines on it. There is a line chart in the background, trending upwards. The man notably has poles in his hands instead of oars, proving the ultimate futility of trying to achieve perfection visualization from large sets of messy data. :)
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
