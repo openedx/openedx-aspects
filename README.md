@@ -1,6 +1,6 @@
 # OARS
 
-The Open Analytics Reference System for Open edX!
+The Open Analytics Reference System (OARS) for Open edX!
 
 ![An AI generated image of a person in old style clothing navigating a small boat diagonally up a turbulent body of water with chart lines on it. There is a line chart in the background, trending upwards. The man notably has poles in his hands instead of oars, proving the ultimate futility of trying to achieve perfection visualization from large sets of messy data. :)](docs/_static/OARS_logo.jpg "OARS Logo")
 
