@@ -32,8 +32,8 @@ privacy, scalability, budget, and expertise.
 Decision
 ********
 
-We will create a reference analytics system that combines existing open source projects into
-a preconfigured bundle that deployed using Tutor.
+We will create the Open Analytics Reference System (OARS) that combines existing open source projects
+into a preconfigured bundle that can be easily deployed using Tutor.
 
 This system will:
 
