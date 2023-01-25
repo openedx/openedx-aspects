@@ -32,8 +32,10 @@ privacy, scalability, budget, and expertise.
 Decision
 ********
 
-We will create the Open Analytics Reference System (OARS) that combines existing open source projects
-into a preconfigured bundle that can be easily deployed using Tutor. These projects will include:
+We will create the Open Analytics Reference System (OARS) that combines existing open-source projects
+into a preconfigured bundle that can be easily deployed using Tutor.
+
+These projects will include:
 
 - A Learning Record Store (LRS)
 - A service to transform tracking log events into an open standard
@@ -41,6 +43,15 @@ into a preconfigured bundle that can be easily deployed using Tutor. These proje
 - A data visualization and dashboard tool with a data export API
 - Code and configuration to tie these tools together, as well as rich reports that work against the
   default configuration
+
+The guiding principals for technology selection are:
+
+- Based on open standards and open source
+- Hosting service agnostic
+- Inexpensive to run
+- Able to support near-real-time data where possible
+- Require little specialized knowledge to set up and maintain
+- Be extensible for a variety of common use cases not covered by the default configuration
 
 This system will:
 
@@ -55,15 +66,6 @@ This system will:
     identifying information in a problem response. This will be a best-effort implementation and
     does not free site operators from managing the data lifecycle in accordance with their own
     privacy policies and all applicable laws.
-
-The guiding principals for technology selection are:
-
-- Based on open standards and open source
-- Hosting service agnostic
-- Inexpensive to run
-- Able to support near-real-time data where possible
-- Require little specialized knowledge to set up and maintain
-- Be extensible for a variety of common use cases not covered by the default configuration
 
 Consequences
 ************
