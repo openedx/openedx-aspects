@@ -33,7 +33,14 @@ Decision
 ********
 
 We will create the Open Analytics Reference System (OARS) that combines existing open source projects
-into a preconfigured bundle that can be easily deployed using Tutor.
+into a preconfigured bundle that can be easily deployed using Tutor. These projects will include:
+
+- A Learning Record Store (LRS)
+- A service to transform tracking log events into an open standard
+- An analytic database
+- A data visualization and dashboard tool with a data export API
+- Code and configuration to tie these tools together, as well as rich reports that work against the
+  default configuration
 
 This system will:
 
@@ -42,6 +49,12 @@ This system will:
 - Present a user interface of data visualizations secured via single-sign-on against the LMS
 - Allow download of report data for those with permissions to view it
 - Provide a secure API for integrations with other tools or data viewing methods
+- Be configured to send data de-identified by default, with an option for to send events
+  as identified for use cases that require them such as connected users across different LMSs
+  - This de-identification is imperfect and cannot prevent learners from, for example, putting
+    identifying information in a problem response. This will be a best-effort implementation and
+    does not free site operators from managing the data lifecycle in accordance with their own
+    privacy policies and all applicable laws.
 
 The guiding principals for technology selection are:
 
