@@ -92,7 +92,7 @@ manage given our competing priorities.
 
 Use an existing community system
 --------------------------------
-In the absense of an officially supported analytics system, several organizations have created
+In the absence of an officially supported analytics system, several organizations have created
 their own solutions. At the time of investigation none supported all of the features we are hoping
 to make available through this system.
 
