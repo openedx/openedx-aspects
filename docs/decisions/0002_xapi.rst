@@ -1,0 +1,86 @@
+2. xAPI for Default Data Transfer and Storage
+#############################################
+
+Status
+******
+
+**Draft** (-> Accepted)
+
+Context
+*******
+
+Most analytical data in the Open edX Learning Management System and Content Management System (LMS/CMS)
+is output as "tracking log" events, as defined in the `tracking log documentation`_. Over the years the
+events have grown numerous, changed without versioning, and can break in unpredictable ways (for
+example: un-parsable JSON, truncated text). They are also Open edX specific, with little tooling or
+adoption outside of the largely unsupported Insights tool and home grown reporting tools written by
+partners.
+
+Several open standards for educational data exist, with greater adoption and tooling than tracking logs.
+`OEP-26`_ identified `xAPI`_ and `Caliper`_ as formats that Open edX should support, which drove the
+development of the `event-routing-backends`_ package as the method of implementation.
+
+.. _tracking log documentation: https://docs.openedx.org/en/latest/developers/references/internal_data_formats/index.html
+.. _OEP-26: https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0026-arch-realtime-events.html
+.. _XAPI: https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0026/xapi-realtime-events.html
+.. _Caliper: https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0026/caliper-realtime-events.html
+.. _event-routing-backends: https://event-routing-backends.readthedocs.io/en/latest/
+
+Decision
+********
+
+The Open Analytics Reference System (OARS) will support xAPI as its default standard. Tracking
+log events will be transformed to xAPI statements by event-routing-backends package and sent to an
+xAPI-supporting Learning Record Store (LRS). The specific LRS and backing database chosen will be the
+subject of future ADRs.
+
+Consequences
+************
+
+- Tracking log events that are desired to be sent to the LRS will need to have xAPI transformations
+  written for them if they don't exist
+
+  - This is desirable to make sure that events which are being used for analytics conform to the
+    expected specification and are versioned appropriately
+
+- Statements will be stored in the xAPI JSON format for querying and retrieval
+
+- The guarantees of a compliant LRS will help ensure data quality
+
+- An LRS will need to be chosen to receive and store xAPI statements
+
+- Tooling will need to be found or created to transform events in tracking logs files into xAPI
+  statements to import old data and correct missing or broken events in the system
+
+  - This tooling will likely require a shared, versioned library that both the tool and
+    event-routing-backends can use to transform from tracking log format to xAPI statements. This
+    will ensure real time and replayed events both generate the exact same statements
+
+- Caliper support may be de-prioritized due to the level of effort required to keep it at parity
+  with xAPI, community support will help drive this decision
+
+Rejected Alternatives
+*********************
+
+Tracking Logs
+-------------
+
+Due to the issues raised in the Context section, and a larger desire to increase Open edX's standards
+compliance, it was decided to move to something more widely supported. Tracking log events will continue
+to be supported as the "Open edX native" system (allowing current consumers to continue using them).
+Other event formats (xAPI, Caliper, etc.) will continue to derive from them.
+
+Caliper
+-------
+
+As the other "already implemented" event type, Caliper was a strong contender. However in discussions
+with community stakeholders it was never requested, while xAPI came up several times and some community
+members had already begun implementing functionality around it. With that momentum xAPI was an obvious
+choice. Caliper support is still valuable, and it is hoped that we will be able to offer "recipes"
+that will allow site operators to use it instead of, or in addition to, xAPI in the future.
+
+References
+**********
+
+- `OEP-26: Real Time Events <https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0026-arch-realtime-events.html/>`_
+- `event-routing-backends <https://event-routing-backends.readthedocs.io/en/latest/>`_
