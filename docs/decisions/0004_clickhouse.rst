@@ -1,10 +1,10 @@
-3. ClickHouse as Analytic Database
+4. ClickHouse as Analytic Database
 ##################################
 
 Status
 ******
 
-**Draft** (-> Accepted)
+Accepted
 
 Context
 *******
