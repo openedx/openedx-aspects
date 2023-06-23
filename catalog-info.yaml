@@ -6,8 +6,8 @@ apiVersion: backstage.io/v1alpha1
 # A repo will almost certainly be a Component.
 kind: Component
 metadata:
-  name: 'openedx-oars'
-  description: "The Open Analytics Reference System - documents and templates to help implement analytics for Open edX."
+  name: 'openedx-aspects'
+  description: "Aspects - documentation and templates to help implement analytics for Open edX."
   annotations:
     # (Optional) Annotation keys and values can be whatever you want.
     # We use it in Open edX repos to have a comma-separated list of GitHub user
@@ -22,7 +22,7 @@ spec:
   #
   # If you need a new team created, create an issue with tCRIL engineering:
   # https://github.com/openedx/tcril-engineering/issues/new/choose
-  owner: group:openedx-oars-maintainers
+  owner: user:bmtcril
 
   # (Required) Acceptable Type Values: service, website, library
   type: 'reference'
