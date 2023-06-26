@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Open edX OARS'
+project = 'Open edX Aspects'
 copyright = '2023, Open edX Community'
 author = 'Open edX Community'
 
@@ -69,7 +69,7 @@ html_static_path = ['_static']
 
 html_theme_options = {
 
-    "repository_url": "https://github.com/openedx/openedx-oars",
+    "repository_url": "https://github.com/openedx/openedx-aspects",
     "repository_branch": "main",
     "path_to_docs": "docs/",
     "logo_only": True,
