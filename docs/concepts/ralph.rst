@@ -16,6 +16,6 @@ In the aspects project it's used as the API server that connects Open edX and cl
 database. Ralph receives the xAPI statements from Open edX and stores them in the clickhouse
 database after validating the data.
 
-Ralph is connected to the Open edX platform via event-routing-backends without any filter
+Ralph is connected to the Open edX platform via Event Routing Backends without any filter
 and receives all the xAPI statements. To learn more about event-routing-backends, please
 refer to the `documentation <https://event-routing-backends.readthedocs.io/en/latest/>`_.
