@@ -1,9 +1,6 @@
 xAPI Concepts
 #############
 
-xAPI (Experience API)
-======================
-
 Introduction
 ------------
 xAPI, also known as the Experience API or Tin Can API, is a specification for capturing 
