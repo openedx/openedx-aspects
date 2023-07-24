@@ -9,7 +9,7 @@ Clickhouse Migrations
 ****************************
 
 Clickhouse migrations are handled by `Alembic <https://alembic.sqlalchemy.org/en/latest/>`_.
-To learn more about `Alembic`_ and how to use it, please refer to the ADR :ref:`clickhouse-migrations`..
+To learn more about `Alembic`_ and how to use it, please refer to the ADR :ref:`clickhouse-migrations`.
 
 Clickhouse Tables
 ************************

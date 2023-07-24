@@ -6,7 +6,9 @@ It is fast, lightweight, intuitive, and loaded with options that make it easy fo
 of all skill sets to explore and visualize their data, from simple pie charts to highly
 detailed deck.gl geospatial charts.
 
-Superset is used as the reporting and visualization tool of the Aspects project.
+Superset is used as the reporting and visualization tool of the Aspects project. The
+authentication is performed agains the LMS using SSO. You can find more information in
+:ref:`authentication-permissions`.
 
 Superset Concepts
 -----------------
