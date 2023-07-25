@@ -9,7 +9,7 @@ extend the different parts of the project.
 Superset Assets
 ================
 
-Aspects allows to programatically define custom superset assets via a tutor patch.
+Aspects allows to programatically define custom superset assets, such as custom data sources, queries, reports, and dashboards, via a Tutor patch.
 Developers can use an tutor inline plugin with the patch `superset-extra-assets`
 and those will be imported at initialization.
 

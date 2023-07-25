@@ -3,7 +3,7 @@
 Authentication and Permissions
 ######################################
 
-Aspects uses Superset for authentication and permissions. Superset comes by default
+Users access Aspects data and reports by signing into Superset, which will confirm their identity and permissions with the LMS.
 with the following roles:
 
 - Alpha
@@ -18,7 +18,7 @@ Superset Authentication
 Superset authentication is performed against the LMS using SSO. In this process the LMS provides
 an JWT token that's later used to perform API calls to find out the user's roles and permissions.
 
-Superset Roles
+Additional Aspects Roles
 -----------------------
 
 We use the following roles:
