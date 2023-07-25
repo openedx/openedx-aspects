@@ -1,7 +1,7 @@
 .. _superset-row-level-security:
 
 Superset extra row level security
-#################################
+*********************************
 
 To apply custom row level security filters to Superset, you can use the patch 
 `superset-row-level-security`. This patch expects a list of python dictionaries

@@ -1,8 +1,9 @@
 xAPI Concepts
-#############
+*************
 
 Introduction
-------------
+###################
+
 xAPI, also known as the Experience API or Tin Can API, is a specification for capturing 
 and tracking learning experiences in a wide range of contexts. It is an e-learning 
 standard that allows organizations to gather data about learner activities and interactions
@@ -11,7 +12,8 @@ framework for collecting, storing, and analyzing learning data, enabling a deepe
 understanding of learners' experiences and performance.
 
 Components of xAPI
-------------------
+###################
+
 The xAPI specification consists of three key components:
 
 .. _actor_concept:

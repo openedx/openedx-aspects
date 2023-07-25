@@ -1,5 +1,5 @@
 Clickhouse
-##################################
+****************************
 
 ClickHouse is a high-performance, column-oriented SQL database management system (DBMS) 
 for online analytical processing (OLAP). It is used as the backend storage for the Aspects 
@@ -10,13 +10,14 @@ Aspects is compatible with Clickhouse Cloud and on premise Clickhouse instances.
 See :ref:`remote-clickhouse` for more information.
 
 Clickhouse Migrations
-****************************
+##################################
+
 
 Clickhouse migrations are handled by `Alembic <https://alembic.sqlalchemy.org/en/latest/>`_.
 To learn more about `Alembic`_ and how to use it, please refer to the ADR :ref:`clickhouse-migrations`.
 
 Clickhouse Structure
-************************
+##################################
 
 Clickhouse is used to store the data ingested by the Aspects project via Ralph or Vector. The data is stored
 in a single database controlled by the variable **ASPECTS_XAPI_DATABASE**, and a single table controlled by

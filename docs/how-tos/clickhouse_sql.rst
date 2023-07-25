@@ -1,7 +1,7 @@
 .. _clickhouse-sql:
 
 Clickhouse extra SQL
-###################################
+********************
 
 You can execute extra Clickhouse SQL at initialization. To do so, you need to use the
 patch `clickhouse-extra-sql`. This patch expects valid Clickhouse SQL code:

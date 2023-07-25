@@ -1,7 +1,7 @@
 .. _dbt-extensions:
 
 DBT extensions
-#####################
+**************
 
 To extend the DBT project, you can use the following Tutor variables:
 

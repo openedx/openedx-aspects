@@ -1,5 +1,5 @@
 Ralph
-#############
+*****
 
 Ralph is a toolbox for Open edX learning analytics. It can be used as a library,
 command line interface, or as an API server.

@@ -1,7 +1,7 @@
 .. _superset-extra-assets:
 
 Superset extra assets
-#####################
+*********************
 
 Developers the patch `superset-extra-assets` to add extra assets to Superset and those
 will be imported at initialization.
@@ -38,7 +38,7 @@ Additionally to the default fields for each asset type, the following fields are
 - Dashboard: **_roles** a list of roles names to be associated with a dashboard.
 
 Override Superset Default Assets
-================================
+################################
 
 Aspects allows the site operator to override the default Superset assets by creating an Superset
 extra asset as explained above using the same UUID as the default asset. The UUID of the default

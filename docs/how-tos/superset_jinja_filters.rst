@@ -1,7 +1,7 @@
 .. _superset-jinja-filters:
 
 Superset extra jinja filters
-############################
+*****************************
 
 
 To create extra jinja filters, you can use the patch `superset-jinja-filters`

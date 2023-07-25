@@ -1,7 +1,7 @@
 .. _authentication-permissions:
 
 Authentication and Permissions
-######################################
+******************************
 
 Users access Aspects data and reports by signing into Superset, which will confirm their identity
 and permissions with the LMS. This is done using Single Sign On (SSO) and JSON Web Tokens (JWT).
@@ -29,13 +29,13 @@ Roles can be extended and assigned using a combination of extensions described i
 :ref:`extensions` docs.
 
 Superset Authentication
------------------------
+#######################
 
 Superset authentication is performed against the LMS using SSO. In this process, the LMS provides
 a JWT token that's later used to perform API calls to find out the user's roles and permissions.
 
 Superset Permissions
------------------------
+####################
 
 Permissions are assigned to roles and are used to control access to specific resources
 such as dashboards, tables, menus, etc.
@@ -45,7 +45,7 @@ can only be accessed by users with the role assigned to it.
 
 
 Superset Row Level Security Filters
------------------------------------
+###################################
 
 Row level security filters (RLSF) are used to control access to specific data. For example,
 an instructor should only be able to see data for the courses they are teaching.

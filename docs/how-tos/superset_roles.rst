@@ -1,7 +1,7 @@
 .. _superset-roles:
 
 Superset extra roles
-###################################
+*********************
 
 Create extra Superset roles, you can use the patch `superset-extra-roles`. This patch
 expects validJSON objects with the following structure:
