@@ -234,13 +234,16 @@ code:
 
 .. code-block:: yaml
     
+    # Make sure to add a semi-colon at the end of every SQL statements
     clickhouse-extra-sql: |
         CREATE TABLE IF NOT EXISTS {{ASPECTS_XAPI_DATABASE}}.{{ASPECTS_XAPI_TABLE}} (
             ...
         ) ENGINE = MergeTree()
         PARTITION BY toDate(timestamp)
         ORDER BY (timestamp, uuid)
-        SETTINGS index_granularity = 8192
+        SETTINGS index_granularity = 8192;
+        
+        SELECT * from {{ASPECTS_XAPI_DATABASE}}.{{ASPECTS_XAPI_TABLE}} LIMIT 1;
 
 Extending DBT
 =============
