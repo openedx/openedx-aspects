@@ -52,22 +52,9 @@ See :ref:`superset-roles` for more information.
 Custom Clickhouse SQL
 =====================
 
-Aspects allows to add custom Clickhouse SQL at initialization. To do so, you can use the patch
-`clickhouse-extra-sql` which you can use to define new SQL. This patch expects valid Clickhouse SQL
-code:
+Aspects allows to add custom Clickhouse SQL at initialization. 
 
-.. code-block:: yaml
-    
-    # Make sure to add a semi-colon at the end of every SQL statements
-    clickhouse-extra-sql: |
-        CREATE TABLE IF NOT EXISTS {{ASPECTS_XAPI_DATABASE}}.{{ASPECTS_XAPI_TABLE}} (
-            ...
-        ) ENGINE = MergeTree()
-        PARTITION BY toDate(timestamp)
-        ORDER BY (timestamp, uuid)
-        SETTINGS index_granularity = 8192;
-        
-        SELECT * from {{ASPECTS_XAPI_DATABASE}}.{{ASPECTS_XAPI_TABLE}} LIMIT 1;
+See :ref:`clickhouse-sql` for more information.
 
 Extending DBT
 =============
