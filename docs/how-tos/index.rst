@@ -12,3 +12,4 @@ How-Tos
    Superset extra jinja filters <superset_jinja_filters>
    Superset custom roles <superset_roles>
    Clickhouse extra SQL <clickhouse_sql>
+   Extending DBT <dbt_extensions>
