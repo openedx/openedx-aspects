@@ -22,16 +22,18 @@ set alternate languages from the currently supported list.
 
 See :ref:`superset-language-settings` for more information.
 
-Custom Row Level Security Filters to Superset
+Superset Custom Row Level Security Filters
 =============================================
+
 If you add new Databases, tables, or Datasets to Superset, you may want to add new
 row level security filters to restrict access to the data based on things like user
 roles, or organization.
 
 See :ref:`superset-row-level-security` for more information.
 
-Custom Jinja Filters
-====================
+Superset Custom Jinja Filters
+=============================
+
 Aspects allows to add custom jinja filters to Superset which can be used to generate SQL
 statements based on the current user role or any given input.
 
@@ -39,48 +41,13 @@ In Aspects, those are used to filter the data based on the user course access.
 
 See :ref:`superset-jinja-filters` for more information.
 
-Custom Superset Roles
+Superset Custom Roles
 =====================
-Aspects allows to add custom Superset roles. To do so, you can use the patch
-`superset-extra-roles` which you can use to define new roles. This patch expects valid JSON objects
-with the following structure:
 
-.. code-block:: yaml
+Aspects allows to add custom Superset roles which can be seen as groups of permissions,
+those are automatically associated at login. 
 
-    ## Add a comma before the new role
-    superset-extra-roles: |
-        ,
-        {
-            "name": "my_custom_role",
-            "permissions": [
-                {
-                    "name": "can_read",
-                    "view_menu": {
-                        "name": "Superset",
-                        "category": "Security",
-                        "category_label": "Security",
-                        "category_icon": "fa-bar-chart",
-                    },
-                }
-            ],
-        }
-
-Once you have defined your custom roles you probably want to assign them to users
-automatically at login. You can do so by using the patch **superset-sso-assignment-rules**.
-This patch expects valid python code and should return a list of roles:
-
-.. code-block:: python
-
-    if "edunext" in username:
-        return ["admin"]
-    else:
-        return []
-
-In the context of the code you can access to the following variables:
-
-- **self**: OpenEdxSsoSecurityManager instance.
-- **username**: username of the user.
-- **decoded_access_token**: decoded JWT token of the user (can be used to perform API calls)
+See :ref:`superset-roles` for more information.
 
 Custom Clickhouse SQL
 =====================

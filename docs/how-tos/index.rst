@@ -10,3 +10,4 @@ How-Tos
    Superset language settings <superset_language_settings>
    Superset extra row level security <superset_row_level_security>
    Superset extra jinja filters <superset_jinja_filters>
+   Superset custom roles <superset_roles>
