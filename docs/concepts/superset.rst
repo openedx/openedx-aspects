@@ -6,8 +6,8 @@ It is fast, lightweight, intuitive, and loaded with options that make it easy fo
 of all skill sets to explore and visualize their data, from simple pie charts to highly
 detailed deck.gl geospatial charts.
 
-Superset is used as the reporting and visualization tool of the Aspects project. The
-authentication is performed agains the LMS using SSO. You can find more information in
+Superset is used as the reporting and visualization tool of the Aspects project. Authentication
+is performed agains the LMS using SSO. You can find more information in
 :ref:`authentication-permissions`.
 
 Superset Concepts
@@ -28,5 +28,12 @@ Superset is composed of several main concepts:
   single screen to provide a high-level overview of data. Dashboards can be shared
   with other users, and can be scheduled to refresh periodically.
 - **Assets**: Assets are any or the components described above.
+
+For instance, in Aspects when we want to display enrollments in a course Superset will:
+
+Display an Enrollment Dashboard, with several Slices (pie charts, line charts) that pull
+data from the Enrollments Dataset which are stored in the ClickHouse databases. Aspects
+stores the definitions for all of these things (and any custom ones a site operator adds)
+in a set of Assets that are imported when the tutor init command is run.
 
 You can find more information about Superset concepts in the `Superset Documentation <https://superset.apache.org/docs/intro>`_.
