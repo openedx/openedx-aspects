@@ -3,8 +3,10 @@
 Authentication and Permissions
 ######################################
 
-Users access Aspects data and reports by signing into Superset, which will confirm their identity and permissions with the LMS.
-with the following roles:
+Users access Aspects data and reports by signing into Superset, which will confirm their identity
+and permissions with the LMS. This is done using Single Sign On (SSO) and JSON Web Tokens (JWT).
+
+By default Superset provides the following roles:
 
 - Alpha
 - Gamma
@@ -12,23 +14,24 @@ with the following roles:
 - Public
 - sql_lab
 
+You can find more information about these roles in the 
+`Superset documentation <https://superset.apache.org/docs/security/#roles>`_.
+
+We do not use any of the provided roles, instead we have created custom roles for our specific
+uses cases:
+
+- **Admin**: Full access to all superset data, dashboards, and reports.
+- **Operator**: Access to the operator dashboard and data about the state of the installation.
+- **Instructor**: Access to the instructor dashboard and course specific data.
+
+Roles can be extended and assigned using a combination of extensions described in
+:ref:`extensions` docs.
+
 Superset Authentication
 -----------------------
 
 Superset authentication is performed against the LMS using SSO. In this process the LMS provides
 an JWT token that's later used to perform API calls to find out the user's roles and permissions.
-
-Additional Aspects Roles
------------------------
-
-We use the following roles:
-
-- Admin: Full access to all aspects
-- Operator: Access to the instructor dashboard and data about the state of the installation.
-- Instructor: Access to the instructor dashboard and course specific data.
-
-Roles can be extended and assigned using a combination of extensions described in
-:ref:`extensions` docs.
 
 Superset Permissions
 -----------------------
