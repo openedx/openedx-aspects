@@ -20,7 +20,8 @@ You can find more information about these roles in the
 We do not use any of the provided roles, instead we have created custom roles for our specific
 uses cases:
 
-- **Admin**: Full access to all Superset data, dashboards, and reports.
+- **Alpha**: Superusers of the LMS, have full access to Superset.
+- **Admin**: Staff users of the LMS, have full access to Superset.
 - **Operator**: Access to the operator dashboard and data about the state of the installation.
 - **Instructor**: Access to the instructor dashboard and course specific data.
 
@@ -51,8 +52,7 @@ an instructor should only be able to see data for the courses they are teaching.
 
 The following RLSF are implemented by default:
 
-- **can_view_courses**: Return courses a user has access to.
+- **can_view_courses**: Limits courses in the report to ones the user has access to.
 
 RLSF can be extended and assigned using a combination of extensions described in
 :ref:`extensions` docs.
-
