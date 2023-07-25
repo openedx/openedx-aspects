@@ -20,7 +20,7 @@ You can find more information about these roles in the
 We do not use any of the provided roles, instead we have created custom roles for our specific
 uses cases:
 
-- **Admin**: Full access to all superset data, dashboards, and reports.
+- **Admin**: Full access to all Superset data, dashboards, and reports.
 - **Operator**: Access to the operator dashboard and data about the state of the installation.
 - **Instructor**: Access to the instructor dashboard and course specific data.
 

@@ -21,6 +21,6 @@ Vector can be deployed in two roles:
 - `Aggregator <https://vector.dev/docs/setup/deployment/roles/#aggregator>`_ - Receives data from Vector agents and sends it to a destination.
 
 
-We use the role `Agent` to collect tracking logs and xAPI events from the lms and send it to the clickhouse sink.
+We use the role `Agent` to collect tracking logs and xAPI events from the lms and send it to the Clickhouse sink.
 
 To learn more about Vector, see the `documentation <https://vector.dev/docs/>`_.

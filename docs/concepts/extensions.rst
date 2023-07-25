@@ -9,7 +9,7 @@ extend the different parts of the project.
 Superset Assets
 ================
 
-Aspects allows to programatically define custom superset assets, such as custom data sources, queries, reports, and dashboards, via a Tutor patch.
+Aspects allows to programatically define custom Superset assets, such as custom data sources, queries, reports, and dashboards, via a Tutor patch.
 Developers can use an tutor inline plugin with the patch `superset-extra-assets`
 and those will be imported at initialization.
 
@@ -37,14 +37,14 @@ An example of such a plugin is the following:
 The patch is expected to be a list of assets with an extra attribute called **_file_name**,
 which uniquely identifies the asset entry. This file does not need to exist anywhere;
 it will be created with the rest of the yaml in that stanza as part of the init process.
-Each asset is expected to be a valid yaml file with the attributes that superset expects
+Each asset is expected to be a valid yaml file with the attributes that Superset expects
 for each asset type. See `assets.yaml <https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/apps/superset/pythonpath/assets.yaml>`_ 
 for examples of asset yaml declarations.
 
 Override Superset Default Assets
 ================================
 
-Aspects allows to override the default superset assets by creating an superset extra asset
+Aspects allows to override the default Superset assets by creating an Superset extra asset
 as explained above using the same UUID as the default asset. The UUID of the default assets
 can be found in the `assets.yaml`
 
@@ -128,11 +128,11 @@ dictionaries with the following structure:
             "filter_type": "Regular",
         },
 
-You can find more information about superset RLSF in the `superset documentation <https://superset.apache.org/docs/security/#row-level-security>`_.
+You can find more information about Superset RLSF in the `Superset documentation <https://superset.apache.org/docs/security/#row-level-security>`_.
 
 Custom Jinja Filters
 ====================
-Aspects allows to add custom jinja filters to superset. To do so, you can use the patch
+Aspects allows to add custom jinja filters to Superset. To do so, you can use the patch
 `superset-jinja-filters`. which you can use to define new filters like the **can_view_courses**
 clause used above. This patch expects valid python code, and the function should return an SQL 
 fragment as a string, e.g:
@@ -184,7 +184,7 @@ in the config.yaml file. It's a dictionary that expects a key for the name of th
 
 Custom Superset Roles
 =====================
-Aspects allows to add custom superset roles. To do so, you can use the patch
+Aspects allows to add custom Superset roles. To do so, you can use the patch
 `superset-extra-roles` which you can use to define new roles. This patch expects valid JSON objects
 with the following structure:
 
@@ -228,8 +228,8 @@ In the context of the code you can access to the following variables:
 Custom Clickhouse SQL
 =====================
 
-Aspects allows to add custom clickhouse SQL at initialization. To do so, you can use the patch
-`clickhouse-extra-sql` which you can use to define new SQL. This patch expects valid clickhouse SQL
+Aspects allows to add custom Clickhouse SQL at initialization. To do so, you can use the patch
+`clickhouse-extra-sql` which you can use to define new SQL. This patch expects valid Clickhouse SQL
 code:
 
 .. code-block:: yaml

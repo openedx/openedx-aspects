@@ -3,7 +3,7 @@ Clickhouse
 
 ClickHouse is a high-performance, column-oriented SQL database management system (DBMS) 
 for online analytical processing (OLAP). It is used as the backend storage for the Aspects 
-project that powers superset.
+project that powers Superset.
 
 Clickhouse Migrations
 ****************************
