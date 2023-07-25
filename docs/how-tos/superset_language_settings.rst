@@ -1,6 +1,6 @@
 .. _superset-language-settings:
 
-Changing Superset language settings
+Superset language settings
 ###################################
 
 By changing the following Tutor configuration variables you can change the default

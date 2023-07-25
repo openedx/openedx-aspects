@@ -7,4 +7,5 @@ How-Tos
 
    Changing the xAPI actor identifier <changing_actor_identifier>
    Superset extra assets <superset_extra_assets>
-   Changing Superset language settings <superset_language_settings>
+   Superset language settings <superset_language_settings>
+   Superset extra row level security <superset_row_level_security>
