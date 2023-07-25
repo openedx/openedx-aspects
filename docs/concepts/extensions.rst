@@ -9,44 +9,10 @@ extend the different parts of the project.
 Superset Assets
 ================
 
-Aspects allows to programatically define custom Superset assets, such as custom data sources, queries, reports, and dashboards, via a Tutor patch.
-Developers can use an tutor inline plugin with the patch `superset-extra-assets`
-and those will be imported at initialization.
+Aspects allows site operators to programatically define custom Superset assets, such as 
+Databases, Datases, Slices or Dashboard, and override default ones.
 
-An example of such a plugin is the following:
-
-.. code-block:: yaml
-
-    name: custom-inline-plugin
-    version: 0.1.0
-    patches:
-    superset-extra-assets: |
-        - _file_name: my-dashboard.yaml
-        dashboard_title: "..."
-        ...
-        - _file_name: my-chart.yaml
-        slice_name: "..."
-        ...
-        - _file_name: my-database.yaml
-        database_name: "..."
-        ...
-        - _file_name: my-dataset.yaml
-        table_name: "..."
-        ...
-
-The patch is expected to be a list of assets with an extra attribute called **_file_name**,
-which uniquely identifies the asset entry. This file does not need to exist anywhere;
-it will be created with the rest of the yaml in that stanza as part of the init process.
-Each asset is expected to be a valid yaml file with the attributes that Superset expects
-for each asset type. See `assets.yaml <https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/apps/superset/pythonpath/assets.yaml>`_ 
-for examples of asset yaml declarations.
-
-Override Superset Default Assets
-================================
-
-Aspects allows to override the default Superset assets by creating an Superset extra asset
-as explained above using the same UUID as the default asset. The UUID of the default assets
-can be found in the `assets.yaml`
+See :ref:`superset-extra-assets` for more information.
 
 Changing Superset Language Settings
 ===================================
