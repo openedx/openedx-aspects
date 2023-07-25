@@ -30,8 +30,8 @@ Roles can be extended and assigned using a combination of extensions described i
 Superset Authentication
 -----------------------
 
-Superset authentication is performed against the LMS using SSO. In this process the LMS provides
-an JWT token that's later used to perform API calls to find out the user's roles and permissions.
+Superset authentication is performed against the LMS using SSO. In this process, the LMS provides
+a JWT token that's later used to perform API calls to find out the user's roles and permissions.
 
 Superset Permissions
 -----------------------

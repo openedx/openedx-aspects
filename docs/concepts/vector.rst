@@ -2,8 +2,10 @@ Vector
 ##################################
 
 Vector is lightweight and ultra-fast tool for building observability pipelines.
-In the Aspects project it can optionally be used as a replacement for Ralph to capture xAPI learner statements in the ClickHouse database, and/or as a way to store raw tracking log statements. It can be used as a general purpose log collector and forwarder.
-a general purpose log collector.
+In the Aspects project, Vector can optionally be used as a replacement for Ralph to
+capture xAPI learner statements in the ClickHouse database, and/or as a way to
+store raw tracking log statements. It can be used as a general purpose log collector
+and forwarder
 
 
 Vector Components

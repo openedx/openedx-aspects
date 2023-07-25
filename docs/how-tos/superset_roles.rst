@@ -26,7 +26,7 @@ expects validJSON objects with the following structure:
             ],
         }
 
-Once you have defined your custom roles you probably want to assign them to users
+Once you have defined your custom roles, you probably want to assign them to users
 automatically at login. You can do so by using the patch **superset-sso-assignment-rules**.
 This patch expects valid python code and should return a list of roles:
 
@@ -41,4 +41,4 @@ In the context of the code you can access to the following variables:
 
 - **self**: OpenEdxSsoSecurityManager instance.
 - **username**: username of the user.
-- **decoded_access_token**: decoded JWT token of the user (can be used to perform API calls)
+- **decoded_access_token**: decoded JWT token of the user (can be used to perform API calls).

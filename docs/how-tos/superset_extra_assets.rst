@@ -40,6 +40,6 @@ Additionally to the default fields for each asset type, the following fields are
 Override Superset Default Assets
 ================================
 
-Aspects allows to override the default Superset assets by creating an Superset extra asset
-as explained above using the same UUID as the default asset. The UUID of the default assets
-can be found in the `assets.yaml`
+Aspects allows the site operator to override the default Superset assets by creating an Superset
+extra asset as explained above using the same UUID as the default asset. The UUID of the default
+assets can be found in the `assets.yaml`

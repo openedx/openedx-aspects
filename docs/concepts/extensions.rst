@@ -9,7 +9,7 @@ extend the different parts of the project.
 Superset Assets
 ================
 
-Aspects allows site operators to programatically define custom Superset assets, such as 
+Aspects allows the site operator to programatically define custom Superset assets, such as 
 Databases, Datases, Slices or Dashboard, and override default ones.
 
 See :ref:`superset-extra-assets` for more information.
@@ -34,7 +34,7 @@ See :ref:`superset-row-level-security` for more information.
 Superset Custom Jinja Filters
 =============================
 
-Aspects allows to add custom jinja filters to Superset which can be used to generate SQL
+Aspects allows the site operator to add custom jinja filters to Superset which can be used to generate SQL
 statements based on the current user role or any given input.
 
 In Aspects, those are used to filter the data based on the user course access.
@@ -44,7 +44,7 @@ See :ref:`superset-jinja-filters` for more information.
 Superset Custom Roles
 =====================
 
-Aspects allows to add custom Superset roles which can be seen as groups of permissions,
+Aspects allows the site operator to add custom Superset roles which can be seen as groups of permissions,
 those are automatically associated at login. 
 
 See :ref:`superset-roles` for more information.
@@ -52,7 +52,7 @@ See :ref:`superset-roles` for more information.
 Custom Clickhouse SQL
 =====================
 
-Aspects allows to add custom Clickhouse SQL at initialization. 
+Aspects allows the site operator to add custom Clickhouse SQL at initialization. 
 
 See :ref:`clickhouse-sql` for more information.
 

@@ -7,7 +7,7 @@ of all skill sets to explore and visualize their data, from simple pie charts to
 detailed deck.gl geospatial charts.
 
 Superset is used as the reporting and visualization tool of the Aspects project. Authentication
-is performed agains the LMS using SSO. You can find more information in
+is performed against the LMS using SSO. You can find more information in
 :ref:`authentication-permissions`.
 
 Superset Concepts
