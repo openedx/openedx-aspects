@@ -2,7 +2,13 @@ Concepts
 ########
 
 .. toctree::
+   :glob:
    :maxdepth: 2
-   :caption: Content:
 
-   xAPI Concepts <xapi_concepts>
+   xAPI <xapi_concepts>
+   Clickhouse <clickhouse>
+   Ralph <ralph>
+   Superset <superset>
+   Vector <vector>
+   Authentication and Permissions <authentication_permissions>
+   Extensions <extensions>

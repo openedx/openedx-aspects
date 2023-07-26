@@ -1,3 +1,5 @@
+.. _clickhouse-migrations:
+
 7. Alembic migrations for Aspects
 #################################
 
