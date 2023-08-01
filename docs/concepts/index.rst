@@ -12,3 +12,4 @@ Concepts
    Vector <vector>
    Authentication and Permissions <authentication_permissions>
    Extensions <extensions>
+   Tracking Logs <tracking_logs>
