@@ -1,3 +1,5 @@
+.. _quick-start-ralph:
+
 Ralph
 ******
 
@@ -12,7 +14,9 @@ Aspects provides the following configuration options:
 
 .. code-block:: yaml
     
-    RALPH_ENABLE_PUBLIC_URL: False # If True, the public URL ralph.{{LMS_HOST}} will be used instead of the internal one
+    # If True, the public URL ralph.{{LMS_HOST}} will be used instead of the internal one
+    # Useful is you want Ralph to be used by external services
+    RALPH_ENABLE_PUBLIC_URL: False
     RALPH_PORT: 8100
     RALPH_SENTRY_DSN: ""
     RALPH_EXECUTION_ENVIRONMENT: "production"

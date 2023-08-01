@@ -1,3 +1,5 @@
+.. _quick-start-vector:
+
 Vector
 ******
 
@@ -23,3 +25,5 @@ Aspects provides the following configuration options:
     
     ASPECTS_CLICKHOUSE_VECTOR_USER: "vector"
     ASPECTS_CLICKHOUSE_VECTOR_PASSWORD: "secure-password"
+    # The default name is used to keep backwards compatibility with Cairn
+    ASPECTS_VECTOR_RAW_TRACKING_LOGS_TABLE: "_tracking"

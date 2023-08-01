@@ -1,9 +1,12 @@
 Backfill old or missing data
 *****************************
 
+If you are bootstrapping a new Open edX platform with Aspects or experiencing service
+downtime in Ralph or Vector, you may need to backfill the old data. This guide will
+provide you with step-by-step instructions on how to perform the backfill process.
 
-Backfill tracking logs
-#######################
+Backfill xAPI data from tracking logs
+######################################
 
 Event routing backends provide a management command to backfill old or missing
 data. The command is called ``transform_tracking_logs``, learn more about it in the
@@ -36,13 +39,13 @@ LRS. Vector will read the logs from the k8s job and send them to Clickhouse.
 Backfill course blocks
 #######################
 
-Aspects keeps an synchronized copy of the courses in Clickhouse. This copy is used to
+Aspects keeps a synchronized copy of some course metadata in Clickhouse. This copy is used to
 generate reports and to provide a fast way to query the courses. The copy is updated
 every time a course is published. However, if a course is published before Aspects
 is installed, the course will not be copied to Clickhouse. 
 
 Aspects provides a wrapper around the command ``dump_courses_to_clickhouse`` that
-will backfill the missing courses. To learn more about the command, read the
+will backfill any missing courses. To learn more about the command, read the
 `Event Sink Clickhouse documentation <https://github.com/openedx/openedx-event-sink-clickhouse#commands>`_.
 
 To backfill the courses, run:
