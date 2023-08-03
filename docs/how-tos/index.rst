@@ -6,6 +6,7 @@ How-Tos
    :caption: Content:
 
    Changing the xAPI actor identifier <changing_actor_identifier>
+   Backfill old or missing data <backfill>
    Superset extra assets <superset_extra_assets>
    Superset language settings <superset_language_settings>
    Superset extra row level security <superset_row_level_security>
