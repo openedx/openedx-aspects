@@ -72,7 +72,6 @@ html_theme_options = {
     "repository_url": "https://github.com/openedx/openedx-aspects",
     "repository_branch": "main",
     "path_to_docs": "docs/",
-    "logo_only": True,
     "home_page_in_toc": True,
     "use_repository_button": True,
     "use_issues_button": True,
