@@ -1,3 +1,5 @@
+.. _vector:
+
 Vector
 ******
 
@@ -27,7 +29,7 @@ Vector can be deployed in two roles:
   from Vector agents and sends it to a destination.
 
 
-We use the role `Agent` to collect tracking logs and xAPI events from the lms and send it to 
+We use the role `Agent` to collect tracking logs and xAPI events from the lms and send it to
 the Clickhouse sink.
 
 For instance, Aspects has Sources configured for xAPI logging statements (optionally

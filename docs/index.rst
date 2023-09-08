@@ -1,16 +1,16 @@
-.. Open edX Aspects documentation master file, created by
-   sphinx-quickstart on Thu Jan  5 14:35:06 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to the Open edX Aspects documentation!
 ==============================================
 
-* Note: we are in the progress of changing the project name and documentation is still being updated from OARS to Aspects!
+Aspects is an analytics system for Open edX, bringing actionable data about course and learner performance to instructors and site operators. It is primarily a Tutor plugin that ties together data from the Open edX learning management system and Studio using open source tools to aggregate and transform learning traces into data visualizations.
+
+As of September 2023 it is in beta and seeking testers, which you can learn about at the `beta wiki page
+<https://openedx.atlassian.net/wiki/spaces/COMM/pages/3861512203/Aspects+Beta>`_.
+
+You can get started reading about the project in the :ref:`aspects-overview`, or look through the various pages below for more details!
+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    Concepts <concepts/index>
    Decisions <decisions/index>
