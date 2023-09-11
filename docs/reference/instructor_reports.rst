@@ -1,3 +1,5 @@
+.. _instructor-reports:
+
 Instructor Reports
 ##################
 

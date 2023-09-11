@@ -33,7 +33,11 @@ requirements:
 	pip-sync requirements/base.txt
 
 serve_docs:
-	sphinx-autobuild docs/ docs/_build/html/
+	sphinx-autobuild -W docs/ docs/_build/html/
+
+# Emulate the build step on RTD to flush out errors ahead pushing
+check_docs:
+	sphinx-build -T -E -W --keep-going docs/ docs/_build/html
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

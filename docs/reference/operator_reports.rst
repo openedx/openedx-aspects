@@ -1,3 +1,5 @@
+.. _operator-reports:
+
 Operator Reports
 ################
 
