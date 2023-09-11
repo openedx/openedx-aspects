@@ -6,6 +6,8 @@ Aspects is an analytics system for Open edX, bringing actionable data about cour
 As of September 2023 it is in beta and seeking testers, which you can learn about at the `beta wiki page
 <https://openedx.atlassian.net/wiki/spaces/COMM/pages/3861512203/Aspects+Beta>`_.
 
+Installation instructions are available on the plugin site: https://github.com/openedx/tutor-contrib-aspects
+
 You can get started reading about the project in the :ref:`aspects-overview`, or look through the various pages below for more details!
 
 
