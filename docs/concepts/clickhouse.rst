@@ -1,8 +1,10 @@
+.. _clickhouse:
+
 Clickhouse
 ****************************
 
-ClickHouse is a high-performance, column-oriented SQL database management system (DBMS) 
-for online analytical processing (OLAP). It is used as the backend storage for the Aspects 
+ClickHouse is a high-performance, column-oriented SQL database management system (DBMS)
+for online analytical processing (OLAP). It is used as the backend storage for the Aspects
 project that powers Superset.
 
 Aspects is compatible with Clickhouse Cloud and on premise Clickhouse instances.
@@ -34,5 +36,5 @@ From here, the main table is split into different tables and views for performan
 
 - Materialized views transform the xAPI statements into tables that are structured for performance.
 
-- Views are created on top of these tables to generate specific reports such as "Video Views" 
+- Views are created on top of these tables to generate specific reports such as "Video Views"
   and "Enrollments by Day".

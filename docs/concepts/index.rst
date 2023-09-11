@@ -5,6 +5,7 @@ Concepts
    :glob:
    :maxdepth: 2
 
+   Aspects Overview <aspects_overview>
    xAPI <xapi_concepts>
    Tracking Logs <tracking_logs>
    Clickhouse <clickhouse>
