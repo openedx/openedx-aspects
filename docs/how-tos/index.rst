@@ -5,6 +5,7 @@ How-Tos
    :maxdepth: 2
    :caption: Content:
 
+   Upgrade Aspects <upgrade>
    Changing the xAPI actor identifier <changing_actor_identifier>
    Backfill old or missing data <backfill>
    Superset extra assets <superset_extra_assets>
@@ -15,3 +16,4 @@ How-Tos
    Clickhouse extra SQL <clickhouse_sql>
    Connect to external Clickhouse database <remote_clickhouse>
    Extending DBT <dbt_extensions>
+   Run Aspects in a ClickHouse cluster <clickhouse_cluster>
