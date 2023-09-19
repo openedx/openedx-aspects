@@ -51,8 +51,8 @@ Clickhouse instance. To do so, set the following variables in your **config.yaml
     CLICKHOUSE_SECURE_CONNECTION: true|false
     CLICKHOUSE_ADMIN_USER: <clickhouse_admin_user>
     CLICKHOUSE_ADMIN_PASSWORD: <clickhouse_admin_password>
-    CLICKHOUSE_CLIENT_PORT: <clickhouse_client_port> # default to 9000 | 9440 used by initialization tasks
-    CLICKHOUSE_PORT: <clickhouse_port> # default to 8123 | 8443 used by other services such as ralph and the lms
+    CLICKHOUSE_HOST_HTTP_PORT: <clickhouse_http_port> # defaults to 8123 or 8443 for secure TLS connections
+    CLICKHOUSE_HOST_NATIVE_PORT: <clickhouse_client_port> # default to 9000 | 9440 used by initialization tasks
 
 Additionally, there are some other variables that are calculated based on the above variables, but
 can be customized if needed:
