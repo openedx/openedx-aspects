@@ -21,13 +21,13 @@ to manage.
 Decision
 ********
 
-The Open Analytics Reference System (OARS) will use `Apache Superset`_ as its primary data visualization
+The Aspects Analytics system (Aspects) will use `Apache Superset`_ as its primary data visualization
 and exploration tool. When developing a plan to support analytics in Open edX installs we have looked
 for a solution that offered at least the level of functionality we were able to get from the Insights
 user interface, as well as the following:
 
 - Open source
-- Deployable and configurable to work with OARS using Tutor
+- Deployable and configurable to work with Aspects using Tutor
 - Able to use the LMS as an authentication and authorization provider
 - Capable of handling large quantities of data
 - Minimal new technology / expertise needed beyond the usual Open edX stack
@@ -48,7 +48,7 @@ or expensive paid solutions.
 Consequences
 ************
 
-Superset will be integrated into OARS via a Tutor plugin that:
+Superset will be integrated into Aspects via a Tutor plugin that:
 
 - Allows it to share the existing Tutor redis and MySQL services
 - Integrates it with our chosen analytic database (detailed in a future ADR)
