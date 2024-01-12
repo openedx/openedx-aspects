@@ -4,7 +4,7 @@
 Status
 ******
 
-Accepted
+Superseded by `ADR 8 Project structure`_.
 
 Context
 *******
@@ -106,3 +106,6 @@ ClickHouse schema which Ralph writes to part of, but the rest is managed elsewhe
 
 This would also leak Aspects implementation details into all of the plugins, reducing their
 flexibility for other use cases.
+
+
+.. _ADR 8 Project structure: 0008_project_structure.rst
