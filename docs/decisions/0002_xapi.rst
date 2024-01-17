@@ -29,7 +29,7 @@ development of the `event-routing-backends`_ package as the method of implementa
 Decision
 ********
 
-The Open Analytics Reference System (OARS) will support xAPI as its default standard. Tracking
+The Aspects Analytics system (Aspects) will support xAPI as its default standard. Tracking
 log events will be transformed to xAPI statements by event-routing-backends package and sent to an
 xAPI-supporting Learning Record Store (LRS). The specific LRS and backing database chosen will be the
 subject of future ADRs.

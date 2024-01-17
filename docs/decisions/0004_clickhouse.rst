@@ -20,14 +20,14 @@ Additionally as MySQL is a transactional database it is not optimized for a larg
 workload, creating issues at scale that meant more pre-processing (and therefore data delay).
 
 Technology in the analytics space has evolved rapidly in the 10 years since Insights was designed,
-unlocking new capabilities that were not possible at the time. In development of the OARS system we
+unlocking new capabilities that were not possible at the time. In development of the Aspects system we
 have an opportunity simplify and improve our collection and use of analytics data, as well as greatly
 lower the skill and cost requirements of running such a system.
 
 Decision
 ********
 
-The Open Analytics Reference System (OARS) will use `ClickHouse`_ as its analytic database. This
+The Aspects Analytics system (Aspects) will use `ClickHouse`_ as its analytic database. This
 decision is rooted in the desire to provide high performance results on inexpensive hardware, while
 maintaining the ability to scale up to large data sets and removing as much complexity, domain specific
 knowledge, and pre-processing of the data as possible.
@@ -37,13 +37,13 @@ and advanced use cases, security, and high performance on commodity hardware. Cl
 as well as:
 
 - Being open-source (Apache 2 license)
-- Being deployable and configurable to work with OARS using Tutor
+- Being deployable and configurable to work with Aspects using Tutor
 - Having row based access controls
 - Able to store and query JSON documents, such as our xAPI statements
 - Using a familiar SQL interface, no new or esoteric languages needed
 - Requiring minimal new expertise for basic installation and configuration of a small instance
 - Flexible configuration to scale up to very large datasets for large instances
-- Compatible with other OARS technology (Superset, xAPI, Python)
+- Compatible with other Aspects technology (Superset, xAPI, Python)
 - Able to efficiently read and write from a single instance in most cases
 - Offering a cloud service for providers who prefer that to running their own, or who need advanced
   scaling
@@ -55,15 +55,15 @@ as well as:
 Consequences
 ************
 
-ClickHouse will be integrated into OARS via a Tutor plugin, either its own or as part of the LRS
-plugin. It will be configured with a simple schema that should be sufficient for most installs,
+ClickHouse will be integrated into Aspects via the Aspects Tutor plugin.
+It will be configured with a simple schema that should be sufficient for most installs,
 users for the LRS and Superset, and with networking and permissions configured appropriately
 such that all of these pieces work together "out of the box".
 
 A single ClickHouse instance should support a medium sized Open edX instance on commodity hardware,
 including supporting our default reporting queries from Superset. More advanced deployments may be
 required for large scale deployments, extremely intensive reports, or novel use cases outside the scope
-of OARS v1.
+of Aspects v1.
 
 With proper configuration we expect there will be no need for schema management or additional data
 pipelines for our default reports. Further ADRs will cover the specifics of these decisions.

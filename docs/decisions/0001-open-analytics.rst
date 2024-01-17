@@ -32,7 +32,7 @@ privacy, scalability, budget, and expertise.
 Decision
 ********
 
-We will create the Open Analytics Reference System (OARS) that combines existing open-source projects
+We will create the Aspects Analytics system (Aspects) that combines existing open-source projects
 into a preconfigured bundle that can be easily deployed using Tutor.
 
 These projects will include:
