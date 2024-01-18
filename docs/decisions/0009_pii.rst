@@ -23,19 +23,19 @@ help institutions to use it responsibly.
 Decision
 ********
 
-**Opt-in Aspects PII**
+**Opt-out of Aspects PII**
 
-If operators opt-in, Aspects will store PII from Open edX, including User Profiles and a mapping between users and the
-anonymous user IDs used in event data.
+Operators can opt-out of storing and showing PII data from Open edX in Aspects.
 
-Aspects will also construct PII-specific dashboards, charts, and datasources when PII is in use. Access to all event
-data in Aspects is restricted to users with a "staff" or "instructor" role on the course, and the PII dashboards will
-also carry these restrictions.
+If PII is enabled, Aspects will construct learner-specific dashboards, charts, and datasources.
 
-**Removing PII after opting-in**
+Access to all event data in Aspects is restricted to users with a "staff" or "instructor" role on the course, and the
+learner dashboards will also respect these restrictions.
 
-If operators choose to opt-out after opting-in to Aspects PII, they are responsible for removing the relevant PII tables,
-datasources, dashboards, and charts.
+**Removing PII after opting out**
+
+If operators choose to opt-out of Aspects PII after deployment, they are responsible for removing the relevant PII
+data, datasources, dashboards, and charts.
 
 **Aspects supports user retirement**
 
@@ -47,12 +47,12 @@ However, the retired user's event data will not be removed from Aspects, as they
 Consequences
 ************
 
-#. Operators must opt-in to storing PII in Aspects by enabling the `ASPECTS_ENABLE_PII` configuration flag.
-#. Operators who opt-in and then opt-out of storing PII can remove any PII from Aspects by clearing the
-   `EVENT_SINK_PII_MODELS` tables in Clickhouse.
+#. Operators must opt-out of storing PII in Aspects by disabling the `ASPECTS_ENABLE_PII` configuration flag.
+#. Operators who deploy Aspects with PII enabled then opt-out of storing PII can remove any PII from Aspects by clearing
+   the `EVENT_SINK_PII_MODELS` tables in Clickhouse.
 #. Aspects will use the standard Open edX annotations for code that references PII.
 #. User retirement events in the LMS will trigger removal of PII for retired users.
-#. How-to documentation will be created for operators enabling and managing PII.
+#. How-to documentation will be created for operators to manage PII.
 
 Rejected Alternatives
 *********************
@@ -63,6 +63,12 @@ Following the Open edX policy of storing and sharing the minimum personal data n
 Operator dashboards do not use PII.
 
 However the community use cases were too compelling to ignore, and so we were not able to keep PII out of Aspects.
+
+**Opt-in to PII in Aspects**
+
+Aspects v1 requirements include supporting learner-specific charts which are broadly popular among the community.
+Additionally, Aspects is specifically designed to support small- to medium-sized Open edX deployments, and these are the
+most likely to have higher individual learner interaction than large deployments with MOOCs do.
 
 References
 **********
