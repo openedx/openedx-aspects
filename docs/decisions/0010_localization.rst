@@ -48,6 +48,9 @@ Consequences
 
 #. Aspects will configure Superset to run with a set of locales that best matches those locales Open edX supports.
 #. Aspects will create translated copies of all user-facing Superset assets (dashboards and charts).
+#. Access to these translated dashboards will be gated by role-based access controls (RBAC) using locale-specific roles.
+   Users are added to the locale-specific role that best matches their preferred language in Open edX, and so are
+   granted access to the appropriate translated dashboards and charts.
 #. Like other Open edX projects, translations for the Aspects project will be maintained in Transifex.
 #. Translations will be automatically synchronized using the Transifex Github App as per `OEP-58`_.
 
