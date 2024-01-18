@@ -85,10 +85,11 @@ This structure is guided by the following principles:
 
 **LMS plugins**
 
-Aspects depends on a few Django plugins to move events from the LMS into its processing pipeline
-(currently `openedx-event-sink-clickhouse`_ and `event-routing-backends`_). These plugins should
-live in their own repositories, and be installed to the LMS/CMS as "extra requirements", using the
-chosen deployment's best practices.
+Aspects depends on specific versions of a few Django plugins to move events from the LMS into its
+processing pipeline (currently `openedx-event-sink-clickhouse`_ and `event-routing-backends`_).
+These plugins should live in their own repositories, and be installed to the LMS/CMS as "extra
+requirements", using the chosen deployment's best practices. For example, the Tutor plugin installs
+these dependencies to the LMS+CMS using the `OPENEDX_EXTRA_PIP_REQUIREMENTS` variable.
 
 Consequences
 ************
