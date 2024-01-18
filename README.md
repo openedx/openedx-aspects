@@ -8,8 +8,12 @@ Aspects is an optional implementation of analytics for the Open edX LMS. It is t
 
 ## What _isn't_ Aspects?
 
-A deployable application in-and-of itself, it helps deploy other applications together using Tutor plugins and customizations to the Open edX platform to connect well-supported, existing, third party applications.
+A deployable application in-and-of itself, it helps deploy other applications together using a Tutor plugin and customizations to the Open edX platform to connect well-supported, existing, third party applications.
 
 ## Status
 
-Aspects is in development by efforts from Axim Collaborative and Open edX community contributors. You can follow design, development, and implementation at the [Data Working Group issue board](https://github.com/orgs/openedx/projects/5/views/1).
+Aspects is in development by efforts from Axim Collaborative and Open edX community contributors. For more information, see:
+
+* [Data Working Group issue board](https://github.com/orgs/openedx/projects/5/views/1): project design, development, and implementation
+* [Aspects Documentation](https://docs.openedx.org/projects/openedx-aspects): project documentation
+* [tutor-contrib-aspects](https://github.com/openedx/tutor-contrib-aspects): deploys Aspects using Tutor.
