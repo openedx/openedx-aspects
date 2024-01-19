@@ -1,0 +1,77 @@
+9. Personally-identifying information (PII)
+###########################################
+
+Status
+******
+
+Accepted
+
+Context
+*******
+
+The vast majority of event data processed by Aspects is anonymized to protect user privacy. Most events have an "actor",
+and that actor is uniquely identified by an anonymous user ID.
+
+But some of the community's analytics use cases call for the use of Personally Identifying Information (PII) that is
+stored in Open edX. For example, to identify and intercede with learners that are struggling in a course, we need to see
+the contact details for that learner. Or if we want to use use demographic data in recruitment campaigns to improve the
+diversity of a student group, we need access to user profile fields like country, state, gender, and age group.
+
+Storing and displaying PII must be done with care, so this document describes the steps needed to protect this data and
+help institutions to use it responsibly.
+
+Decision
+********
+
+**Opt-out of Aspects PII**
+
+Operators can opt-out of storing and showing PII data from Open edX in Aspects.
+
+If PII is enabled, Aspects will construct learner-specific dashboards, charts, and datasources.
+
+Access to all event data in Aspects is restricted to users with a "staff" or "instructor" role on the course, and the
+learner dashboards will also respect these restrictions.
+
+**Removing PII after opting out**
+
+If operators choose to opt-out of Aspects PII after deployment, they are responsible for removing the relevant PII
+data, datasources, dashboards, and charts.
+
+**Aspects supports user retirement**
+
+Aspects will integrate with the user retirement pipeline (if it is enabled on the LMS) allowing users to retire their
+user accounts and have their PII automatically removed from Aspects.
+
+However, the retired user's event data will not be removed from Aspects, as they remain anonymized.
+
+Consequences
+************
+
+#. Operators must opt-out of storing PII in Aspects by disabling the `ASPECTS_ENABLE_PII` configuration flag.
+#. Operators who deploy Aspects with PII enabled then opt-out of storing PII can remove any PII from Aspects by clearing
+   the `EVENT_SINK_PII_MODELS` tables in Clickhouse.
+#. Aspects will use the standard Open edX annotations for code that references PII.
+#. User retirement events in the LMS will trigger removal of PII for retired users.
+#. How-to documentation will be created for operators to manage PII.
+
+Rejected Alternatives
+*********************
+
+**Don't use PII in Aspects**
+
+Following the Open edX policy of storing and sharing the minimum personal data necessary, Aspects Instructor and
+Operator dashboards do not use PII.
+
+However the community use cases were too compelling to ignore, and so we were not able to keep PII out of Aspects.
+
+**Opt-in to PII in Aspects**
+
+Aspects v1 requirements include supporting learner-specific charts which are broadly popular among the community.
+Additionally, Aspects is specifically designed to support small- to medium-sized Open edX deployments, and these are the
+most likely to have higher individual learner interaction than large deployments with MOOCs do.
+
+References
+**********
+
+- `OEP-30: PII Markup and Auditing <https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0030-arch-pii-markup-and-auditing.html/>`_
+- `Enabling the User Retirement Feature <https://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/configuration/user_retire/index.html/>`_
