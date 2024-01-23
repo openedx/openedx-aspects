@@ -26,7 +26,7 @@ Aspects receives tracking events every time someone watches a video, and so the 
 from these tracking events. However, videos which haven't been watched won't appear in the tracking events. To include
 these unwatched videos in our chart, Aspects needs a way to query a course for all the video blocks it contains.
 
-Open edX sends signals (which, confusingly, are also called "events", see OEP-41) when some actions are taken on the
+Open edX sends signals (which, confusingly, are also called "events", see `OEP-41`_) when some actions are taken on the
 platform, including publishing a course, or updating a course outline. These signals can be used to tell Aspects when
 its course or block data needs to be updated.
 
@@ -34,8 +34,8 @@ Decision
 ********
 
 Use Open edX's "course published" signal to trigger updating course outline and block relationship data stored in
-Clickhouse. This approach is supported by `OEP-50 Hooks extension framework`_, and will be compatible with deployments
-that use the Event Bus to manage signals sent between applications.
+Clickhouse. This approach is supported by `OEP-50`_ Hooks extension framework, and will be compatible with deployments
+that use the Event Bus (see `OEP-52`_) to manage signals sent between applications.
 
 Consequences
 ************
@@ -63,6 +63,11 @@ more general solution of "event sinks" was preferred.
 References
 **********
 
-.. OEP-41 Asynchronous Server Event Message Format: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0041-arch-async-server-event-messaging.html
-.. OEP-50 Hooks extension framework: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0050-hooks-extension-framework.html
-.. OEP-52 Event Bus Architecture: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0052-arch-event-bus-architecture.html
+* `OEP-41`_ Asynchronous Server Event Message Format
+* `OEP-50`_ Hooks Extension Framework
+* `OEP-52`_ Event Bus Architecture
+
+.. _OEP-41: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0041-arch-async-server-event-messaging.html
+.. _OEP-50: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0050-hooks-extension-framework.html
+.. _OEP-52: https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0052-arch-event-bus-architecture.html
+.. _coursegraph: https://github.com/openedx/edx-platform/tree/master/cms/djangoapps/coursegraph
