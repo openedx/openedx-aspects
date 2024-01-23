@@ -1,7 +1,7 @@
 .. _xapi-concepts:
 
-xAPI Concepts
-*************
+xAPI
+****
 
 Introduction
 ###################

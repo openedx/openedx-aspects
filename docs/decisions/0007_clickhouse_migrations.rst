@@ -1,7 +1,7 @@
 .. _clickhouse-migrations:
 
-7. Alembic migrations for Aspects
-#################################
+7. Alembic migrations
+#####################
 
 Status
 ******
