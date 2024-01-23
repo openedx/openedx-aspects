@@ -3,8 +3,7 @@
 Extending dbt
 *************
 
-As noted in `Concepts: dbt <dbt concepts>`_, you can install your own custom dbt packages to apply your own transforms
-to the event data in Aspects.
+As noted in :ref:`dbt`, you can install your own custom dbt packages to apply your own transforms to the event data in Aspects.
 
 To change which dbt packages are installed, use the following Tutor variables:
 
@@ -15,6 +14,3 @@ To change which dbt packages are installed, use the following Tutor variables:
 To change how the ``dbt`` packages are configured, use these Tutor variables:
 
 - **DBT_PROFILE_\***: variables used in the ``dbt/profiles.yml`` file, including several Clickhouse connection settings
-
-
-.. _dbt concepts: ../concepts/dbt.html
