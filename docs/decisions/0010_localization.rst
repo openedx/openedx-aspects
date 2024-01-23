@@ -27,7 +27,7 @@ support localized representations of dates and calendars.
 
 Superset provides Aspect's user interface, and it supports a subset of locales for translating/displaying the menus and
 pages that the application serves. However, Superset does not translate its application or asset data, i.e. the
-dashboards and charts shown to users. Superset also has some open issues related to localization (e.g.  `issue#25258`_).
+dashboards and charts shown to users. Superset also has some open issues related to localization (e.g.  `superset#25258`_).
 
 Aspects must maintain and display translated versions of its supported Superset assets.
 
@@ -57,17 +57,20 @@ Consequences
 Rejected Alternatives
 *********************
 
-**Translate assets on the fly with javascript**
+**Contribute asset translations to Superset**
 
-Another way to implement translations in the browser is using javascript and a mapping between English words/phrases and
-the translated words/phrases (e.g. `simple-translator`_). However, this approach cannot discern the context around how
-words/phrases are used, and so providing accurate translations for complex content can be difficult or impossible. This
-approach would also slow page load times and would provide a sub-standard user experience.
+The Superset community proposed `superset#13442`_ to allow users to provide translations for chart titles, axis labels,
+and metric names.
+
+This ticket has since been closed due to inactivity, but because it puts the onus on translations on the Superset users,
+it's not a solution that would satisfy the Open edX community, which expects translations to be shipped with the
+applications that use them.
 
 References
 **********
 
+* `OEP-58`_ Translations management
 
 .. _OEP-58: https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0058-arch-translations-management.html
-.. _issue#25258: https://github.com/apache/superset/issues/25258
-.. _simple-translator: https://github.com/andreasremdt/simple-translator
+.. _superset#25258: https://github.com/apache/superset/issues/25258
+.. _superset#13442: https://github.com/apache/superset/issues/13442

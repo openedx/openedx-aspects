@@ -3,13 +3,13 @@
 data build tool (dbt)
 *********************
 
-``dbt`` is an open source, command-line tool managed by `dbtlabs`_ for generating and maintaining data transformations.
+dbt is an open source, command-line tool managed by `dbtlabs`_ for generating and maintaining data transformations.
 
-``dbt`` allows engineers to transform data by writing ``SELECT`` statements that reflect business logic which ``dbt``
+dbt allows engineers to transform data by writing ``SELECT`` statements that reflect business logic which dbt
 materializes into tables and views that can be queried efficiently.
 
-``dbt`` also allows engineers to modularize and re-use their transformation code using "packages" that can be shared
-across projects or organizations.
+dbt also allows engineers to modularize and re-use their transformation code using "packages" that can be shared across
+projects or organizations.
 
 dbt in Aspects
 ##############
@@ -17,7 +17,7 @@ dbt in Aspects
 Aspects uses the `aspects-dbt`_ package to define the transforms used by the Aspects project. This package creates and
 manages macros and materialized views for data tables stored in :ref:`Clickhouse`, and provides some tests.
 
-Operators may create and install their own ``dbt`` packages; see :ref:`dbt-extensions` for details.
+Operators may create and install their own dbt packages; see :ref:`dbt-extensions` for details.
 
 `tutor-contrib-aspects`_ also provides a "do" command to proxy running `dbt commands`_ against your deployment; run
 ``tutor [dev|local] do dbt --help`` for details.
@@ -25,8 +25,8 @@ Operators may create and install their own ``dbt`` packages; see :ref:`dbt-exten
 References
 ##########
 
-* `dbtlabs`_: ``dbt`` documentation
-* `dbt-core`_: core ``dbt`` package
+* `dbtlabs`_: dbt documentation
+* `dbt-core`_: core dbt package
 * `aspects-dbt`_: Aspects dbt transforms
 * `tutor-contrib-aspects`_: Aspects Tutor plugin
 
