@@ -14,8 +14,8 @@ across projects or organizations.
 dbt in Aspects
 ##############
 
-Aspects uses the `aspects-dbt`_ package to define the transforms used by the Aspects project. This package manages
-materialized views for data tables stored in `Clickhouse`_.
+Aspects uses the `aspects-dbt`_ package to define the transforms used by the Aspects project. This package creates and
+manages macros and materialized views for data tables stored in `Clickhouse`_, and provides some tests.
 
 Operators may create and install their own ``dbt`` packages; see `dbt extensions`_ for details.
 
