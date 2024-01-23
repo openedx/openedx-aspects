@@ -10,9 +10,10 @@ Context
 *******
 
 Most of the use cases for Aspects require complex transformations to be performed on the data stored in
-:ref:`clickhouse` before it can be displayed in :ref:`superset`. :ref:`xapi-concepts` is a good format for communicating
-learning-related events as they happen, but in order to analyse them and draw conclusions for what these events signify
-over time, Aspects needs views of the data that are designed specifically for the queries performed.
+:ref:`clickhouse` before it can be displayed in :ref:`superset`. While :ref:`xapi-concepts` is a good format for
+communicating learning-related events as they happen, it's not the best format for understanding the effect of these
+events over time.  In order to analyse and draw conclusions for what these events signify over time, Aspects needs
+efficient views of the data that are designed specifically for the queries being performed.
 
 :ref:`clickhouse` provides some features for transforming complex data, but creating efficient views and managing schema
 changes over time can be difficult. Plus, some of these features (like named collections) are not available on all
@@ -32,15 +33,19 @@ Data transformations on this raw data should be made with :ref:`dbt`, including:
 
 * materialized views
 * partitions
-* dictionaries
+* dictionaries (pending support, see `tutor-contrib-aspects#565`_)
 * fields extracted from event JSON
 
-Note that while we use dbt to manage these data transformations, the transformations themselves 
+.. note::
+
+  We use dbt to manage the database schema that performs the transformations, but the transformations themselves happen
+  in the ClickHouse process. As data is inserted it is immediately transformed and stored in the various query-efficient
+  tables.
 
 Consequences
 ************
 
-#. Contribute upstream to `dbt-clickhouse`_ where support for required features is missing.
+#. Contribute upstream to `dbt-clickhouse`_ where support for required features is missing, where possible.
 #. Move transformations made by the "query" and "dataset" Aspects Superset assets to `aspects-dbt`_.
 #. Move dictionaries and partitions originally created using :ref:`clickhouse-migrations` to `aspects-dbt`_.
 #. Squash remaining alembic migrations.
