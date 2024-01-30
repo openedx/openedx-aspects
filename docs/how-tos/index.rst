@@ -15,5 +15,5 @@ How-Tos
    Superset custom roles <superset_roles>
    Clickhouse extra SQL <clickhouse_sql>
    Connect to external Clickhouse database <remote_clickhouse>
-   Extending DBT <dbt_extensions>
+   Extending dbt <dbt_extensions>
    Run Aspects in a ClickHouse cluster <clickhouse_cluster>

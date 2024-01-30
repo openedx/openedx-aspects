@@ -62,7 +62,7 @@ Update the following Tutor variables to use your package instead of the Aspects 
 Once your package is configured in Tutor, you can run dbt commands directly on your deployment; run ``tutor [dev|local] do dbt --help`` for details.
 
 References
-**********
+##########
 
 * `Building dbt packages`_: dbt's guide to building packages
 * `Writing data tests`_: dbt's guide to writing package tests
