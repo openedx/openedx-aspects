@@ -17,3 +17,4 @@ How-Tos
    Connect to external Clickhouse database <remote_clickhouse>
    Extending dbt <dbt_extensions>
    Run Aspects in a ClickHouse cluster <clickhouse_cluster>
+   xAPI Transforms <xapi_transforms>
