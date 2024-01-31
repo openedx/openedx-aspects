@@ -46,7 +46,10 @@ Verb
 The verb is the primary differentiator between different xAPI events in Open edX. Select a verb that describes the event as concisely and accurately as possible, so that future, similar
 events can still be discerned.
 
-Where possible, reuse verbs from one of the registered `xAPI profiles`_. See `ERB's verb list`_ for verbs currently in use in Aspects.
+Where possible:
+
+* use verbs from one of the registered `xAPI profiles`_.
+* avoid re-using verbs that are already in use in Aspects (see `ERB's verb list`_).
 
 For example, the completion aggregator will emit events when progress has been made on a
 unit/section/subsection/course, so we could use the verb `progressed`_.
@@ -134,23 +137,33 @@ For these completion "progressed" events, we would want to store:
   }
 
 
-xAPI Transformer Registry
-#########################
+Implementation
+##############
 
 Once the xAPI event schema is settled, the implementation should be pretty straightforward using
 `event-routing-backends`_ and `TinCan`_.
 
 #. Create a new transformer class that extends `XApiTransformer`_.
-#. Implement the `get_verb` method, returning your chosen verb URI and its short name.
+#. Implement the ``get_verb`` method, returning your chosen verb URI and its short name.
 #. Implement any other custom components by overriding their ``get`` method.
 
-   For example, to customize the context activities for your event, override `get_context_activities`.
+   For example, to customize the context activities for your event, override ``get_context_activities``.
 
-   Use the built-in transformer method `get_data` to parse and return data from the original tracking event.
+   Use the built-in transformer method ``get_data`` to parse and return data from the original tracking event.
 #. Register your transformer class using the registry decorator.
 
    Use the raw tracking event's ``type`` as the parameter to ensure this class is used to transform those type of events.
 
+
+.. warning::
+   There can only be one registered xAPI transformer class per tracking event ``type``.
+   While it is technically possible to overwrite a registered transformer class with another, this is not recommended
+   and may have unintended side effects.
+
+Example code
+~~~~~~~~~~~~
+
+Here is the full code for the example transformer described here.
 
 .. code-block:: python
 
@@ -198,7 +211,7 @@ Once the xAPI event schema is settled, the implementation should be pretty strai
               },
           )
 
-  # Register subclasses for each individual object type
+  # Register subclasses for each individual event type
 
   @XApiTransformersRegistry.register("edx.completion_aggregator.progress.chapter")
   @XApiTransformersRegistry.register("edx.completion_aggregator.progress.sequential")
@@ -216,7 +229,7 @@ References
 
 * `event-routing-backends`_: Django plugin that receives tracking events and transforms them into xAPI
 * `completion aggregator`_: OpenCraft's plugin which accumulates block completion up to the enclosing unit/section/subsection/course.
-* `xAPI profiles`: registry of xAPI schemas
+* `xAPI profiles`_: registry of xAPI schemas
 
 
 .. _completion aggregator: https://github.com/open-craft/openedx-completion-aggregator

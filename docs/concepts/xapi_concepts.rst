@@ -57,13 +57,14 @@ In xAPI, an actor represents an entity that interacts with the learning system.
 It can be a learner, instructor, system administrator, or any other agent
 involved in the learning process.
 
-Actors in Aspects are uniquely identified using a platform-generated ``external_id`` which
-helps keep event data anonymous. Aspects can link this ``external_id`` back to a username or
-email address where individual identities are needed.
+By default, actors in Aspects are uniquely identified using a platform-generated
+``external_id`` which helps keep event data anonymous. Aspects can link this ``external_id``
+back to a username or email address where individual identities are needed. See
+:ref:`changing_actor_identifier` for more options.
 
 Verb
 ~~~~
-Verbs in xAPI are URIs from the  paired with short, translated, human-friendly labels. Verbs
+Verbs in xAPI are URIs paired with short, translated, human-friendly labels. Verbs
 should be in past tense, idenoting that the action has already been performed.
 
 There are many verbs used in Aspects events, for example:  completed, progressed,

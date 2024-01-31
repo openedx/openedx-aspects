@@ -1,3 +1,5 @@
+.. _changing_actor_identifier:
+
 Changing the xAPI actor identifier
 ##################################
 
