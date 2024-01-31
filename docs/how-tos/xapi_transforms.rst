@@ -1,9 +1,19 @@
 .. _xapi_transforms:
 
 xAPI Transforms
-***************
+###############
 
 Aspects converts raw Open edX tracking event JSON into :ref:`xapi-concepts` for storage and analysis. This conversion process is called "transformation".
+
+This document covers two ways to customize Aspect's xAPI transforms:
+
+#. :ref:`transform_new_event`
+#. :ref:`mod_existing_transform`
+
+.. _transform_new_event:
+
+Transforming a new event
+************************
 
 Events emitted by ``openedx`` packages are transformed by `event-routing-backends`_ (ERB), a Django plugin which Aspects installs on Open edX.
 
@@ -11,7 +21,7 @@ Transformers for events emitted by non-openedx packages should be stored close t
 will use OpenCraft's `completion aggregator`_ as the example for this tutorial, building on events emitted by `pr#173`_.
 
 xAPI Schema
-###########
+===========
 
 To decide on an event's xAPI schema, consider any similar events already being transformed, and what event data will be useful for analysis or visualization in Aspects.
 
@@ -138,7 +148,7 @@ For these completion "progressed" events, we would want to store:
 
 
 Implementation
-##############
+==============
 
 Once the xAPI event schema is settled, the implementation should be pretty straightforward using
 `event-routing-backends`_ and `TinCan`_.
@@ -163,7 +173,7 @@ Once the xAPI event schema is settled, the implementation should be pretty strai
 Example code
 ~~~~~~~~~~~~
 
-Here is the full code for the example transformer described here.
+Here is the full code for the new transformer described in this tutorial.
 
 .. code-block:: python
 
@@ -224,18 +234,77 @@ Here is the full code for the example transformer described here.
       object_type = "http://adlnet.gov/expapi/activities/course"
 
 
+.. _mod_existing_transform:
+
+Modifying an existing transform
+*******************************
+
+ERB supports modifying some of its transforms using `openedx-filters`_. See `ERB's xAPI filters`_ for a list of available filters.
+
+.. warning:: Use xAPI filters with care.
+
+  Aspects visualizations depend heavily on ERB's transforms, so removing or modifying data may cause unexpected issues.
+
+  Adding new fields is low risk.
+
+
+Example code
+============
+
+The example below shows how to add some data to any xAPI event's list of context extensions.
+
+See these `xapi filters`_ for production-ready examples.
+
+.. code-block:: python
+
+  from openedx_filters import PipelineStep
+
+  class XApiContextExtensionsFilter(PipelineStep):
+      """This filter updates the context.extensions value for any event transformer.
+
+      How to set:
+          OPEN_EDX_FILTERS_CONFIG = {
+              "event_routing_backends.processors.xapi.transformer.xapi_transformer.get_context": {
+                  "pipeline": ["this_module.this_file.XApiContextExtensionsFilter"],
+                  "fail_silently": False,
+              },
+          }
+      """
+
+      def run_filter(self, transformer, result):  # pylint: disable=arguments-differ, unused-argument
+          """This allows to modify the statement context for any event
+
+          Arguments:
+              transformer <XApiTransformer>: Transformer instance.
+              result <Context>: Context related to an event.
+
+          Returns:
+              Context: Modified context.
+          """
+          extra_extensions = {
+            "https://w3id.org/xapi/openedx/extension/platform-version": "open-release/quince.1",  
+          }
+          result.extensions.update(extra_extensions)
+          return {
+              "result": result
+          }
+
+
 References
-##########
+**********
 
 * `event-routing-backends`_: Django plugin that receives tracking events and transforms them into xAPI
 * `completion aggregator`_: OpenCraft's plugin which accumulates block completion up to the enclosing unit/section/subsection/course.
 * `xAPI profiles`_: registry of xAPI schemas
-
+* `openedx-filters`_: Open edX filters library
 
 .. _completion aggregator: https://github.com/open-craft/openedx-completion-aggregator
+.. _xapi filters: https://github.com/eduNEXT/eox-nelp/blob/master/eox_nelp/openedx_filters/xapi/filters.py
 .. _event-routing-backends: https://github.com/openedx/event-routing-backends
 .. _ERB's verb list: https://github.com/openedx/event-routing-backends/blob/master/event_routing_backends/processors/xapi/constants.py
+.. _ERB's xAPI filters: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#openedx-filters
 .. _external ID: https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/external_user_ids/docs/decisions/0001-externalid.rst
+.. _openedx-filters: https://github.com/openedx/openedx-filters
 .. _pr#173: https://github.com/open-craft/openedx-completion-aggregator/pull/173
 .. _progressed: http://adlnet.gov/expapi/verbs/progressed
 .. _TinCan: https://github.com/RusticiSoftware/TinCanPython
