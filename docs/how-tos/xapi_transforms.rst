@@ -251,43 +251,47 @@ ERB supports modifying some of its transforms using `openedx-filters`_. See `ERB
 Example code
 ============
 
-The example below shows how to add some data to any xAPI event's list of context extensions.
+The example below shows how to add extra data to an event's Activity object.
 
-See these `xapi filters`_ for production-ready examples.
+See these `xapi filters`_ for more examples.
 
 .. code-block:: python
 
   from openedx_filters import PipelineStep
 
   class XApiContextExtensionsFilter(PipelineStep):
-      """This filter updates the context.extensions value for any event transformer.
+      """This filter adds tags to the object.definition.extensions list for "course graded" events.
 
       How to set:
           OPEN_EDX_FILTERS_CONFIG = {
-              "event_routing_backends.processors.xapi.transformer.xapi_transformer.get_context": {
+              "event_routing_backends.processors.xapi.grading_events.course_graded.get_object": {
                   "pipeline": ["this_module.this_file.XApiContextExtensionsFilter"],
                   "fail_silently": False,
               },
           }
       """
 
-      def run_filter(self, transformer, result):  # pylint: disable=arguments-differ, unused-argument
-          """This allows to modify the statement context for any event
+      def run_filter(self, transformer, result):
+          """Appends the list of block tags to the object's extensions list.
 
           Arguments:
               transformer <XApiTransformer>: Transformer instance.
-              result <Context>: Context related to an event.
+              result <Activity>: Target activity for the event.
 
           Returns:
-              Context: Modified context.
+              Activity: Modified activity object.
           """
-          extra_extensions = {
-            "https://w3id.org/xapi/openedx/extension/platform-version": "open-release/quince.1",  
-          }
-          result.extensions.update(extra_extensions)
-          return {
-              "result": result
-          }
+          block_id = result.id
+          tags = get_tags(block_id)
+
+          if not result.definition.extensions:
+            result.definition.extensions = {}
+
+          result.definition.extensions["http://id.tincanapi.com/extension/tags"] = [
+              f"{tag.name}={tag.value}",
+              for tag in tags
+          ]
+          return resultevent_routing_backends.processors.xapi.grading_events.course_graded.get_object
 
 
 References
