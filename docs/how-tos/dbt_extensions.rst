@@ -59,6 +59,8 @@ Update the following Tutor variables to use your package instead of the Aspects 
   Default: ``[]``
 - ``DBT_PROFILE_*``: variables used in the Aspects ``dbt/profiles.yml`` file, including several Clickhouse connection settings.
 
+- ``DBT_SSH_KEY``: The private SSH key to use when cloning the dbt project. Only necessary if you are using a private repository.
+
 Once your package is configured in Tutor, you can run dbt commands directly on your deployment; run ``tutor [dev|local] do dbt --help`` for details.
 
 References
