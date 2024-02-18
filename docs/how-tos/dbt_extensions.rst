@@ -26,7 +26,7 @@ See `aspects/requirements.txt`_ for the specific package versions used by Aspect
   pip install --upgrade pip
 
   # Install the dbt package versions used by Aspects
-  pip install dbt-clickhouse==1.7.1 dbt-core==1.7.0
+  pip install dbt-clickhouse==1.7.2 dbt-core==1.7.0
 
 See `Install dbt`_ for more ways to install dbt.
 
