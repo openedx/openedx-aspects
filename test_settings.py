@@ -14,6 +14,7 @@ def root(*args):
     """
     return join(abspath(dirname(__file__)), *args)
 
+DEBUG = True
 
 DATABASES = {
     'default': {
@@ -57,3 +58,16 @@ TEMPLATES = [{
         ],
     },
 }]
+
+SUPERSET_INSTRUCTOR_DASHBOARD = {
+    "dashboard_slug": "test-dashboard-slug",
+    "dashboard_uuid": "test-dashboard-uuid",
+}
+
+SUPERSET_CONFIG = {
+    "url": "http://dummy-superset-url:8088",
+    "username": "superset",
+    "password": "superset",
+}
+
+SUPERSET_EXTRA_FILTERS_FORMAT = []

@@ -8,10 +8,10 @@ from django.template import Context, Template
 from openedx_filters import PipelineStep
 from web_fragments.fragment import Fragment
 
-from aspects.utils import update_context
+from aspects.utils import generate_superset_context
 
 TEMPLATE_ABSOLUTE_PATH = "/instructor_dashboard/"
-BLOCK_CATEGORY = "superset"
+BLOCK_CATEGORY = "aspects"
 
 
 class AddSupersetTab(PipelineStep):
@@ -31,32 +31,27 @@ class AddSupersetTab(PipelineStep):
             settings, "SUPERSET_INSTRUCTOR_DASHBOARD", {}
         )
         dashboard_uuid = instructor_dashboard_config.get("dashboard_uuid")
-
         extra_filters_format = getattr(settings, "SUPERSET_EXTRA_FILTERS_FORMAT", [])
-
         default_filters = [
             "org = '{course.org}'",
             "course_name = '{course.display_name}'",
             "course_run = '{course.id.run}'",
         ]
-
         filters = default_filters + extra_filters_format
 
-        context = update_context(
-            context, dashboard_uuid=dashboard_uuid, filters=filters
+        context = generate_superset_context(
+            context, dashboard_uuid, filters
         )
-        template = Template(self.resource_string("static/html/superset.html"))
 
+        template = Template(self.resource_string("static/html/superset.html"))
         html = template.render(Context(context))
         frag = Fragment(html)
-
         frag.add_css(self.resource_string("static/css/superset.css"))
         frag.add_javascript(self.resource_string("static/js/embed_dashboard.js"))
-
         section_data = {
             "fragment": frag,
             "section_key": BLOCK_CATEGORY,
-            "section_display_name": "Aspects",
+            "section_display_name": BLOCK_CATEGORY.title(),
             "course_id": str(course.id),
             "template_path_prefix": TEMPLATE_ABSOLUTE_PATH,
         }

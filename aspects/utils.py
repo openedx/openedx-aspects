@@ -16,12 +16,10 @@ if settings.DEBUG:
 logger = logging.getLogger(__name__)
 
 
-def update_context(  # pylint: disable=dangerous-default-value
+def generate_superset_context(  # pylint: disable=dangerous-default-value
     context,
-    superset_config={},
     dashboard_uuid="",
-    filters=[],
-    user=None,
+    filters=[]
 ):
     """
     Update context with superset token and dashboard id.
@@ -31,16 +29,13 @@ def update_context(  # pylint: disable=dangerous-default-value
         superset_config (dict): superset config.
         dashboard_uuid (str): superset dashboard uuid.
         filters (list): list of filters to apply to the dashboard.
-        user (User): user object.
     """
     course = context["course"]
+    user = get_current_user()
 
-    if user is None:
-        user = get_current_user()
     superset_token, dashboard_uuid = generate_guest_token(
         user=user,
         course=course,
-        superset_config=superset_config,
         dashboard_uuid=dashboard_uuid,
         filters=filters,
     )
@@ -63,7 +58,7 @@ def update_context(  # pylint: disable=dangerous-default-value
     return context
 
 
-def generate_guest_token(user, course, superset_config, dashboard_uuid, filters):
+def generate_guest_token(user, course, dashboard_uuid, filters):
     """
     Generate a Superset guest token for the user.
 
@@ -75,10 +70,9 @@ def generate_guest_token(user, course, superset_config, dashboard_uuid, filters)
         tuple: Superset guest token and dashboard id.
         or None, exception if Superset is missconfigured or cannot generate guest token.
     """
-    if not superset_config:
-        superset_config = getattr(settings, "SUPERSET_CONFIG", {})
+    superset_config = getattr(settings, "SUPERSET_CONFIG", {})
 
-    superset_internal_host = superset_config.get("service_url", "http://superset:8088/")
+    superset_internal_host = superset_config.get("service_url")
     superset_username = superset_config.get("username")
     superset_password = superset_config.get("password")
 
