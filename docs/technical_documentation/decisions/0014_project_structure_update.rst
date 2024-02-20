@@ -45,11 +45,10 @@ Consequences
 Rejected Alternatives
 *********************
 
-**Separate repositories for Aspects specific platform plugins**
+* Separate repositories for Aspects specific platform plugins
 
-**Including these plugins in `tutor-contrib-aspects`_ **
-
-This project is already quite complicated, and conflating the concerns of code and configuration will result in an more complicated and confusing codebase with different testing, documentation, and deployment needs.
+* Including these plugins in `tutor-contrib-aspects`_ .
+  This project is already quite complicated, and conflating the concerns of code and configuration will result in an more complicated and confusing codebase with different testing, documentation, and deployment needs.
 
 Supersedes `ADR 6 Areas of responsibility`_.
 Supersedes `ADR 8 Project Structure`_.
