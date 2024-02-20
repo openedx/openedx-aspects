@@ -39,8 +39,6 @@ LOCALE_PATHS = [
     root('aspects', 'conf', 'locale'),
 ]
 
-ROOT_URLCONF = 'aspects.urls'
-
 SECRET_KEY = 'insecure-secret-key'
 
 MIDDLEWARE = (
