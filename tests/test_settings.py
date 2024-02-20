@@ -24,8 +24,7 @@ class TestPluginSettings(TestCase):
         self.assertIn("url", settings.SUPERSET_CONFIG)
         self.assertIn("username", settings.SUPERSET_CONFIG)
         self.assertIn("password", settings.SUPERSET_CONFIG)
-        self.assertIn("dashboard_slug", settings.SUPERSET_INSTRUCTOR_DASHBOARD)
-        self.assertIn("dashboard_uuid", settings.SUPERSET_INSTRUCTOR_DASHBOARD)
+        self.assertIsNotNone(settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID)
         self.assertIsNotNone(settings.SUPERSET_EXTRA_FILTERS_FORMAT)
 
     def test_production_settings(self):
@@ -38,7 +37,7 @@ class TestPluginSettings(TestCase):
                 "username": "superset",
                 "password": "superset",
             },
-            "SUPERSET_INSTRUCTOR_DASHBOARD": {
+            "ASPECTS_INSTRUCTOR_DASHBOARD_UUID": {
                 "dashboard_slug": "instructor-dashboard",
                 "dashboard_uuid": "1d6bf904-f53f-47fd-b1c9-6cd7e284d286",
             },
@@ -49,8 +48,8 @@ class TestPluginSettings(TestCase):
             settings.SUPERSET_CONFIG, settings.ENV_TOKENS["SUPERSET_CONFIG"]
         )
         self.assertEqual(
-            settings.SUPERSET_INSTRUCTOR_DASHBOARD,
-            settings.ENV_TOKENS["SUPERSET_INSTRUCTOR_DASHBOARD"],
+            settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID,
+            settings.ENV_TOKENS["ASPECTS_INSTRUCTOR_DASHBOARD_UUID"],
         )
         self.assertEqual(
             settings.SUPERSET_EXTRA_FILTERS_FORMAT,

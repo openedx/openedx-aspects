@@ -59,10 +59,7 @@ TEMPLATES = [{
     },
 }]
 
-SUPERSET_INSTRUCTOR_DASHBOARD = {
-    "dashboard_slug": "test-dashboard-slug",
-    "dashboard_uuid": "test-dashboard-uuid",
-}
+ASPECTS_INSTRUCTOR_DASHBOARD_UUID = "test-dashboard-uuid"
 
 SUPERSET_CONFIG = {
     "url": "http://dummy-superset-url:8088",

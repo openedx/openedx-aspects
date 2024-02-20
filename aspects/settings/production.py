@@ -11,8 +11,8 @@ def plugin_settings(settings):
     settings.SUPERSET_CONFIG = getattr(settings, "ENV_TOKENS", {}).get(
         "SUPERSET_CONFIG", settings.SUPERSET_CONFIG
     )
-    settings.SUPERSET_INSTRUCTOR_DASHBOARD = getattr(settings, "ENV_TOKENS", {}).get(
-        "SUPERSET_INSTRUCTOR_DASHBOARD", settings.SUPERSET_INSTRUCTOR_DASHBOARD
+    settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID = getattr(settings, "ENV_TOKENS", {}).get(
+        "ASPECTS_INSTRUCTOR_DASHBOARD_UUID", settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID
     )
     settings.SUPERSET_EXTRA_FILTERS_FORMAT = getattr(settings, "ENV_TOKENS", {}).get(
         "SUPERSET_EXTRA_FILTERS_FORMAT", settings.SUPERSET_EXTRA_FILTERS_FORMAT

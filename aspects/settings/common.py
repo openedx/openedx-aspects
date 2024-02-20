@@ -19,8 +19,5 @@ def plugin_settings(settings):
         "username": "superset",
         "password": "superset",
     }
-    settings.SUPERSET_INSTRUCTOR_DASHBOARD = {
-        "dashboard_slug": "instructor-dashboard",
-        "dashboard_uuid": "1d6bf904-f53f-47fd-b1c9-6cd7e284d286",
-    }
+    settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID = "1d6bf904-f53f-47fd-b1c9-6cd7e284d286"
     settings.SUPERSET_EXTRA_FILTERS_FORMAT = []

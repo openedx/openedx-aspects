@@ -27,10 +27,13 @@ class AddSupersetTab(PipelineStep):
         """
         course = context["course"]
 
-        instructor_dashboard_config = getattr(
-            settings, "SUPERSET_INSTRUCTOR_DASHBOARD", {}
-        )
-        dashboard_uuid = instructor_dashboard_config.get("dashboard_uuid")
+        if not hasattr(settings, "ASPECTS_INSTRUCTOR_DASHBOARD_UUID"):
+            return {
+                "context": context,
+            }
+
+        dashboard_uuid = settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID
+
         extra_filters_format = getattr(settings, "SUPERSET_EXTRA_FILTERS_FORMAT", [])
         default_filters = [
             "org = '{course.org}'",
