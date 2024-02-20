@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<script src="https://unpkg.com/@superset-ui/embedded-sdk"></script>
+
+<div class="email-notifier-instructor-wrapper" width="parent">
+    <h2>{{display_name}}</h2>
+
+    {% if exception %}
+    <p>{% trans 'Superset is not configured properly. Please contact your system administrator.'%}</p>
+    <p>
+        {{exception}}
+    </p>
+    {% elif not dashboard_uuid %}
+    <p>
+        Dashboard UUID is not set. Please set the dashboard UUID in the Studio. {{dashboard_uuid}}
+    </p>
+    {% elif superset_url and superset_token %}
+    <div class="superset-embedded-container" id="superset-embedded-container-{{xblock_id}}"></div>
+    <script type="text/javascript">
+        window.dashboard_uuid ="{{dashboard_uuid}}";
+        window.superset_url = "{{superset_url}}";
+        window.superset_token = "{{superset_token}}";
+    </script>
+    {% endif %}
+</div>

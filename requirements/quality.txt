@@ -12,6 +12,14 @@ astroid==3.0.3
     # via
     #   pylint
     #   pylint-celery
+certifi==2024.2.2
+    # via
+    #   -r requirements/test.txt
+    #   requests
+charset-normalizer==3.3.2
+    # via
+    #   -r requirements/test.txt
+    #   requests
 click==8.1.7
     # via
     #   -r requirements/test.txt
@@ -34,12 +42,20 @@ django==3.2.24
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
+    #   django-crum
+    #   openedx-filters
+django-crum==0.7.9
+    # via -r requirements/test.txt
 edx-lint==5.3.6
     # via -r requirements/quality.in
 exceptiongroup==1.2.0
     # via
     #   -r requirements/test.txt
     #   pytest
+idna==3.6
+    # via
+    #   -r requirements/test.txt
+    #   requests
 iniconfig==2.0.0
     # via
     #   -r requirements/test.txt
@@ -58,6 +74,12 @@ markupsafe==2.1.5
     #   jinja2
 mccabe==0.7.0
     # via pylint
+oauthlib==3.2.2
+    # via
+    #   -r requirements/test.txt
+    #   requests-oauthlib
+openedx-filters==1.6.0
+    # via -r requirements/test.txt
 packaging==23.2
     # via
     #   -r requirements/test.txt
@@ -111,6 +133,16 @@ pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
+    #   superset-api-client
+requests==2.31.0
+    # via
+    #   -r requirements/test.txt
+    #   requests-oauthlib
+    #   superset-api-client
+requests-oauthlib==1.3.1
+    # via
+    #   -r requirements/test.txt
+    #   superset-api-client
 six==1.16.0
     # via edx-lint
 snowballstemmer==2.2.0
@@ -123,6 +155,8 @@ stevedore==5.1.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
+superset-api-client==0.6.0
+    # via -r requirements/test.txt
 text-unidecode==1.3
     # via
     #   -r requirements/test.txt
@@ -141,3 +175,9 @@ typing-extensions==4.9.0
     #   asgiref
     #   astroid
     #   pylint
+urllib3==2.2.1
+    # via
+    #   -r requirements/test.txt
+    #   requests
+web-fragments==2.1.0
+    # via -r requirements/test.txt
