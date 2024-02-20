@@ -9,7 +9,7 @@ extend the different parts of the project.
 Superset Assets
 ###############
 
-Aspects allows the site operator to programatically define custom Superset assets, such as 
+Aspects allows the site operator to programatically define custom Superset assets, such as
 Databases, Datases, Slices or Dashboard, and override default ones.
 
 See :ref:`superset-extra-assets` for more information.
@@ -45,14 +45,14 @@ Superset Custom Roles
 #####################
 
 Aspects allows the site operator to add custom Superset roles which can be seen as groups of permissions,
-those are automatically associated at login. 
+those are automatically associated at login.
 
 See :ref:`superset-roles` for more information.
 
 Custom Clickhouse SQL
 #####################
 
-Aspects allows the site operator to add custom Clickhouse SQL at initialization. 
+Aspects allows the site operator to add custom Clickhouse SQL at initialization.
 
 See :ref:`clickhouse-sql` for more information.
 

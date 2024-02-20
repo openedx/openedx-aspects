@@ -12,7 +12,7 @@ Context
 .. note:: Terminology
 
     * A "locale" is a specific language and region.
-      
+
       E.g., Spanish is spoken in several locales: ``es-ar`` (Argentina),  ``es-mx`` (Mexico), ``es-es`` (Spain), etc.
 
     * Internationalization (i18n) is the process of developing products that can be adapted to different languages and
@@ -38,7 +38,7 @@ Decision
   of translated dashboards and charts, and synchronization of the latest translations to the project.
 * Normal Aspects users (non-superusers) will only see the dashboards and charts that match their preferred language as
   selected in the LMS.
-* Open edX superusers using Aspects will see all translations of all Superset assets, so that they are able 
+* Open edX superusers using Aspects will see all translations of all Superset assets, so that they are able
 * All Superset users may choose their preferred locale for Superset menus and pages from the "Languages" menu after
   logging in; this will not be chosen automatically from their Open edX preferred language.
 * Aspects will contribute to Superset's i18n and l10n efforts where possible.

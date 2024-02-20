@@ -6,9 +6,9 @@ Superset extra jinja filters
 
 To create extra jinja filters, you can use the patch `superset-jinja-filters`
 which you can use to define new filters like the **can_view_courses** clause defined in
-:ref:`superset-row-level-security`. 
+:ref:`superset-row-level-security`.
 
-This patch expects valid python code, and the function should return an SQL 
+This patch expects valid python code, and the function should return an SQL
 fragment as a string, e.g:
 
 .. code-block:: yaml
@@ -47,7 +47,7 @@ fragment as a string, e.g:
                 # If you're not course staff on any courses, you don't get to see any.
                 return NO_COURSES
 
-Once the custom jinja filter is defined, it is necessary to register it using 
+Once the custom jinja filter is defined, it is necessary to register it using
 **SUPERSET_EXTRA_JINJA_FILTERS** in the config.yaml file. It's a dictionary
 that expects a key for the name of the filter and the name of underlying function:
 

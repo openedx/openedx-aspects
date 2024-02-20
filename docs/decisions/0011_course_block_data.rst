@@ -10,7 +10,7 @@ Context
 *******
 
 Aspects needs a way to access up-to-date course and block metadata in order to display human-friendly labels and data to
-instructors in a way that makes sense in the context of their course. 
+instructors in a way that makes sense in the context of their course.
 
 The tracking event data that Aspects processes contains "object IDs", or string representations of UsageKeys that
 identify the piece of content the event relates to. But these UsageKeys are not very legible to humans, and the metadata

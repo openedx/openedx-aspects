@@ -5,7 +5,7 @@ Changing the xAPI actor identifier
 
 The xAPI :ref:`actor <actor_concept>` identifier is a unique user identifier provided
 in the xAPI statement generation process by the LMS. The default actor identifier
-is the anonymous user ID, which is different for each user in each course. 
+is the anonymous user ID, which is different for each user in each course.
 If you want to change this behavior, you can update the value of the `XAPI_AGENT_IFI_TYPE`
 setting in the LMS to modify the identifier. The supported values are:
 

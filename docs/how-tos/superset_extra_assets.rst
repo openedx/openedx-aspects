@@ -29,8 +29,8 @@ An example a tutor inline plugin using the patch is the following:
 
 The patch is expected to be a list of assets with an extra attribute called **_file_name**,
 which uniquely identifies the asset entry. Each asset is expected to be a valid yaml object
-with the attributes that Superset expects for each asset type. See 
-`assets.yaml <https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/apps/superset/pythonpath/assets.yaml>`_ 
+with the attributes that Superset expects for each asset type. See
+`assets.yaml <https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/apps/superset/pythonpath/assets.yaml>`_
 for examples of asset yaml declarations.
 
 Additionally to the default fields for each asset type, the following fields are supported:

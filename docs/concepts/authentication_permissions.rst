@@ -14,7 +14,7 @@ By default Superset provides the following roles:
 - Public
 - sql_lab
 
-You can find more information about these roles in the 
+You can find more information about these roles in the
 `Superset documentation <https://superset.apache.org/docs/security/#roles>`_.
 
 We do not use any of the provided roles, instead we have created custom roles for our specific

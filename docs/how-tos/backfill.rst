@@ -42,7 +42,7 @@ Backfill course blocks
 Aspects keeps a synchronized copy of some course metadata in Clickhouse. This copy is used to
 generate reports and to provide a fast way to query the courses. The copy is updated
 every time a course is published. However, if a course is published before Aspects
-is installed, the course will not be copied to Clickhouse. 
+is installed, the course will not be copied to Clickhouse.
 
 Aspects provides a wrapper around the command ``dump_courses_to_clickhouse`` that
 will backfill any missing courses. To learn more about the command, read the
@@ -52,6 +52,6 @@ To backfill the courses, run:
 
 .. code-block:: console
 
-    # If you already have some courses in your clickhouse sink, its better to 
+    # If you already have some courses in your clickhouse sink, its better to
     # drop --options "--force" as it will create duplicates of the pre-existing courses.
     tutor [dev|local|k8s] do dump-courses-to-clickhouse --options "--force"

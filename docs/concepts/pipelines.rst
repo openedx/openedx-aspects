@@ -27,8 +27,8 @@ The Vector pipeline instead works by capturing the standard output from the LMS 
 and sending them directly to configured "sinks" or data destinations. It implements two
 similar pipelines, one for xAPI data and one for tracking logs.
 
-Vector is lighter weight, and generally data will arrive a little faster, but doesn’t retry. 
-It can also be a good choice if you want to add other listeners for that data 
+Vector is lighter weight, and generally data will arrive a little faster, but doesn’t retry.
+It can also be a good choice if you want to add other listeners for that data
 (ex: to store xAPI statements to S3).
 
 To learn more about Vector, see the `Vector documentation <https://vector.dev/docs/>`_.
