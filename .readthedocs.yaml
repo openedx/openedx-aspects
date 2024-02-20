@@ -2,7 +2,7 @@
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-# Required: the version of this file's schema.
+# Required
 version: 2
 
 # Build documentation in the docs/ directory with Sphinx
@@ -15,10 +15,13 @@ build:
   os: "ubuntu-22.04"
   tools:
     python: "3.8"
-  apt_packages:
-    - graphviz
 
-# Optionally set the version of Python and requirements required to build your docs
 python:
   install:
-  - requirements: requirements/docs.txt
+    - requirements: requirements/doc.txt
+
+    # This will pip install this repo into the python environment
+    # if you are using this in a repo that is not pip installable
+    # then you should remove the following two lines.
+    - method: pip
+      path: .

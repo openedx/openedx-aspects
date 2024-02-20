@@ -1,12 +1,4 @@
 # Core requirements for using this application
 -c constraints.txt
 
-sphinx
-sphinx-book-theme
-sphinxcontrib.yt
-sphinx-autobuild
-sphinx-panels
-sphinx-copybutton
-sphinxcontrib-mermaid
-sphinxcontrib-images
-sphinxcontrib-contentui
+Django             # Web application framework
