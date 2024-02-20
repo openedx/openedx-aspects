@@ -157,4 +157,12 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.8',
     ],
+    entry_points={
+        'lms.djangoapp': [
+            'aspects = aspects.apps:AspectsConfig',
+        ],
+        'cms.djangoapp': [
+            'aspects = aspects.apps:AspectsConfig',
+        ],
+    },
 )
