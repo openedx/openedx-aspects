@@ -13,6 +13,11 @@ from aspects.utils import generate_superset_context
 TEMPLATE_ABSOLUTE_PATH = "/instructor_dashboard/"
 BLOCK_CATEGORY = "aspects"
 
+ASPECTS_SECURITY_FILTERS_FORMAT = [
+    "org = '{course.org}'",
+    "course_name = '{course.display_name}'",
+    "course_run = '{course.id.run}'",
+]
 
 class AddSupersetTab(PipelineStep):
     """Add superset tab to instructor dashboard."""
@@ -26,21 +31,10 @@ class AddSupersetTab(PipelineStep):
             _ (str): instructor dashboard template name.
         """
         course = context["course"]
-
-        if not hasattr(settings, "ASPECTS_INSTRUCTOR_DASHBOARD_UUID"):
-            return {
-                "context": context,
-            }
-
         dashboard_uuid = settings.ASPECTS_INSTRUCTOR_DASHBOARD_UUID
+        extra_filters_format = settings.SUPERSET_EXTRA_FILTERS_FORMAT
 
-        extra_filters_format = getattr(settings, "SUPERSET_EXTRA_FILTERS_FORMAT", [])
-        default_filters = [
-            "org = '{course.org}'",
-            "course_name = '{course.display_name}'",
-            "course_run = '{course.id.run}'",
-        ]
-        filters = default_filters + extra_filters_format
+        filters = ASPECTS_SECURITY_FILTERS_FORMAT + extra_filters_format
 
         context = generate_superset_context(
             context, dashboard_uuid, filters

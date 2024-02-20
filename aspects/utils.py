@@ -70,7 +70,7 @@ def generate_guest_token(user, course, dashboard_uuid, filters):
         tuple: Superset guest token and dashboard id.
         or None, exception if Superset is missconfigured or cannot generate guest token.
     """
-    superset_config = getattr(settings, "SUPERSET_CONFIG", {})
+    superset_config = settings.SUPERSET_CONFIG
 
     superset_internal_host = superset_config.get("service_url")
     superset_username = superset_config.get("username")
