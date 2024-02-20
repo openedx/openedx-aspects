@@ -7,14 +7,16 @@ from unittest import TestCase
 from unittest.mock import Mock, patch
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 from aspects.utils import generate_superset_context
 
 User = namedtuple("User", ["username"])
 
 
-class TestContext(TestCase):
+class TestUtils(TestCase):
+    """
+    Test utils module
+    """
 
     @patch("aspects.utils.generate_guest_token")
     def test_generate_superset_context(self, mock_generate_guest_token):
