@@ -6,7 +6,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.22/ref/settings/
 """
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.22/howto/deployment/checklist/
 

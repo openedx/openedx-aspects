@@ -1,6 +1,7 @@
 """
 Open edX Filters needed for Aspects integration.
 """
+
 import pkg_resources
 from django.conf import settings
 from django.template import Context, Template

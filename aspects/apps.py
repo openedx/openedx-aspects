@@ -10,7 +10,7 @@ class AspectsConfig(AppConfig):
     Configuration for the aspects Django application.
     """
 
-    name = 'aspects'
+    name = "aspects"
 
     plugin_app = {
         "settings_config": {
@@ -29,6 +29,4 @@ class AspectsConfig(AppConfig):
 
     def ready(self):
         """Load modules of Aspects."""
-        from aspects.extensions import (  # pylint: disable=unused-import, import-outside-toplevel
-            filters,
-        )
+        from aspects.extensions import filters  # pylint: disable=unused-import, import-outside-toplevel
