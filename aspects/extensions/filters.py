@@ -19,6 +19,7 @@ ASPECTS_SECURITY_FILTERS_FORMAT = [
     "course_run = '{course.id.run}'",
 ]
 
+
 class AddSupersetTab(PipelineStep):
     """Add superset tab to instructor dashboard."""
 

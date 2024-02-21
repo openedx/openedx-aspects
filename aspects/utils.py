@@ -9,11 +9,10 @@ from crum import get_current_user
 from django.conf import settings
 from supersetapiclient.client import SupersetClient
 
+logger = logging.getLogger(__name__)
+
 if settings.DEBUG:
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-
-
-logger = logging.getLogger(__name__)
 
 
 def generate_superset_context(  # pylint: disable=dangerous-default-value
