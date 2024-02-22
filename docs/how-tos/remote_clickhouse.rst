@@ -32,7 +32,49 @@ Aspects can be connected with Clickhouse Cloud following the steps below:
 
     tutor config save
 
-5. Restart your local or production environment. After this change, you need to run the initialization
+5. Depending on how you have configured your ClickHouse user, you may need to bootstrap the default
+   user with permissions required to run the Aspects init. The current permissions required to
+   successfully init are listed below, but please note that you may need to replace the users and
+   databases based on your configuration:
+
+.. code-block:: sql
+
+    GRANT CREATE USER, ALTER USER, CREATE FUNCTION, DROP FUNCTION, CREATE DATABASE, CREATE TEMPORARY TABLE, S3
+        ON *.* to ch_admin;
+
+    CREATE DATABASE IF NOT EXISTS xapi;
+    GRANT ALTER UPDATE, ALTER COLUMN, DROP COLUMN, RENAME COLUMN, ALTER RENAME COLUMN, CREATE DICTIONARY,
+          DROP DICTIONARY, DROP TABLE, CREATE TABLE, CREATE VIEW, DROP VIEW, SELECT, INSERT, DELETE, OPTIMIZE,
+          dictGet
+      ON xapi.* to ch_admin WITH GRANT OPTION;
+
+    CREATE DATABASE IF NOT EXISTS openedx;
+    GRANT ALTER UPDATE, ALTER COLUMN, DROP COLUMN, RENAME COLUMN, ALTER RENAME COLUMN, CREATE DICTIONARY,
+          DROP DICTIONARY, DROP TABLE, CREATE TABLE, CREATE VIEW, DROP VIEW, SELECT, INSERT, DELETE, OPTIMIZE,
+          dictGet
+      ON openedx.* to ch_admin WITH GRANT OPTION;
+
+    CREATE DATABASE IF NOT EXISTS event_sink;
+    GRANT ALTER UPDATE, ALTER COLUMN, DROP COLUMN, RENAME COLUMN, ALTER RENAME COLUMN, CREATE DICTIONARY,
+          DROP DICTIONARY, DROP TABLE, CREATE TABLE, CREATE VIEW, DROP VIEW, SELECT, INSERT, DELETE, OPTIMIZE,
+          dictGet
+      ON event_sink.* to ch_admin WITH GRANT OPTION;
+
+    CREATE DATABASE IF NOT EXISTS reporting;
+    GRANT ALTER UPDATE, ALTER COLUMN, DROP COLUMN, RENAME COLUMN, ALTER RENAME COLUMN, CREATE DICTIONARY,
+          DROP DICTIONARY, DROP TABLE, CREATE TABLE, CREATE VIEW, DROP VIEW, SELECT, INSERT, DELETE, OPTIMIZE,
+          dictGet
+      ON reporting.* to ch_admin WITH GRANT OPTION;
+
+    -- These are used for the ClickHouse status reports in the operator dashboard
+    GRANT SELECT ON system.asynchronous_metrics TO ch_admin WITH GRANT OPTION;
+    GRANT SELECT ON system.disks TO ch_admin WITH GRANT OPTION;
+    GRANT SELECT ON system.events TO ch_admin WITH GRANT OPTION;
+    GRANT SELECT ON system.metrics TO ch_admin WITH GRANT OPTION;
+    GRANT SELECT ON system.replication_queue TO ch_admin WITH GRANT OPTION;
+
+
+6. Restart your local or production environment. After this change, you need to run the initialization
    tasks. To do so, run the following command according to your environment:
 
 .. code-block:: bash
