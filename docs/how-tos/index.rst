@@ -5,6 +5,8 @@ How-Tos
    :maxdepth: 2
    :caption: Content:
 
+   Scaling Aspects <scaling>
+   Running the event bus <event_bus>
    Upgrade Aspects <upgrade>
    Changing the xAPI actor identifier <changing_actor_identifier>
    Backfill old or missing data <backfill>
