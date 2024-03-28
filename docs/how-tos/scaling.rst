@@ -92,6 +92,15 @@ However, if it becomes too resource intensive, these services can be replaced wi
   TBD -- needs fixing
 
 
+.. note::
+
+  Ensure ``sql_require_primary_key = off`` for your MySQL server.
+
+  Some of the Superset tables are initially created without primary keys, so if this flag is set, these migrations fail.
+
+  Some hosting providers `like DigitalOcean`_ enable this flag by default.
+
+
 Superset should also be configured to autoscale based on CPU and RAM. Use a similar configuration as your CMS:
 
 .. code-block:: yaml
@@ -101,7 +110,7 @@ Superset should also be configured to autoscale based on CPU and RAM. Use a simi
 
 Superset also supports these scaling features, which may be supported by future versions of Aspects.
 
-* `asynchronous queries`_: configure the database assets to enable "Asynchronous query execution mode", which moves query execution to the celery workers. 
+* `asynchronous queries`_: configure the database assets to enable "Asynchronous query execution mode", which moves query execution to the celery workers.
   This is useful for queries thtat run beyond a typical web request's timeout (30-60 seconds).
 * cache warming: schedule tasks to use the `Superset API`_ to pre-fetch data into the caches.
   This is useful for frequently-accessed datasets or charts.
@@ -129,5 +138,6 @@ References:
 .. _02-extended-3-nodes.yaml: https://github.com/Altinity/clickhouse-operator/blob/master/docs/chk-examples/02-extended-3-nodes.yaml
 .. _03-persistent-volume-05-resizeable-volume-2.yaml: https://github.com/Altinity/clickhouse-operator/blob/master/docs/chi-examples/03-persistent-volume-05-resizeable-volume-2.yaml
 .. _03-persistent-volume-02-pod-template.yaml: https://github.com/Altinity/clickhouse-operator/blob/master/docs/chi-examples/03-persistent-volume-02-pod-template.yaml
+.. _like DigitalOcean: https://www.digitalocean.com/community/questions/how-to-disable-sql_require_primary_key-in-digital-ocean-manged-database-for-mysql
 .. _asynchronous queries: https://superset.apache.org/docs/installation/async-queries-celery/
 .. _Superset API: https://superset.apache.org/docs/api/
