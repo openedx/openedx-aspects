@@ -9,6 +9,7 @@ Concepts
    xAPI <xapi_concepts>
    Tracking Logs <tracking_logs>
    Clickhouse <clickhouse>
+   Data Lifecycle Policy <data_lifecycle_policy>
    dbt <dbt>
    Ralph <ralph>
    Vector <vector>
