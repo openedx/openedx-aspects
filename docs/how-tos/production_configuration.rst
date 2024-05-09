@@ -1,0 +1,235 @@
+.. _production_configuration:
+
+Configure Aspects for Production
+********************************
+
+Choosing an xAPI Pipeline
+#########################
+
+Aspects can be configured to send xAPI events to ClickHouse in several different ways. Which one you choose depends on your specific organization's needs, deployment infrastructure, scale, and familiarity with different technology. The `event-routing-backends docs`_ have more details on the configuration options outline here.
+
+At a high level the options are:
+
+**Celery tasks without batching (default)**
+
+Each tracking log event that has an xAPI transform gets queued as a task. The task performs the xAPI transform and queues a second task to send the event to Ralph. Ralph checks for the existence of the event in ClickHouse before inserting. Events deemed "`business critical`_" can be configured to be retried upon failure.
+
+Pros:
+
+- Celery is a familiar technology for Open edX site operators and can be configured to run in a highly available and scalable way with multiple workers and things like AWS SQS as a backend
+- Uses exiting systems and processes, so has the least configuration
+- This is the best tested path and least likely to have surprising bugs in v1
+
+Cons:
+
+- The duplication of tasks combined with the high volume of tasks and latency of making network requests for each event can quickly overwhelm Celery workers, requiring many workers to be run and causing delays for other Celery tasks
+- Other processes that spawn many or slow Celery tasks, such as re-grading a large course, or many successive course publish events for large courses, can delay event delivery
+- Downstream outages in Ralph of ClickHouse can exacerbate these issues with many pending retries piling up
+- ClickHouse is much less efficient with many small inserts, resulting in the possibility of insert delays or even errors if there are many simultaneous single row inserts
+
+Recommended for:
+
+Development, testing, or very small deployments.
+
+
+**Celery tasks with batching**
+
+Event-routing-backends can be configured to `batch requests`_ to Ralph, mitigating many of the issues above while still keeping the simplicity of configuration. Batching is accomplished by a "this many or this long" check, so even on low traffic deployments events will only be delayed by a fixed amount of time. In load testing, batching at up to 1000 events allowed for loads over 50 events/sec on a single worker, which is enough for most production instances.
+
+Pros:
+
+- The same as Celery above
+- Far fewer Celery tasks, reducing issues around worker contention and task delays
+- Downstream outages have less impact
+- Much better resource utilization for ClickHouse
+
+Cons:
+
+- Transformed events are stored in redis while waiting to be sent, increasing redis traffic and potential loss of events in a redis outage
+- Batching is not as well tested (as of Redwood) and may have edge cases until it has been used in production
+
+Recommended for:
+
+This is a reasonable choice for most production use cases for small-to-medium sized production deployments and has been load tested up to significant levels.
+
+
+**Vector**
+
+Vector is a log forwarding service that monitors the logs from docker containers or Kubernetes pods. It writes events directly to ClickHouse and automatically batches events based on volume. The LMS can be configured to transform and log xAPI events in-process and Vector will pick them up by reading the logs.
+
+Pros:
+
+- Removes the need to run or scale Ralph
+- Automatic batching adjustments
+- Fastest delivery times to ClickHouse
+- Vector failures do not impact other systems
+
+Cons:
+
+- It is a new service for most operators
+- Events are not de-duplicated before insert, which can result in some (mostly temporary) incorrect data in a disaster recovery
+- Disaster recovery hasn't been tested with Aspects yet
+- Needs a pod run for every LMS or CMS Kubernetes worker
+- When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
+
+Recommended for:
+
+Resource constrained Tutor local environments experienced operators on larger deployments.
+
+
+**Event Bus (experimental)**
+
+Open edX has had event bus capabilities with redis and Kafka backends since Palm. In Redwood the event-tracking and event-routing-backends libraries have been updated to support `using the event bus`_ as a replacement for Celery. It has the advantage of being able to remove Celery contention and maintain better delivery guarantees while still supporting Ralph deduplication and other advanced use cases (such as real-time streaming xAPI events to other reporting or backup services).
+
+Pros:
+
+- Can use completely separate hardware from Celery, providing better performance domain boundaries
+- Can use the same batching mechanisms as Celery for improved performance, with the same costs and tradeoffs
+- Has better delivery guarantees than Celery (in most configurations), allowing operators to recover from event bus consumer outages or upgrades without having to replay tracking logs
+- Can support advanced use cases for sending the xAPI events to other sinks with the same near real-time delivery guarantees as Aspects
+- (redis) Can scale down to use the same redis instance as edx-platform, or use a separate / hosted redis for better isolation and performance
+- (Kafka) Can scale up to handle extremely high volumes of data and handle long-term outages better than any other option, can be run hosted
+- (Kafka) Can potentially `integrate directly`_ with ClickHouse removing the need for both a separate event consumer and Ralph.
+
+Cons:
+
+- Running consumers is not currently handled automatically by Aspects
+- Many parts are new and may not have extensive production testing
+
+Recommended for:
+
+Large-to-very-large instances, adventurous site operators, installations that already have Kafka or advanced use cases that can benefit from a multi-consumer architecture.
+
+
+Setting up the xAPI Pipeline
+############################
+
+**Celery**
+
+When in doubt, the simplest place to start with a production configuration is Celery tasks with batching set to 100 events or 5 seconds. You will want to add at least one additional lms-worker to handle the additional load of xAPI events and the event sink pipeline. You will also probably want to add at least one additional cms-worker to handle the new work of the course publishing event sink.
+
+**Vector**
+
+Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments you will need to make sure that a Vector pod is attached to each LMS/CMS worker.
+
+**Event bus**
+
+Similar to Celery, you should start with at least 2 event bus consumers and configure batching to 100 events or 5 seconds to start with. If you find that the event queue size is growing (see "Monitoring", below), you can add more event bus consumers and/or increase the batch size. We have tested with batch sizes up to 1000 without issue.
+
+
+Choosing ClickHouse Hosting
+###########################
+
+By default Aspects deploys a single ClickHouse Docker container as part of the Tutor install. This is not the preferred way to run a production environment! In most cases, if you can afford it, ClickHouse Cloud is the easiest and most performant way to run the service, and removes the burden of dealing with scaling, security, upgrades, backups, and other potentially difficult database management issues. Axim has been using ClickHouse Cloud for load testing and is designed to work with it.
+
+Altinity Cloud is another hosting service that Aspects has tested with in the past, but may require more hands-on integration as they use a different clustering approach than ClickHouse Cloud.
+
+Another option if you are running in Kubernetes is to use the `clickhouse-operator`_ to deploy and manage a more fault tolerant ClickHouse cluster. Aspects support for ClickHouse clusters is currently experimental, and may not support all cluster configurations without modification.
+
+
+Setting up ClickHouse
+#####################
+
+Tutor local and k8s environments should work out of the box. See Remote ClickHouse <remote-clickhouse> and ClickHouse Cluster <clickhouse-cluster> for more information on setting up hosted services.
+
+
+Setting up Ralph
+################
+
+If you are using a pipeline that involves the Ralph learning record store (Celery or an event bus), you will want to run at least two Ralph servers for fault tolerance. Generally it consumes few resources and is quite stable. If you find that response times from Ralph are high it is usually because there are too many small ClickHouse inserts and you should turn on batching or increase your batch size.
+
+
+Setting up Superset
+###################
+
+While Superset hosting provides such as Preset.io exist, the deep integration that Aspects does with Superset is not expected to work with them. As such we recommend running Superset alongside your Open edX stack.
+
+By default Superset is set to share the Open edX MySQL database and redis servers to save resources. Traditionally services like Aspects are fairly low traffic and this may be acceptable for a production environment, but you may wish to consider setting up separate instances for separation of resources and performance... especially for large sites.
+
+Superset is a Flask application and can be load balanced if need be. Superset also uses Celery workers for asynchronous tasks. You may wish to run more than one of these, though Aspects does not currently make heavy use of them.
+
+
+Monitoring
+##########
+
+There are a few key metrics worth monitoring to make sure that Aspects is healthy:
+
+**ClickHouse Lag Time**
+
+This is the time between now and the last xAPI event arriving. The frequency of events depends on a lot of factors, but an unusually long lag can mean that events aren't arriving. An easy way to check this is by querying ClickHouse with a query such as
+
+.. code-block:: sql
+
+    SELECT
+        count(*) as ttl_count,
+        max(emission_time) as most_recent,
+        date_diff('second', max(emission_time), now()) as lag_seconds
+    FROM xapi.xapi_events_all
+    FINAL
+    FORMAT JSON
+
+
+**Celery Queue Length**
+
+If you are using Celery it's important to make sure that the queue isn't growing uncontrollably due to the influx of new events and other tasks associated with Aspects. For a default install the following Python will show you the the number of tasks waiting to be handled for the LMS and CMS queues:
+
+.. code-block:: python
+
+        r = redis.Redis.from_url(settings.BROKER_URL)
+        lms_queue = r.llen("edx.lms.core.default")
+        cms_queue = r.llen("edx.cms.core.default")
+
+
+**Redis Bus Queue Length**
+
+For redis streams you can find the number of pending items using the following Python:
+
+.. code-block:: python
+
+        r = redis.Redis.from_url(settings.EVENT_BUS_REDIS_CONNECTION_URL)
+
+        # "analytics" is the topic, your configuration may vary
+        info = r.xinfo_stream("analytics", full=True)
+
+        lag = 0
+
+        # You may prefer to break out the lag here by consumer group
+        try:
+            for g in info["groups"]:
+                lag += g["lag"]
+        # Older versions of redis don't have "lag".
+        except KeyError:  # pragma: no cover
+            pass
+
+        return lag
+
+
+**Kafka Bus**
+
+If you are running Kafka you likely have other tools for monitoring and managing the service. Generally you are looking for the difference between the low and high watermark offsets for each partition in your configured topic and consumer group to determine how many messages each partition has processed vs the total.
+
+**Superset**
+
+Superset is a fairly standard Flask web application, and should be monitored for the usual metrics. So far the only slowness we have encountered has been with slow ClickHouse queries.
+
+**ClickHouse**
+
+In addition to the usual CPU/Memory/Disk monitoring you can also monitor a few key ClickHouse metrics:
+
+- Uptime: The server uptime in seconds. It includes the time spent for server initialization before accepting connections.
+- MaxPartCountForPartition: Maximum number of parts per partition across all partitions of all tables of MergeTree family. Values larger than 300 indicates misconfiguration, overload, or massive data loading.
+- StuckReplicationTasks: Replication tasks that were retried or postponed over 100 times.
+- Query: Number of executing queries
+- DelayedInserts: Number of INSERT queries that are throttled due to high number of active data parts for partition in a MergeTree table.
+- DistributedFilesToInsert: Number of pending files to process for asynchronous insertion into Distributed tables. Number of files for every shard is summed.
+- cluster default: Free space per cluster node, as percent
+
+These are also captured in the Aspects Operator Dashboard as well as a filterable list of slowest ClickHouse queries to assist with troubleshooting.
+
+
+.. _business critical: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#persistence
+.. _batch requests: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#batching-configuration
+.. _using the event bus: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#event-bus-configuration
+.. _integrate directly: https://clickhouse.com/docs/en/integrations/kafka
+.. _event-routing-backends docs: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#configuration
+.. _clickhouse-operator: https://github.com/Altinity/clickhouse-operator

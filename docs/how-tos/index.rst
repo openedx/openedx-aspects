@@ -6,6 +6,7 @@ How-Tos
    :caption: Content:
 
    Upgrade Aspects <upgrade>
+   Configure Aspects for Production <production_configuration>
    Changing the xAPI actor identifier <changing_actor_identifier>
    Backfill old or missing data <backfill>
    Superset extra assets <superset_extra_assets>
