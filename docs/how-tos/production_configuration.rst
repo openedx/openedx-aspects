@@ -132,11 +132,15 @@ Setting up ClickHouse
 
 Tutor local and k8s environments should work out of the box. See Remote ClickHouse <remote-clickhouse> and ClickHouse Cluster <clickhouse-cluster> for more information on setting up hosted services.
 
+.. note::
+
+    Don't forget the usual checklist items! Make sure the server is secured, only accessible from places it needs to be, and backed up!
+
 
 Setting up Ralph
 ################
 
-If you are using a pipeline that involves the Ralph learning record store (Celery or an event bus), you will want to run at least two Ralph servers for fault tolerance. Generally it consumes few resources and is quite stable. If you find that response times from Ralph are high it is usually because there are too many small ClickHouse inserts and you should turn on batching or increase your batch size.
+You can deploy `Ralph via Helm chart`_. If you are using a pipeline that involves the Ralph learning record store (Celery or an event bus), you will want to run at least two Ralph servers for fault tolerance. Generally it consumes few resources and is quite stable. If you find that response times from Ralph are high it is usually because there are too many small ClickHouse inserts and you should turn on batching or increase your batch size.
 
 
 Setting up Superset
@@ -147,6 +151,10 @@ While Superset hosting provides such as Preset.io exist, the deep integration th
 By default Superset is set to share the Open edX MySQL database and redis servers to save resources. Traditionally services like Aspects are fairly low traffic and this may be acceptable for a production environment, but you may wish to consider setting up separate instances for separation of resources and performance... especially for large sites.
 
 Superset is a Flask application and can be load balanced if need be. Superset also uses Celery workers for asynchronous tasks. You may wish to run more than one of these, though Aspects does not currently make heavy use of them.
+
+.. note::
+
+    Don't forget the usual checklist items! Make sure the server is secured and backed up! Make sure you understand the basics of `superset security configuration`_ and have updated your settings appropriately if necessary. Aspects does a lot with user roles and permissions to support localized dashboards, if you need help understanding how it all fits together please reach on in #aspects on the Open edX Slack!
 
 
 Monitoring
@@ -233,3 +241,5 @@ These are also captured in the Aspects Operator Dashboard as well as a filterabl
 .. _integrate directly: https://clickhouse.com/docs/en/integrations/kafka
 .. _event-routing-backends docs: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#configuration
 .. _clickhouse-operator: https://github.com/Altinity/clickhouse-operator
+.. _superset security configuration: https://superset.apache.org/docs/security/
+.. _Ralph via Helm chart: https://openfun.github.io/ralph/latest/tutorials/helm/
