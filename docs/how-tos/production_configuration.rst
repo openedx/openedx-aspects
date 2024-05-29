@@ -13,6 +13,8 @@ At a high level the options are:
 Celery tasks without batching (default)
 ---------------------------------------
 
+**Recommended for:** Development, testing, or very small deployments.
+
 Each tracking log event that has an xAPI transform gets queued as a task. The task performs the xAPI transform and queues a second task to send the event to Ralph. Ralph checks for the existence of the event in ClickHouse before inserting. Events deemed "`business critical`_" can be configured to be retried upon failure.
 
 Pros:
@@ -28,13 +30,12 @@ Cons:
 - Downstream outages in Ralph of ClickHouse can exacerbate these issues with many pending retries piling up
 - ClickHouse is much less efficient with many small inserts, resulting in the possibility of insert delays or even errors if there are many simultaneous single row inserts
 
-Recommended for:
-
-Development, testing, or very small deployments.
-
 
 Celery tasks with batching
 --------------------------
+
+**Recommended for:** small-to-medium sized production deployments. This option has been load tested up to significant levels.
+
 
 Event-routing-backends can be configured to `batch requests`_ to Ralph, mitigating many of the issues above while still keeping the simplicity of configuration. Batching is accomplished by a "this many or this long" check, so even on low traffic deployments events will only be delayed by a fixed amount of time. In load testing, batching at up to 1000 events allowed for loads over 50 events/sec on a single worker, which is enough for most production instances.
 
@@ -50,13 +51,11 @@ Cons:
 - Transformed events are stored in redis while waiting to be sent, increasing redis traffic and potential loss of events in a redis outage
 - Batching is not as well tested (as of Redwood) and may have edge cases until it has been used in production
 
-Recommended for:
-
-This is a reasonable choice for most production use cases for small-to-medium sized production deployments and has been load tested up to significant levels.
-
 
 Vector
 ------
+
+**Recommended for:** Resource-constrained Tutor local environments, experienced operators on larger deployments.
 
 Vector is a log forwarding service that monitors the logs from docker containers or Kubernetes pods. It writes events directly to ClickHouse and automatically batches events based on volume. The LMS can be configured to transform and log xAPI events in-process and Vector will pick them up by reading the logs.
 
@@ -75,14 +74,11 @@ Cons:
 - Needs a pod run for every LMS or CMS Kubernetes worker
 - When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
 
-Recommended for:
-
-Resource constrained Tutor local environments, experienced operators on larger deployments.
 
 Event Bus (experimental)
 ------------------------
 
-**Event Bus (experimental)**
+**Recommended for:** Large-to-very-large instances, adventurous site operators, installations that already have Kafka or advanced use cases that can benefit from a multi-consumer architecture.
 
 Open edX has had event bus capabilities with redis and Kafka backends since Palm. In Redwood the event-tracking and event-routing-backends libraries have been updated to support `using the event bus`_ as a replacement for Celery. It has the advantage of being able to remove Celery contention and maintain better delivery guarantees while still supporting Ralph deduplication and other advanced use cases (such as real-time streaming xAPI events to other reporting or backup services).
 
@@ -99,10 +95,6 @@ Pros:
 Cons:
 
 - Many parts are new and may not have extensive production testing
-
-Recommended for:
-
-Large-to-very-large instances, adventurous site operators, installations that already have Kafka or advanced use cases that can benefit from a multi-consumer architecture.
 
 
 Setting up the xAPI Pipeline
