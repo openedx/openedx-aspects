@@ -121,7 +121,7 @@ Generally the Aspects created Vector configuration should work in most cases. In
 Event bus
 ---------
 
-Similar to Celery, you should start with at least 2 event bus consumers and configure batching to 100 events or 5 seconds to start with. If you find that the event queue size is growing (see "Monitoring", below), you can add more event bus consumers and/or increase the batch size. We have tested with batch sizes up to 1000 without issue.
+Similar to Celery, you should start with at least 2 event bus consumers and configure batching to 100 events or 5 seconds to start with. If you find that the event queue size is growing (see :ref:`Monitoring`, below), you can add more event bus consumers and/or increase the batch size. We have tested with batch sizes up to 1000 without issue.
 
 
 Choosing ClickHouse Hosting
@@ -137,7 +137,7 @@ Another option if you are running in Kubernetes is to use the `clickhouse-operat
 Setting up ClickHouse
 =====================
 
-Tutor local and k8s environments should work out of the box. See Remote ClickHouse <remote-clickhouse> and ClickHouse Cluster <clickhouse-cluster> for more information on setting up hosted services.
+Tutor local and k8s environments should work out of the box. See :ref:`Remote ClickHouse <remote-clickhouse>` and :ref:`ClickHouse Cluster <clickhouse-cluster>` for more information on setting up hosted services.
 
 .. note::
 
@@ -174,12 +174,12 @@ By default Aspects does not store information that can directly link the xAPI le
 
 Setting ``ASPECTS_ENABLE_USER_PII`` to ``True``, then running Tutor init for the Aspects plugin, turns on the ability to send user data to ClickHouse. When turned on this populates the ``event_sink.external_id`` and ``event_sink.user_profile`` tables as new users are created.
 
-However it does not copy over existing users, see "Backfilling Existing Data" below for more information on how to do that.
+However it does not copy over existing users, see :ref:`Backfilling Existing Data` below for more information on how to do that.
 
 XAPI User Id Type
 -----------------
 
-By default, xAPI statements are sent with a unique UUID for each individual LMS user.  This preserves learner privacy in cases where PII is turned off and is the recommended way of running Aspects. Other options do exist, see <changing_actor_identifier> for more information.
+By default, xAPI statements are sent with a unique UUID for each individual LMS user.  This preserves learner privacy in cases where PII is turned off and is the recommended way of running Aspects. Other options do exist, see :ref:`changing_actor_identifier` for more information.
 
 .. note::
     In Nutmeg there is not xAPI anonymous ID type, therefore Aspects uses the LTI type, resulting in a decrease in privacy guarantees since the LTI identifier may be linked to 3rd party systems or visible in ways that the xAPI ID is not. It is up to site operators if this tradeoff is acceptable. Additionally, it means that after upgrading from Nutmeg users will begin to get new identifiers, so data will need to be rebuilt from the tracking logs up in order to preserve correctness.
@@ -229,6 +229,8 @@ Monitoring Superset
 Super set comes with built in Sentry support. If you set ``SUPERSET_SENTRY_DSN`` you can take advantage of that telemetry data.
 
 
+.. _data lifecycle:
+
 Data Lifecycle / TTL
 ====================
 
@@ -236,8 +238,10 @@ Data Lifecycle / TTL
 
     By default Aspects partitions all stored data by month and will only keep 1 year of data! ClickHouse will automatically drop partitions of older data as they age off.
 
-For learner privacy and performance reasons, Aspects defaults to only storing one year's worth of historical data. This can be changed or turned off entirely via the setting ``ASPECTS_DATA_TTL_EXPRESSION``. See <data-lifecycle-policy> for more information.
+For learner privacy and performance reasons, Aspects defaults to only storing one year's worth of historical data. This can be changed or turned off entirely via the setting ``ASPECTS_DATA_TTL_EXPRESSION``. See :ref:`data-lifecycle-policy` for more information.
 
+
+.. _backfilling existing data:
 
 Backfilling Existing Data
 =========================
@@ -272,7 +276,7 @@ If you are running with ``ASPECTS_ENABLE_USER_PII`` set to ``True`` you will nee
 Backfilling xAPI Data From Tracking Logs
 ----------------------------------------
 
-How you get data from tracking logs depends on where they are stored, and how large they are. As much as possible you should trim the log files down to just the events that fall within your data retention policy (see "Data Lifecycle / TTL" above) before loading them to avoid unnecessary load on production systems.
+How you get data from tracking logs depends on where they are stored, and how large they are. As much as possible you should trim the log files down to just the events that fall within your data retention policy (see :ref:`Data Lifecycle` above) before loading them to avoid unnecessary load on production systems.
 
 The management command for bulk importing tracking logs is documented here: `transform_tracking_logs`_
 
@@ -281,6 +285,8 @@ Tracking Log Retention
 ======================
 
 Aspects is powered by tracking logs, therefore it's important to rotate and store your tracking log files in a place where they can be replayed if necessary in the event of disaster recovery or other outage. Setting up log rotation is outside the scope of this document, but highly suggested as by default Tutor will write to one tracking log file forever.
+
+.. _monitoring:
 
 Monitoring
 ==========

@@ -1,4 +1,4 @@
-.. clickhouse-cluster:
+.. _clickhouse-cluster:
 
 How To Run Aspects With ClickHouse Cluster
 ******************************************
