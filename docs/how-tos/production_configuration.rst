@@ -211,6 +211,10 @@ Superset offers very basic localization options. Aspects builds on those to brin
 - ``SUPERSET_DASHBOARD_LOCALES`` - This list is for the Aspects language options and include all of the default Open edX languages. Many languages are still being translated, and you may wish to disable some rather than having a mix of localized strings and English being displayed, or add other options. This setting controls the names of dashboards, charts, and columns, as well as some fields returned from the database.
 - The patch ``superset-extra-asset-translations`` allows you to augment or replace the default translations provided with Aspects.
 
+.. note::
+    Superset does not yet support right-to-left languages such as Arabic and Hebrew. We are actively seeking help in adding that functionality upstream, if you are interested please get in touch!
+
+
 Monitoring Superset
 -------------------
 
