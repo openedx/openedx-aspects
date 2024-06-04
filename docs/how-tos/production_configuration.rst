@@ -4,13 +4,16 @@ Configure Aspects for Production
 ********************************
 
 Choosing an xAPI Pipeline
-#########################
+=========================
 
 Aspects can be configured to send xAPI events to ClickHouse in several different ways. Which one you choose depends on your specific organization's needs, deployment infrastructure, scale, and familiarity with different technology. The `event-routing-backends docs`_ have more details on the configuration options outline here.
 
 At a high level the options are:
 
-**Celery tasks without batching (default)**
+Celery tasks without batching (default)
+---------------------------------------
+
+**Recommended for:** Development, testing, or very small deployments.
 
 Each tracking log event that has an xAPI transform gets queued as a task. The task performs the xAPI transform and queues a second task to send the event to Ralph. Ralph checks for the existence of the event in ClickHouse before inserting. Events deemed "`business critical`_" can be configured to be retried upon failure.
 
@@ -27,12 +30,12 @@ Cons:
 - Downstream outages in Ralph of ClickHouse can exacerbate these issues with many pending retries piling up
 - ClickHouse is much less efficient with many small inserts, resulting in the possibility of insert delays or even errors if there are many simultaneous single row inserts
 
-Recommended for:
 
-Development, testing, or very small deployments.
+Celery tasks with batching
+--------------------------
 
+**Recommended for:** small-to-medium sized production deployments. This option has been load tested up to significant levels.
 
-**Celery tasks with batching**
 
 Event-routing-backends can be configured to `batch requests`_ to Ralph, mitigating many of the issues above while still keeping the simplicity of configuration. Batching is accomplished by a "this many or this long" check, so even on low traffic deployments events will only be delayed by a fixed amount of time. In load testing, batching at up to 1000 events allowed for loads over 50 events/sec on a single worker, which is enough for most production instances.
 
@@ -48,12 +51,11 @@ Cons:
 - Transformed events are stored in redis while waiting to be sent, increasing redis traffic and potential loss of events in a redis outage
 - Batching is not as well tested (as of Redwood) and may have edge cases until it has been used in production
 
-Recommended for:
 
-This is a reasonable choice for most production use cases for small-to-medium sized production deployments and has been load tested up to significant levels.
+Vector
+------
 
-
-**Vector**
+**Recommended for:** Resource-constrained Tutor local environments, experienced operators on larger deployments.
 
 Vector is a log forwarding service that monitors the logs from docker containers or Kubernetes pods. It writes events directly to ClickHouse and automatically batches events based on volume. The LMS can be configured to transform and log xAPI events in-process and Vector will pick them up by reading the logs.
 
@@ -72,12 +74,11 @@ Cons:
 - Needs a pod run for every LMS or CMS Kubernetes worker
 - When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
 
-Recommended for:
 
-Resource constrained Tutor local environments, experienced operators on larger deployments.
+Event Bus (experimental)
+------------------------
 
-
-**Event Bus (experimental)**
+**Recommended for:** Large-to-very-large instances, adventurous site operators, installations that already have Kafka or advanced use cases that can benefit from a multi-consumer architecture.
 
 Open edX has had event bus capabilities with redis and Kafka backends since Palm. In Redwood the event-tracking and event-routing-backends libraries have been updated to support `using the event bus`_ as a replacement for Celery. It has the advantage of being able to remove Celery contention and maintain better delivery guarantees while still supporting Ralph deduplication and other advanced use cases (such as real-time streaming xAPI events to other reporting or backup services).
 
@@ -95,29 +96,28 @@ Cons:
 
 - Many parts are new and may not have extensive production testing
 
-Recommended for:
-
-Large-to-very-large instances, adventurous site operators, installations that already have Kafka or advanced use cases that can benefit from a multi-consumer architecture.
-
 
 Setting up the xAPI Pipeline
-############################
+============================
 
-**Celery**
+Celery
+------
 
 When in doubt, the simplest place to start with a production configuration is Celery tasks with batching set to 100 events or 5 seconds. You will want to add at least one additional lms-worker to handle the additional load of xAPI events and the event sink pipeline. You will also probably want to add at least one additional cms-worker to handle the new work of the course publishing event sink.
 
-**Vector**
+Vector
+------
 
 Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments you will need to make sure that a Vector pod is attached to each LMS/CMS worker.
 
-**Event bus**
+Event bus
+---------
 
-Similar to Celery, you should start with at least 2 event bus consumers and configure batching to 100 events or 5 seconds to start with. If you find that the event queue size is growing (see "Monitoring", below), you can add more event bus consumers and/or increase the batch size. We have tested with batch sizes up to 1000 without issue.
+Similar to Celery, you should start with at least 2 event bus consumers and configure batching to 100 events or 5 seconds to start with. If you find that the event queue size is growing (see :ref:`Monitoring`, below), you can add more event bus consumers and/or increase the batch size. We have tested with batch sizes up to 1000 without issue.
 
 
 Choosing ClickHouse Hosting
-###########################
+===========================
 
 By default Aspects deploys a single ClickHouse Docker container as part of the Tutor install. This is not the preferred way to run a production environment! In most cases, if you can afford it, ClickHouse Cloud is the easiest and most performant way to run the service, and removes the burden of dealing with scaling, security, upgrades, backups, and other potentially difficult database management issues. Axim has been using ClickHouse Cloud for load testing and is designed to work with it.
 
@@ -127,9 +127,9 @@ Another option if you are running in Kubernetes is to use the `clickhouse-operat
 
 
 Setting up ClickHouse
-#####################
+=====================
 
-Tutor local and k8s environments should work out of the box. See Remote ClickHouse <remote-clickhouse> and ClickHouse Cluster <clickhouse-cluster> for more information on setting up hosted services.
+Tutor local and k8s environments should work out of the box. See :ref:`Remote ClickHouse <remote-clickhouse>` and :ref:`ClickHouse Cluster <clickhouse-cluster>` for more information on setting up hosted services.
 
 .. note::
 
@@ -137,13 +137,13 @@ Tutor local and k8s environments should work out of the box. See Remote ClickHou
 
 
 Setting up Ralph
-################
+================
 
 You can deploy `Ralph via Helm chart`_. If you are using a pipeline that involves the Ralph learning record store (Celery or an event bus), you will want to run at least two Ralph servers for fault tolerance. Generally it consumes few resources and is quite stable. If you find that response times from Ralph are high it is usually because there are too many small ClickHouse inserts and you should turn on batching or increase your batch size.
 
 
 Setting up Superset
-###################
+===================
 
 While Superset hosting provides such as Preset.io exist, the deep integration that Aspects does with Superset is not expected to work with them. As such we recommend running Superset alongside your Open edX stack.
 
@@ -157,7 +157,7 @@ Superset is a Flask application and can be load balanced if need be. Superset al
 
 
 Important Configuration Considerations
-######################################
+======================================
 
 Personally Identifiable Identification
 --------------------------------------
@@ -166,12 +166,12 @@ By default Aspects does not store information that can directly link the xAPI le
 
 Setting ``ASPECTS_ENABLE_USER_PII`` to ``True``, then running Tutor init for the Aspects plugin, turns on the ability to send user data to ClickHouse. When turned on this populates the ``event_sink.external_id`` and ``event_sink.user_profile`` tables as new users are created.
 
-However it does not copy over existing users, see "Backfilling Existing Data" below for more information on how to do that.
+However it does not copy over existing users, see :ref:`Backfilling Existing Data` below for more information on how to do that.
 
 XAPI User Id Type
 -----------------
 
-By default, xAPI statements are sent with a unique UUID for each individual LMS user.  This preserves learner privacy in cases where PII is turned off and is the recommended way of running Aspects. Other options do exist, see <changing_actor_identifier> for more information.
+By default, xAPI statements are sent with a unique UUID for each individual LMS user.  This preserves learner privacy in cases where PII is turned off and is the recommended way of running Aspects. Other options do exist, see :ref:`changing_actor_identifier` for more information.
 
 .. note::
     In Nutmeg there is not xAPI anonymous ID type, therefore Aspects uses the LTI type, resulting in a decrease in privacy guarantees since the LTI identifier may be linked to 3rd party systems or visible in ways that the xAPI ID is not. It is up to site operators if this tradeoff is acceptable. Additionally, it means that after upgrading from Nutmeg users will begin to get new identifiers, so data will need to be rebuilt from the tracking logs up in order to preserve correctness.
@@ -221,18 +221,22 @@ Monitoring Superset
 Super set comes with built in Sentry support. If you set ``SUPERSET_SENTRY_DSN`` you can take advantage of that telemetry data.
 
 
+.. _data lifecycle:
+
 Data Lifecycle / TTL
-####################
+====================
 
 .. warning::
 
     By default Aspects partitions all stored data by month and will only keep 1 year of data! ClickHouse will automatically drop partitions of older data as they age off.
 
-For learner privacy and performance reasons, Aspects defaults to only storing one year's worth of historical data. This can be changed or turned off entirely via the setting ``ASPECTS_DATA_TTL_EXPRESSION``. See <data-lifecycle-policy> for more information.
+For learner privacy and performance reasons, Aspects defaults to only storing one year's worth of historical data. This can be changed or turned off entirely via the setting ``ASPECTS_DATA_TTL_EXPRESSION``. See :ref:`data-lifecycle-policy` for more information.
 
+
+.. _backfilling existing data:
 
 Backfilling Existing Data
-##########################
+=========================
 
 If you are setting up Aspects as part of an already established Open edX installation, you will probably want to import existing data. There are several things to keep in mind for this process, especially for large or long-running instances!
 
@@ -264,22 +268,25 @@ If you are running with ``ASPECTS_ENABLE_USER_PII`` set to ``True`` you will nee
 Backfilling xAPI Data From Tracking Logs
 ----------------------------------------
 
-How you get data from tracking logs depends on where they are stored, and how large they are. As much as possible you should trim the log files down to just the events that fall within your data retention policy (see "Data Lifecycle / TTL" above) before loading them to avoid unnecessary load on production systems.
+How you get data from tracking logs depends on where they are stored, and how large they are. As much as possible you should trim the log files down to just the events that fall within your data retention policy (see :ref:`Data Lifecycle` above) before loading them to avoid unnecessary load on production systems.
 
 The management command for bulk importing tracking logs is documented here: `transform_tracking_logs`_
 
 
 Tracking Log Retention
-######################
+======================
 
 Aspects is powered by tracking logs, therefore it's important to rotate and store your tracking log files in a place where they can be replayed if necessary in the event of disaster recovery or other outage. Setting up log rotation is outside the scope of this document, but highly suggested as by default Tutor will write to one tracking log file forever.
 
+.. _monitoring:
+
 Monitoring
-##########
+==========
 
 There are a few key metrics worth monitoring to make sure that Aspects is healthy:
 
-**ClickHouse Lag Time**
+ClickHouse Lag Time
+-------------------
 
 This is the time between now and the last xAPI event arriving. The frequency of events depends on a lot of factors, but an unusually long lag can mean that events aren't arriving. An easy way to check this is by querying ClickHouse with a query such as
 
@@ -294,7 +301,8 @@ This is the time between now and the last xAPI event arriving. The frequency of 
     FORMAT JSON
 
 
-**Celery Queue Length**
+Celery Queue Length
+-------------------
 
 If you are using Celery it's important to make sure that the queue isn't growing uncontrollably due to the influx of new events and other tasks associated with Aspects. For a default install the following Python code will show you the number of tasks waiting to be handled for the LMS and CMS queues:
 
@@ -308,7 +316,8 @@ If you are using Celery it's important to make sure that the queue isn't growing
         cms_queue = r.llen("edx.cms.core.default")
 
 
-**Redis Bus Queue Length**
+Redis Bus Queue Length
+----------------------
 
 For redis streams you can find the number of pending items using the following Python:
 
@@ -332,16 +341,19 @@ For redis streams you can find the number of pending items using the following P
         return lag
 
 
-**Kafka Bus**
+Kafka Bus
+---------
 
 If you are running Kafka you likely have other tools for monitoring and managing the service. Generally you are looking for the difference between the low and high watermark offsets for each partition in your configured topic and consumer group to determine how many messages each partition has processed vs the total.
 
-**Superset**
+Superset
+--------
 
 Superset is a fairly standard Flask web application, and should be monitored for the usual metrics. So far the only slowness we have encountered has been with slow ClickHouse queries.
 
 
-**ClickHouse**
+ClickHouse
+----------
 
 In addition to the usual CPU/Memory/Disk monitoring you can also monitor a few key ClickHouse metrics:
 
