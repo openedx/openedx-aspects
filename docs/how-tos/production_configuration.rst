@@ -125,6 +125,8 @@ Altinity Cloud is another hosting service that Aspects has tested with in the pa
 
 Another option if you are running in Kubernetes is to use the `clickhouse-operator`_ to deploy and manage a more fault tolerant ClickHouse cluster. Aspects support for ClickHouse clusters is currently experimental, and may not support all cluster configurations without modification.
 
+One last deployment option is to install ClickHouse in an independent VM from the Kubernetes cluster, we refer to it as `native installation`. Useful from small to medium-sized installations. See clickhouse installation for more information. Make sure to install the same version as tutor-contrib-aspects and setup the server.xml template as the plugin.
+
 
 Setting up ClickHouse
 =====================
