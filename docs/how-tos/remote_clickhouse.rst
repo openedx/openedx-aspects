@@ -39,8 +39,13 @@ Aspects can be connected with Clickhouse Cloud following the steps below:
 
 .. code-block:: sql
 
+    CREATE USER IF NOT EXISTS ch_admin IDENTIFIED WITH sha256_password BY '-your-password-';
+
     GRANT CREATE USER, ALTER USER, CREATE FUNCTION, DROP FUNCTION, CREATE DATABASE, CREATE TEMPORARY TABLE, S3
         ON *.* to ch_admin;
+
+    -- Needed for running cluster sync operations on clustered environments
+    GRANT SYSTEM SYNC REPLICA ON *.* TO ch_admin;
 
     CREATE DATABASE IF NOT EXISTS xapi;
     GRANT ALTER UPDATE, ALTER COLUMN, DROP COLUMN, RENAME COLUMN, ALTER RENAME COLUMN, CREATE DICTIONARY,
@@ -72,6 +77,9 @@ Aspects can be connected with Clickhouse Cloud following the steps below:
     GRANT SELECT ON system.events TO ch_admin WITH GRANT OPTION;
     GRANT SELECT ON system.metrics TO ch_admin WITH GRANT OPTION;
     GRANT SELECT ON system.replication_queue TO ch_admin WITH GRANT OPTION;
+
+    -- This is used in SQL query performance testing
+    SELECT ON system.query_log WITH GRANT OPTION
 
 
 6. Restart your local or production environment. After this change, you need to run the initialization
