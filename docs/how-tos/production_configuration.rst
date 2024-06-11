@@ -10,8 +10,8 @@ Aspects can be configured to send xAPI events to ClickHouse in several different
 
 At a high level the options are:
 
-Celery tasks without batching (default)
----------------------------------------
+Celery tasks without batching (default as of 1.0.0)
+---------------------------------------------------
 
 **Recommended for:** Development, testing, or very small deployments.
 
@@ -31,8 +31,8 @@ Cons:
 - ClickHouse is much less efficient with many small inserts, resulting in the possibility of insert delays or even errors if there are many simultaneous single row inserts
 
 
-Celery tasks with batching
---------------------------
+Celery tasks with batching (default from 1.0.1 and above)
+---------------------------------------------------------
 
 **Recommended for:** small-to-medium sized production deployments. This option has been load tested up to significant levels.
 
