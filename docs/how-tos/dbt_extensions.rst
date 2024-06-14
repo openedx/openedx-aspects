@@ -16,7 +16,7 @@ Step 0. Install dbt core
 
 The easiest way to install dbt core is to use pip in a python3 virtual environment.
 
-See `aspects/requirements.txt`_ for the specific package versions used by Aspects.
+See `aspects-dbt requirements.txt`_ for the specific package versions used by Aspects.
 
 .. code-block:: bash
 
@@ -131,7 +131,7 @@ dbt generic tests are defined as SQL files, where the goal of the SQL statement 
 Because our new `average_attempts` model aggregates on `actor_id` and `problem_id`, it should only have 1 entry for each
 `problem_id`. So our test can be:
 
-.. code-block: sql
+.. code-block::
 
   -- average_attempts should only have one record for each problem_id.
   select
@@ -214,7 +214,7 @@ References
 .. _aspects-dbt: https://github.com/openedx/aspects-dbt
 .. _aspects-dbt-example: https://github.com/open-craft/aspects-dbt-example
 .. _aspects-dbt-example#1: https://github.com/open-craft/aspects-dbt-example/pull/1
-.. _aspects/requirements.txt: https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/build/aspects/requirements.txt
+.. _aspects-dbt requirements.txt: https://github.com/openedx/aspects-dbt/blob/main/requirements.txt
 .. _About dbt init: https://docs.getdbt.com/reference/commands/init
 .. _About dbt models: https://docs.getdbt.com/docs/build/models
 .. _Best practice guides: https://docs.getdbt.com/best-practices
