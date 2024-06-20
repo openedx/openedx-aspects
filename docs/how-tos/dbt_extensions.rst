@@ -57,6 +57,15 @@ Update the generated ``dbt_project.yml`` to use the ``aspects`` profile:
   # This setting configures which "profile" dbt uses for this project.
   profile: 'aspects'
 
+
+Also set the location for compiled SQL to match that used by ``aspects``:
+
+.. code-block:: yaml
+
+  # directory which will store compiled SQL files
+  target-path: "target"
+
+
 Step 3. Link to aspects-dbt
 ===========================
 
@@ -79,6 +88,9 @@ Step 4. Add your custom transforms
 
 Here is where you will need an understanding of dbt, Clickhouse, Aspects' data schemas, and the specific transforms you
 want to create.
+
+If you need any python dependencies beyond what is provided by aspects-dbt, add these to a ``requirements.txt`` file at
+the top level of your repository.
 
 .. note:: You can use Aspects to debug your custom SQL:
 
