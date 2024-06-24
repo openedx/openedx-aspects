@@ -11,5 +11,3 @@ Index
    cross_filter
    download_reports
    update_data
-
-

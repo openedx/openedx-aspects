@@ -19,6 +19,7 @@ You can get started reading about the project in the :ref:`aspects-overview`, or
    How-Tos <how-tos/index>
    Quickstarts <quickstarts/index>
    Reference <reference/index>
+   Course Team <course_team/index>
 
 
 Indices and tables

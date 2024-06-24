@@ -10,12 +10,13 @@ Steps
 
 #. Select the **Download** option.
 
-.. image:: _/_static/download_button.png
+.. image:: /_static/download_button.png
 
 #. You will have two options:
 
 - **Export to PDF:** This option will download a PDF report of the current dashboard view.
 - **Download as Image:** This option will download an image of the current dashboard view.
+
 Select the option you want to use; the document will download immediately.
 
 .. note:: The specific download options available may vary depending on the dashboard you are viewing.

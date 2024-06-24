@@ -7,7 +7,7 @@ If you want to learn more about Superset, please visit the Concept section, or i
 
 The Superset Home Page provides an overview of the dashboards available and quick access to different sections for managing your data visualizations.
 
-.. image:: _/_static/superset_overview.png
+.. image:: /_static/superset_overview.png
 
 
 On the navigation bar at the top of the home page, you will find a series of buttons to access the tool's different options and configurations. Depending on your permissions, you might or might not have certain buttons or more options in certain menus.

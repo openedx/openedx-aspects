@@ -7,9 +7,7 @@ Index
 
    role_and_permissions
    superset_overview
-   course_dashboard
-   atrisk_dashboard
-   individual_learner_dashbord
    filters
-
-
+   course_overview_dashboard
+   individual_learner_dashboard
+   learner_groups_dashboard
