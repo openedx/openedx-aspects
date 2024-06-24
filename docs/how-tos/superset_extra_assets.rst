@@ -3,7 +3,7 @@
 Superset extra assets
 *********************
 
-Developers user the `superset-extra-assets` patch to add extra assets to Superset and those
+Developers can use the `superset-extra-assets` patch to add extra assets to Superset and those
 will be imported at initialization.
 
 An example a tutor inline plugin using the patch is the following:
@@ -55,10 +55,10 @@ The file name is the patch name ``<your_extension>/patches/superset-extra-assets
 
 
 This recursively includes each file in the superset-assets directory of your extension's 
-tempates directory, when ``tutor config save is run``. For example 
+tempates directory, when ``tutor config save`` is run. For example 
 ``<your_extension>/templates/superset-assets/*``.
 
-Now you can export your Superset dashboard, which it will download to your local computer
+Now you can export your Superset dashboard, which will download to your local computer
 as a .zip file. As long as you are running Aspects 1.0.3 or newer you can use the following
 command to unzip the file to your plugin directory:
 
