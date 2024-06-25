@@ -5,6 +5,6 @@ Administrator and Site Operator User Documentation
    :maxdepth: 2
 
    Concepts <concepts/index>
-   How-Tos <how-tos/index>
+   How-Tos <how_to/index>
    Reference <reference/index>
  
