@@ -16,7 +16,7 @@ In addition to manually refreshing the dashboard, you can also set up automatic 
 
 1. Select the Set auto-refresh interval option.
 
-.. image:: /_static/autofresh_option.png
+.. image:: /_static/autorefresh_option.png
 
 2. A box will open where you can select the frequency at which this data set will be refreshed. Once you have chosen the frequency, click **Save for this session** to save the changes.
 
