@@ -5,4 +5,4 @@ Course Delivery Team User Documentation
    :maxdepth: 2
 
    Concepts <concepts/index>
-   How-Tos <how-tos/index>
+   How-To's <how-tos/index>
