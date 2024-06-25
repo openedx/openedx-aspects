@@ -25,7 +25,7 @@ Many actions in the Open edX platform generate :ref:`tracking-logs`, which are c
 See the :download:`Data Flow PDF </_static/AspectsDataFlows.pdf>` for more details.
 
 For Course Teams
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 Course teams have access to several dashboards, as configured by their site operators. 
 

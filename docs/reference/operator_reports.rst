@@ -9,7 +9,7 @@ The dashboard is visible to Global Staff and Superusers on Open edX.
 
 .. warning:: 
 
-    The Operator Dashboard is in a beta state and has not received the same amount of polish as the other dashboards. We expect to address the operator dashboard in future versions of Aspects. Please contact Chelsea Rathbun if you would like to offer suggestions or feedback, or participate in upcoming formal feedback sessions about this dashboard!
+    The Operator Dashboard is in a beta state and has not received the same amount of polish as the other dashboards. We expect to address the operator dashboard in future versions of Aspects. Please contact us in the #aspects channel on Open edX Slack, or in the Analytics topic in our forums if you would like to offer suggestions or feedback, or participate in upcoming formal feedback sessions about this dashboard!
 
 
 .. _operator_filters:
@@ -21,7 +21,7 @@ You can filter the data used by these charts by applying various options from th
 
 These filters are configured to apply to specific charts, and so some may show under "out of scope" if they are unused by the current page of charts.
 
-.. note: Ensure that the "Time range" filter is set to the desired date/time range. By default, only the 90 days of data is shown.
+.. note: Ensure that the "Time range" filter is set to the desired date/time range. By default, only the last 90 days of data is shown.
 
 
 .. _instance-health-tab:
