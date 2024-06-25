@@ -22,11 +22,9 @@ To help you navigate the content, we divided it into the roles a person can have
    :maxdepth: 2
 
    Reference <reference/index>
-<<<<<<< Updated upstream
-=======
    Course Delivery Team User <course_team/index>
    Administrator and Site Operator User <administrator/index>
    Technical Documentation <technical_documentation/index>
->>>>>>> Stashed changes
+
 
 
