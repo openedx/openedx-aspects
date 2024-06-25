@@ -24,10 +24,12 @@ Many actions in the Open edX platform generate :ref:`tracking-logs`, which are c
 
 See the :download:`Data Flow PDF </_static/AspectsDataFlows.pdf>` for more details.
 
-For Instructors
-~~~~~~~~~~~~~~~
+For Course Teams
+~~~~~~~~~~~~~~~~
 
-By default instructors can use their Open edX installation to single sign-on to the Superset instance. Superset will pull in the courses that you are an instructor on from the LMS and assign you appropriate permissions. It will also pull in your preferred language from the LMS and attempt to display content in that language. Once logged in you will be able to see the Instructor Dashboard. From here you can navigate to different tabs and view the different :ref:`Instructor Reports <instructor-reports>` made available by your site operators.
+Course teams have access to several dashboards, as configured by their site operators. 
+
+See :ref:`Course Team <course_team>` for detailed information on how course teams can interact with Asepcts.
 
 For Analysts
 ~~~~~~~~~~~~

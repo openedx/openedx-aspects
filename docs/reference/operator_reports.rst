@@ -1,11 +1,16 @@
 .. _operator-reports:
 
-Operator Reports
-################
+Operator Dashboard Reports
+##########################
 
 The Operator Dashboard contains charts that are of interest to site operators and system administrators.
 
 The dashboard is visible to Global Staff and Superusers on Open edX.
+
+.. warning:: 
+
+    The Operator Dashboard is in a beta state and has not received the same amount of polish as the other dashboards. We expect to address the operator dashboard in future versions of Aspects. Please contact us in the #aspects channel on Open edX Slack, or in the Analytics topic in our forums if you would like to offer suggestions or feedback, or participate in upcoming formal feedback sessions about this dashboard!
+
 
 .. _operator_filters:
 
@@ -16,7 +21,7 @@ You can filter the data used by these charts by applying various options from th
 
 These filters are configured to apply to specific charts, and so some may show under "out of scope" if they are unused by the current page of charts.
 
-.. note: Ensure that the "Time range" filter is set to the desired date/time range. By default, only the previous quarter of data is shown.
+.. note: Ensure that the "Time range" filter is set to the desired date/time range. By default, only the last 90 days of data is shown.
 
 
 .. _instance-health-tab:
@@ -26,40 +31,28 @@ Instance Health
 
 Shows charts and counts useful for monitoring the basic health of the Open edX / Aspects integration.
 
-.. _users-over-time:
+.. _active_learners:
 
-Active Users Over Time
-======================
+Active Learners
+===============
 
-Shows the total number of unique users on Open edX.
+Shows the number of users who have xAPI events for the selected time range. 
 
-.. _events-over-time:
 
-xAPI Events Over Time
-=====================
+.. _active_courses:
 
-Shows the total number of xAPI events received from Open edX.
+Active Courses
+==============
 
-.. _instance-information:
+Shows the number of courses that have xAPI events for the selected time range. 
 
-Instance Information
-====================
+.. _event_activity:
 
-Shows the current running versions of Aspects and the systems that underly it.
+Event Activity
+==============
 
-.. _total-users:
+Shows the number of xAPI events for the selected time range.
 
-Total Unique Users
-==================
-
-Shows the total number of unique users associated with the Open edX event data.
-
-.. _total-courses:
-
-Total Courses
-=============
-
-Shows the total number of courses associated with the Open edX event data.
 
 .. _total-orgs:
 
@@ -82,6 +75,15 @@ Last Course Published
 
 Shows the UTC date/time of the most recently published course.
 
+.. _total-courses:
+
+Total Courses
+=============
+
+Shows the total number of courses associated with the Open edX event data stored in Aspects. 
+
+.. note: This may not be every course which exists in the LMS / Studio. Courses populate in Aspects once published, and older courses can be brought into Aspects using the steps outline in `backfill_course_blocks`_
+
 
 .. _enrollments-tab:
 
@@ -92,35 +94,10 @@ Shows basic enrollments charts.
 
 .. _enrollments-over-time:
 
-Course Enrollments Over Time
-============================
+Current Active Enrollments By Mode
+==================================
 
-Shows the total of unique enrolled learners at the end of each day of the selected time range.
-
-If a learner was enrolled previously, but has left the course since, they are not counted as of the date they left. If they re-enroll in the course they will be counted again.
-
-.. _enrollments-by-type:
-
-Enrollments by Type
-===================
-
-Shows the current count of active enrollments grouped by their most recent enrollment mode (audit, verified, etc).
-
-For example, if a learner upgraded from Audit to Verified they will only be counted once as Verified. Learners who have un-enrolled in the course are not counted.
-
-.. _courses-tab:
-
-Courses
-*******
-
-Shows basic course data.
-
-.. _active-courses:
-
-Most Active Courses Per Day
-===========================
-
-Shows the courses with the most events per day.
+Shows the counts of students currently enrolled in each mode for each course. If there are no enrollments for a mode it will be omitted.
 
 
 .. _org-tab:
@@ -130,19 +107,20 @@ Organizations
 
 Shows basic data grouped by Organization.
 
-.. _courses-per-org:
-
-Courses Per Organization
-========================
-
-Shows the total number of courses per organization.
-
 .. _users-per-org:
 
 Active Users Per Organization
 =============================
 
-Shows the total number of users per organization.
+Shows the total number of users per organization with any activity, whether they are currently enrolled or not.
+
+
+.. _courses-per-org:
+
+Courses Per Organization
+========================
+
+Shows the total number of courses per organization. As above, this may not represent all courses in LMS / Studio, only those which have been published or backfilled to Aspects.
 
 
 .. _clickhouse-tab:
@@ -176,8 +154,8 @@ Charts related to the use of Superset, the Aspects frontend.
 
 .. _superset-active-users:
 
-Active Users
-============
+Superset Active Users
+=====================
 
 Shows a count of unique users who performed an action in Superset over the selected time range.
 
@@ -202,33 +180,12 @@ User Actions
 
 Shows the number of Superset actions taken by each user for the selected time range.
 
-.. _superset-chart-count:
-
-Chart Count
-===========
-
-Shows the number of Superset charts created during the selected time range.
-
 .. _superset-most-used-charts:
 
 Most-used Charts
 ================
 
 Shows the number of Superset actions taken on each chart during the selected time range.
-
-.. _superset-charts-by-type:
-
-Charts by Type
-==============
-
-Shows which types of Superset charts were in use over the selected time range.
-
-.. _superset-dashboard-count:
-
-Dashboard Count
-===============
-
-Shows the number of dashboards created in Superset over the selected time period.
 
 .. _superset-most-used-dashboards:
 

@@ -1,3 +1,5 @@
+.. _course_team:
+
 Course Delivery Team User Documentation
 ########################################
 

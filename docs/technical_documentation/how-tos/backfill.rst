@@ -36,6 +36,8 @@ This will create a k8s job that will send all the tracking logs from S3 bucket t
 LRS. Vector will read the logs from the k8s job and send them to Clickhouse.
 
 
+.. _backfill_course_blocks:
+
 Backfill course blocks
 #######################
 
@@ -44,7 +46,7 @@ generate reports and to provide a fast way to query the courses. The copy is upd
 every time a course is published. However, if a course is published before Aspects
 is installed, the course will not be copied to Clickhouse. 
 
-Aspects provides a wrapper around the command ``dump_courses_to_clickhouse`` that
+Aspects provides a wrapper around the command ``dump_data_to_clickhouse`` that
 will backfill any missing courses. To learn more about the command, read the
 `Event Sink Clickhouse documentation <https://github.com/openedx/openedx-event-sink-clickhouse#commands>`_.
 
@@ -54,4 +56,4 @@ To backfill the courses, run:
 
     # If you already have some courses in your clickhouse sink, its better to 
     # drop --options "--force" as it will create duplicates of the pre-existing courses.
-    tutor [dev|local|k8s] do dump-courses-to-clickhouse --options "--force"
+    tutor [dev|local|k8s] do dump_data_to_clickhouse --service cms --object course_overviews --options "--force"
