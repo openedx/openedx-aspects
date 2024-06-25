@@ -23,7 +23,7 @@ To help you navigate the content, we divided it into the roles a person can have
 
    Reference <reference/index>
    Course Delivery Team User <course_team/index>
-   Administrator and Site Operator User <administrator/index>
+   Administrator and Site Operator User <administator/index>
    Technical Documentation <technical_documentation/index>
 
 
