@@ -119,8 +119,8 @@ Our new model calculates the average number of attempts made by users on each pr
       )
   group by problem_id
 
-Next, make sure your model is configured in the ``db_project.yml``. If you forget this step, dbt will warn you when
-running your package.
+Next, make sure your model is configured, for example in the ``db_project.yml``. If you forget this step, dbt will warn
+you when running your package.
 
 .. code-block:: yaml
 
@@ -130,7 +130,7 @@ running your package.
       +materialized: view
 
 
-See `About dbt models`_ to learn more.
+See `Configure dbt models`_ to learn more.
 
 Step 5. Add tests
 =================
@@ -230,6 +230,7 @@ References
 .. _aspects-dbt requirements.txt: https://github.com/openedx/aspects-dbt/blob/main/requirements.txt
 .. _About dbt init: https://docs.getdbt.com/reference/commands/init
 .. _About dbt models: https://docs.getdbt.com/docs/build/models
+.. _Configure dbt models: https://docs.getdbt.com/reference/model-configs
 .. _Best practice guides: https://docs.getdbt.com/best-practices
 .. _dbt commands: https://docs.getdbt.com/reference/dbt-commands
 .. _dbt debugging: https://docs.getdbt.com/guides/debug-errors
