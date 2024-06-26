@@ -15,7 +15,7 @@ Extra requirements can be added to the Superset.
 Extra Jinja filters can be added, allowing permission checks for other roles and filtering information based on information from other services.
 You can change the default language, although the current ASPECTS version only focuses on English language support.
 
-Visit the official superset documentation to find out more: `<https://superset.apache.org/docs/installation/configuring-superset>`_.
+Visit the official superset documentation to learn more: `<https://superset.apache.org/docs/installation/configuring-superset>`_.
 
 Branding
 ********
@@ -23,4 +23,4 @@ Branding is not currently configurable for Aspects. This means that the superset
 
 Configure Aspects for Production
 ********************************
-To have more information about the diferent posibilities that you have with Aspects, please visit the `Production Configuration Documents <production_configuration>`_
+To have more information about the different possibilities that you have with Aspects, please visit the `Production Configuration Documents <https://docs.openedx.org/projects/openedx-aspects/en/latest/technical_documentation/how-tos/production_configuration.html>`_.
