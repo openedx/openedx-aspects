@@ -18,7 +18,7 @@ Transforming a new event
 Events emitted by ``openedx`` packages are transformed by `event-routing-backends`_ (ERB), a Django plugin which Aspects installs on Open edX.
 
 Transformers for events emitted by non-openedx packages should be stored close to the code that produces the events, and registered using decorators provided by `event-routing-backends`_. We
-will use OpenCraft's `completion aggregator`_ as the example for this tutorial, building on events emitted by `pr#173`_.
+will use OpenCraft's `completion aggregator`_ as the example for this tutorial, specifically code added `pr#205`_.
 
 xAPI Schema
 ===========
@@ -135,14 +135,14 @@ Result
 Some Open edX events use a "result" stanza that communicates information about the effect that this event had. For example, "problem check" events record whether the problem was answered
 correctly, and what score the actor received.
 
-For these completion "progressed" events, we would want to store:
+For these completion "progressed" events, we would want to store the percent completed, so we use an extension:
 
 .. code-block:: json
 
   {
     "completion": false,
-    "score": {
-      "scaled": ".45"
+    "extensions": {
+      "https://w3id.org/xapi/cmi5/result/extensions/progress": "45"
     }
   }
 
@@ -151,7 +151,7 @@ Implementation
 ==============
 
 Once the xAPI event schema is settled, the implementation should be pretty straightforward using
-`event-routing-backends`_ and `TinCan`_.
+`event-routing-backends`_ and `TinCan`_. See `pr#205`_ for full example code.
 
 #. Create a new transformer class that extends `XApiTransformer`_.
 #. Implement the ``get_verb`` method, returning your chosen verb URI and its short name.
@@ -160,9 +160,12 @@ Once the xAPI event schema is settled, the implementation should be pretty strai
    For example, to customize the context activities for your event, override ``get_context_activities``.
 
    Use the built-in transformer method ``get_data`` to parse and return data from the original tracking event.
-#. Register your transformer class using the registry decorator.
+#. Register your transformer class using the ``XApiTransformersRegistry.registry`` decorator.
 
    Use the raw tracking event's ``type`` as the parameter to ensure this class is used to transform those type of events.
+
+#. Write data transform tests by subclassing `XApiTransformersFixturesTestMixin` and adding ``raw`` JSON and ``expected``
+   xAPI event fixture data.
 
 
 .. warning::
@@ -223,13 +226,13 @@ Here is the full code for the new transformer described in this tutorial.
 
   # Register subclasses for each individual event type
 
-  @XApiTransformersRegistry.register("edx.completion_aggregator.progress.chapter")
-  @XApiTransformersRegistry.register("edx.completion_aggregator.progress.sequential")
-  @XApiTransformersRegistry.register("edx.completion_aggregator.progress.vertical")
+  @XApiTransformersRegistry.register("openedx.completion_aggregator.progress.chapter")
+  @XApiTransformersRegistry.register("openedx.completion_aggregator.progress.sequential")
+  @XApiTransformersRegistry.register("openedx.completion_aggregator.progress.vertical")
   class ModuleProgressTransformer
       object_type = "http://adlnet.gov/expapi/activities/module"
 
-  @XApiTransformersRegistry.register("edx.completion_aggregator.progress.course")
+  @XApiTransformersRegistry.register("openedx.completion_aggregator.progress.course")
   class CourseProgressTransformer
       object_type = "http://adlnet.gov/expapi/activities/course"
 
@@ -309,7 +312,7 @@ References
 .. _ERB's xAPI filters: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#openedx-filters
 .. _external ID: https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/external_user_ids/docs/decisions/0001-externalid.rst
 .. _openedx-filters: https://github.com/openedx/openedx-filters
-.. _pr#173: https://github.com/open-craft/openedx-completion-aggregator/pull/173
+.. _pr#205: https://github.com/open-craft/openedx-completion-aggregator/pull/205
 .. _progressed: http://adlnet.gov/expapi/verbs/progressed
 .. _TinCan: https://github.com/RusticiSoftware/TinCanPython
 .. _xAPI profiles: https://profiles.adlnet.gov/

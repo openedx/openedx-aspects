@@ -119,8 +119,8 @@ Our new model calculates the average number of attempts made by users on each pr
       )
   group by problem_id
 
-Next, make sure your model is configured in the ``db_project.yml``. If you forget this step, dbt will warn you when
-running your package.
+Next, make sure your model is configured, for example in the ``db_project.yml``. If you forget this step, dbt will warn
+you when running your package.
 
 .. code-block:: yaml
 
@@ -130,7 +130,7 @@ running your package.
       +materialized: view
 
 
-See `About dbt models`_ to learn more.
+See `Configure dbt models`_ to learn more.
 
 Step 5. Add tests
 =================
@@ -207,7 +207,7 @@ You may need to repeat steps 4-6 a few times to resolve any warnings or errors t
 Don't forget to push your changes to your repo before running the tutor dbt command: it fetches a clean copy of your
 configured package repo + branch each time it runs.
 
-See `dbt debugging`_ for more information on how to debug issues with your package.
+See `dbt debugging`_ and `The missing guide to debug() in dbt`_ for more information on how to debug issues with your package.
 
 
 References
@@ -219,6 +219,7 @@ References
 * `Writing data tests`_: dbt's guide to writing package tests
 * `dbt commands`_: list of all dbt commands
 * `dbt debugging`_: guide for debugging issues with dbt
+* `The missing guide to debug() in dbt`_: detailed advice for debugging issues with dbt
 * `aspects-dbt`_: Aspects' dbt package
 * `aspects-dbt-example`_: the demo custom dbt package used in this tutorial.
 * `eduNEXT/dbt-aspects-unidigital`_: a real custom dbt package running in production Aspects
@@ -229,6 +230,7 @@ References
 .. _aspects-dbt requirements.txt: https://github.com/openedx/aspects-dbt/blob/main/requirements.txt
 .. _About dbt init: https://docs.getdbt.com/reference/commands/init
 .. _About dbt models: https://docs.getdbt.com/docs/build/models
+.. _Configure dbt models: https://docs.getdbt.com/reference/model-configs
 .. _Best practice guides: https://docs.getdbt.com/best-practices
 .. _dbt commands: https://docs.getdbt.com/reference/dbt-commands
 .. _dbt debugging: https://docs.getdbt.com/guides/debug-errors
@@ -238,3 +240,4 @@ References
 .. _Install dbt: https://docs.getdbt.com/docs/core/installation-overview
 .. _Writing data tests: https://docs.getdbt.com/best-practices/writing-custom-generic-tests
 .. _tutor-contrib-aspects plugin.py: https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/plugin.py
+.. _The missing guide to debug() in dbt: https://docs.getdbt.com/blog/guide-to-jinja-debug
