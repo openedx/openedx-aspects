@@ -11,7 +11,7 @@ By default, Aspects prioritizes learner privacy and does not allow for the ident
 To learn more about working with Aspects in your instance, please review the following documentation, which has been meticulously crafted to be user-friendly and facilitate its utilization by educators, platform managers, and technical personnel. 
 To help you navigate the content, we divided it into the roles a person can have on Aspects. The roles for Aspects are: 
 
-- `Administrator <administrator>`_: This role owns the platform as the site operator, can assign roles and permissions to new users, and can create new reports. In this part of the documentation, you will find the operator dashboard and the permissions information. This user usually has the permissions of a Superuser in the platform. 
+- `Administrator <administator>`_: This role owns the platform as the site operator, can assign roles and permissions to new users, and can create new reports. In this part of the documentation, you will find the operator dashboard and the permissions information. This user usually has the permissions of a Superuser in the platform. 
 
 - `Course delivery team member <course_team>`_: The course delivery team role applies to all course team members, such as content creators, tutors, and professors, who have been added as course staff. They have access to all the dashboards and reports for the courses for which they have been added as staff. Here, you will find information about the principal dashboards and reports, the filters, and the principal functions you need to know to use the analytics system.
 

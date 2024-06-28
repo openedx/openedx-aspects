@@ -3,7 +3,7 @@ How to Manage Alerts and Reports
 
 Superset provides robust functionality for managing alerts and reports. Users can set up automated notifications based on data thresholds and schedule the delivery of reports to designated recipients. This feature enhances data-driven decision-making by ensuring stakeholders receive timely insights and updates.
 
-1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit `How to Access Aspects <access_aspects>`_ to refresh your knowledge of this process.
+1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit `How to Access Aspects <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/access_aspects.html>`_ to refresh your knowledge of this process.
 
 2. Log in to Superset with your administrator credentials.
 

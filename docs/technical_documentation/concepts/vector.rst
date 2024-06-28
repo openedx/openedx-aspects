@@ -15,11 +15,11 @@ Vector Components
 
 Vector consists of the following components:
 
-- `Sources <https://vector.dev/docs/reference/sources/>`_ - Collects data from a source
+- `Sources <https://vector.dev/docs/reference/configuration/sources/>`_ - Collects data from a source
   and sends it to Vector.
-- `Transforms <https://vector.dev/docs/reference/transforms/>`_ - Modifies events as they
+- `Transforms <https://vector.dev/docs/reference/configuration/transforms//>`_ - Modifies events as they
   pass through Vector.
-- `Sinks <https://vector.dev/docs/reference/sinks/>`_ - Sends events to a destination.
+- `Sinks <https://vector.dev/docs/reference/configuration/sinks/>`_ - Sends events to a destination.
 
 Vector can be deployed in two roles:
 
