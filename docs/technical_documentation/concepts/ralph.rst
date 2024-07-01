@@ -12,7 +12,7 @@ Although Ralph has usages such as:
 - Convert tracking logs to xAPI statements.
 - Fetch xAPI statements from a configured backend.
 - Validate xAPI statements.
-- Store events to different `backends <https://openfun.github.io/ralph/backends/>`_.
+- Store events to different backends `backends <https://openfun.github.io/ralph/latest/features/backends/>`_.
 
 In the aspects project, Ralph is optionally used as the API server that connects Open edX
 and Clickhouse database. Ralph receives the xAPI statements from Open edX and stores them

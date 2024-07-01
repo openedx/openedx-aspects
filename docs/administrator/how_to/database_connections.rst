@@ -3,7 +3,7 @@ How to Manage Additional Database Connections
 
 Superset allows users to efficiently manage database connections by providing a user-friendly interface for configuring, testing, and maintaining connections to various data sources. This feature streamlines the process of connecting to databases, making it easier for users to access and analyze their data within the platform and potentially across other platforms or data sources.
 
-1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit `How to Access Aspects <access_aspects>`_ to refresh your knowledge of this process.
+1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit `How to Access Aspects <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/access_aspects.html>`_ to refresh your knowledge of this process.
 
 2. Log in to Superset with your administrator credentials.
 

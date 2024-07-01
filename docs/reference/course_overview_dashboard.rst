@@ -35,6 +35,7 @@ These metrics give you information about users' engagement with the course and i
 Performance Metrics:
 ====================
 These metrics show the learners' performance in the course according to their grades and the approval percentage.
+
 .. image:: /_static/performance_metrics.png
 
 

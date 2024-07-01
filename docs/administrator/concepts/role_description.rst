@@ -25,3 +25,5 @@ Here's a breakdown of their key responsibilities:
 	- While not exclusive to Site Operators, they have full access to create, edit, and share dashboards and reports within Superset.
 
 Site Operators act as Superset's system administrators, granting access, ensuring data security, and overseeing the platform's overall functionality.
+
+.. seealso:: It may be important to review `technical documentation <https://docs.openedx.org/projects/openedx-aspects/en/latest/technical_documentation/index.html>`_ to delve into database and platform configuration issues for this role.
