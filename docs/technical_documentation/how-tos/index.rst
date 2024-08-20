@@ -20,3 +20,4 @@ How-Tos
    Extending dbt <dbt_extensions>
    Run Aspects in a ClickHouse cluster <clickhouse_cluster>
    xAPI Transforms <xapi_transforms>
+   Running Aspects without Tutor <aspects_without_tutor>
