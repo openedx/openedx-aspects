@@ -8,3 +8,4 @@ Reference Material
    individual_learner_dashboard
    learner_groups_dashboard
    operator_reports
+   course_comparison_dashboard
