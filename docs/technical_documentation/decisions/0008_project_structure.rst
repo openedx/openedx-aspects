@@ -103,7 +103,7 @@ Rejected Alternatives
 
 Supercedes `ADR 6 Areas of responsibility`_.
 
-.. _ADR 6 Areas of responsibility: 0006_areas_of_responsibility.rst
+.. _ADR 6 Areas of responsibility: 0006_areas_of_responsibility.html
 .. _event-routing-backends: https://github.com/openedx/event-routing-backends
 .. _openedx-aspects: https://github.com/openedx/openedx-aspects
 .. _openedx-event-sink-clickhouse: https://github.com/openedx/openedx-event-sink-clickhouse

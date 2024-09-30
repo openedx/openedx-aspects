@@ -108,4 +108,4 @@ This would also leak Aspects implementation details into all of the plugins, red
 flexibility for other use cases.
 
 
-.. _ADR 8 Project structure: 0008_project_structure.rst
+.. _ADR 8 Project structure: 0008_project_structure.html
