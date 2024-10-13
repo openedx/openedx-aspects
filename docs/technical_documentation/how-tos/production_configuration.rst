@@ -166,7 +166,7 @@ Personally Identifiable Identification
 
 By default Aspects does not store information that can directly link the xAPI learning traces to an individual's name, email address, username, etc. Storing this information has potential legal consequences and should be undertaken with careful consideration.
 
-Setting ``ASPECTS_ENABLE_USER_PII`` to ``True``, then running Tutor init for the Aspects plugin, turns on the ability to send user data to ClickHouse. When turned on this populates the ``event_sink.external_id`` and ``event_sink.user_profile`` tables as new users are created.
+Setting ``ASPECTS_ENABLE_PII`` to ``True``, then running Tutor init for the Aspects plugin, turns on the ability to send user data to ClickHouse. When turned on this populates the ``event_sink.external_id`` and ``event_sink.user_profile`` tables as new users are created.
 
 However it does not copy over existing users, see :ref:`Backfilling Existing Data` below for more information on how to do that.
 
@@ -256,7 +256,7 @@ There is a management command to populate course data for one, all, or a subset 
     tutor local run lms ./manage.py lms dump_data_to_clickhouse --object course_overviews
 
 
-If you are running with ``ASPECTS_ENABLE_USER_PII`` set to ``True`` you will need to populate the user PII data with these commands:
+If you are running with ``ASPECTS_ENABLE_PII`` set to ``True`` you will need to populate the user PII data with these commands:
 
 .. code-block::
 
