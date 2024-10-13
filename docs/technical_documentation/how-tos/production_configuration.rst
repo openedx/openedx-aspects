@@ -168,6 +168,11 @@ By default Aspects does not store information that can directly link the xAPI le
 
 Setting ``ASPECTS_ENABLE_PII`` to ``True``, then running Tutor init for the Aspects plugin, turns on the ability to send user data to ClickHouse. When turned on this populates the ``event_sink.external_id`` and ``event_sink.user_profile`` tables as new users are created.
 
+.. code-block:: bash
+
+    tutor config save -s ASPECTS_ENABLE_PII=true
+    tutor dev|local|k8s do init -l aspects
+
 However it does not copy over existing users, see :ref:`Backfilling Existing Data` below for more information on how to do that.
 
 XAPI User Id Type
