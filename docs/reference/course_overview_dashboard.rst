@@ -46,13 +46,10 @@ These metrics give you information about users’ engagement with the course and
 
 - **Pages:** This tab shows page engagement metrics by section and subsection, cumulative interactions, and engagement over time. 
 .. image:: /_static/engagement_pages.png
-
 - **Problems:** These metrics show the learners’ engagement with the problems and assessments created in the course. The attempts and results information help understand each problem’s performance
 .. image:: /_static/engagement_problems.png
-
 - **Videos:** These metrics show how the learners have engaged with your course video content, including how many partial and completed videos they have seen and how many times each five-second increment of video was viewed.
 .. image:: /_static/engagement_videos_2.png
-
 Performance Metrics:
 --------------------
 These metrics show the learners’ performance in the course according to their grades and the approval percentage.
