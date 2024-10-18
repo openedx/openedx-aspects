@@ -54,6 +54,8 @@ These metrics give you information about users’ engagement with the course and
 
 **Videos:** These metrics show how the learners have engaged with your course video content, including how many partial and completed videos they have seen and how many times each five-second increment of video was viewed.
 
+.. image:: /_static/engagement_videos_1.png
+
 .. image:: /_static/engagement_videos_2.png
 
 Performance Metrics:
