@@ -5,6 +5,7 @@ How-to's
 .. toctree::
    :maxdepth: 2
 
+   access_superset
    create_new_role
    activity_logs
    database_connections
