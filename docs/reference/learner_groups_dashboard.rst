@@ -11,36 +11,36 @@ At the top of this dashboard, you will find five tabs: **Overview**, **Enrollmen
 
 In the tabs, you will find:
 
-Overview:
----------
+Overview
+--------
 In this tab, you will find the list of learners with names, usernames, and emails above the last visit date to have a first metric to indicate a risk factor. If you select one user in this tab, that selection will filter the information of the rest of the tabs to show only the information linked to that user. Suppose the name, username, and email address columns are empty. In that case, your site operator has omitted limited personally identifiable information from being displayed on your Open edX instance.
 
 .. image:: /_static/atrisk_overview.png
 
 
-Enrollment:
------------
+Enrollment
+----------
 This tab shows the number of enrollees by enrollment track and enrollment dates.
 
 .. image:: /_static/atrisk_enrollment.png
 
 
-Engagement:
------------
+Engagement
+----------
 This tab contains a detailed report about the learners' interaction with the course content, particularly with the pages, problems, and videos. This tab will give you relevant information about the troubles the at-risk learner group has with the content in case you need to create an alternative route for them.
 
 .. image:: /_static/atrisk_engagement.png
 
 
-Performance:
-------------
+Performance
+-----------
 This tab shows the course grades as a metric of the learner’s performance, indicating the approval percentage and the distribution of course grades.
 
 .. image:: /_static/atrisk_performance.png
 
 
-Help:
------
+Help
+----
 The Help tab at the bottom of the course dashboard is a valuable resource for users seeking assistance or additional information. It typically provides quick access to relevant documentation and support materials related to the course and the platform.
 
 .. image:: /_static/help_tab.png
