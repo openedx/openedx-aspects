@@ -9,8 +9,8 @@ One particular benefit of this dashboard is that it gives the course delivery te
 
 This dashboard's data information is divided into two sections: the Learner Summary and the pages, problems, videos, and help reports.
 
-1. Learner Summary:
-===================
+1. Learner Summary
+==================
 
 This section has a table that provides a detailed overview of individual learner performance within a specific course or course run. It offers valuable insights into student engagement, progress, and overall performance. The table columns are:
 
@@ -29,8 +29,8 @@ This section has a table that provides a detailed overview of individual learner
 
 .. image:: /_static/learner_summary.png
 
-2. Pages, Problems, Videos & Help:
-==================================
+2. Pages, Problems, Videos & Help
+=================================
 
 These metrics give you information about users’ engagement with the course and its specific content, particularly Pages, Problems, and Videos. To see these metrics, just choose the tab you want to see. 
 
@@ -50,8 +50,8 @@ Coursewide averages showing the average percent correct and average number of at
 
 .. image:: /_static/individual_problems_2.png
 
-Videos:
--------
+Videos
+------
 These metrics show how the learners have engaged with your course video content, including how many partial and completed videos they have seen. Here, you will find tables like:
 
 - Video Engagement per Section/Subsection
@@ -65,8 +65,8 @@ These metrics show how the learners have engaged with your course video content,
 
 .. image:: /_static/individual_videos_2.png
 
-Help:
------
+Help
+----
 The Help tab at the bottom of the course dashboard is a valuable resource for users seeking assistance or additional information. It typically provides quick access to relevant documentation and support materials related to the course and the platform.
 
 .. image:: /_static/help_tab.png
