@@ -1,6 +1,11 @@
 # Core requirements for using this application
 -c constraints.txt
 
+click
+clickhouse-connect>=0.5,<0.7
+pyyaml
+requests
+smart_open[s3]
 sphinx
 sphinx-book-theme
 sphinxcontrib.yt
