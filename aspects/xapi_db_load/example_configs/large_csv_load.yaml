@@ -1,0 +1,81 @@
+# Large data load
+# #########################
+# Took about 30 hrs to run- 24 to generate the CSVs, 5.5 to import to ClickHouse
+# 1 billion statements
+# 2 million learners
+# 1200 courses
+# 10 orgs
+
+backend: csv_file
+# The next two lines point to the same place, but each needs a different URL
+# format.
+csv_output_destination: s3://openedx-aspects-loadtest/logs/large_test/
+s3_source_location: https://openedx-aspects-loadtest.s3.amazonaws.com/logs/large_test/
+csv_load_from_s3_after: true
+
+db_host: localhost
+db_port: 8443
+db_name: xapi_lt
+db_event_sink_name: event_sink
+db_username: ch_admin
+db_password: test
+s3_key: ...
+s3_secret: ...
+
+# Run options
+log_dir: logs
+num_batches: 100000
+batch_size: 10000
+
+# Overall start and end date for the entire run
+start_date: 2014-01-01
+end_date: 2023-11-27
+
+# All courses will be this long, and be fit into the start / end dates
+# This must be less than end_date - start_date days.
+course_length_days: 120
+
+# The size of the test
+num_organizations: 10
+num_actors: 2000000
+
+# The sum of these is the total number of courses created for the test
+num_course_sizes:
+  small: 100
+  medium: 400
+  large: 480
+  huge: 120
+
+course_size_makeup:
+  small:
+    actors: 30
+    problems: 20
+    videos: 10
+    chapters: 3
+    sequences: 10
+    verticals: 20
+    forum_posts: 20
+  medium:
+    actors: 500
+    problems: 40
+    videos: 20
+    chapters: 4
+    sequences: 20
+    verticals: 30
+    forum_posts: 40
+  large:
+    actors: 5000
+    problems: 80
+    videos: 30
+    chapters: 5
+    sequences: 40
+    verticals: 80
+    forum_posts: 200
+  huge:
+    actors: 20000
+    problems: 160
+    videos: 40
+    chapters: 10
+    sequences: 50
+    verticals: 100
+    forum_posts: 1000

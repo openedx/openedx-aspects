@@ -1,0 +1,43 @@
+# Test configuration for Ralph / ClickHouse
+# #########################################
+backend: ralph_clickhouse
+db_host: localhost
+db_port: null
+db_name: xapi
+db_username: ch_admin
+db_password: foo
+lrs_url: https://ralph/xAPI/statements
+lrs_username: ralph
+lrs_password: foo
+
+# Run options
+log_dir: logs
+num_batches: 3
+batch_size: 100
+
+# Overall start and end date for the entire run
+start_date: 2014-01-01
+end_date: 2023-11-27
+
+# All courses will be this long, and be fit into the start / end dates
+# This must be less than end_date - start_date days.
+course_length_days: 120
+
+# The size of the test
+num_organizations: 3
+num_actors: 10
+
+# How many of each size course to create. The sum of these is the total number
+# of courses created for the test.
+num_course_sizes:
+  small: 1
+
+course_size_makeup:
+  small:
+    actors: 5
+    problems: 20
+    videos: 10
+    chapters: 3
+    sequences: 10
+    verticals: 20
+    forum_posts: 20

@@ -1,0 +1,58 @@
+# Check documentation coverage
+
+name: dbt Tests & Coverage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  DBT_PROFILES_DIR: ./.github/
+  CLICKHOUSE_DB: "xapi"
+  CLICKHOUSE_USER: "ch_admin"
+  CLICKHOUSE_PASSWORD: "ch_password"
+  TUTOR_ROOT: ./dbt/.ci/
+
+jobs:
+  build:
+    name: Check coverage & run tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+      - name: Install dependencies
+        run: |
+          pip install tutor-contrib-aspects
+          pip install -r requirements/dbt.txt
+          cd dbt
+          dbt deps
+      - name: Initialize Open edX
+        continue-on-error: false
+        run: |
+          tutor plugins enable aspects
+          tutor config save
+          tutor local start ralph -d
+          tutor local do init-clickhouse
+          tutor local do alembic -c "upgrade head"
+          tutor local do dbt
+          tutor local do load-xapi-test-data
+      - name: Check dbt tests
+        run: |
+          mv unit-test-seeds ci-seeds
+          dbt seed --full-refresh --selector all_tests
+          dbt run --full-refresh --selector all_tests
+          dbt test --selector all_tests
+          mv ci-seeds unit-test-seeds
+      - name: Check docs coverage
+        run: |
+          dbt docs generate
+          dbt-coverage compute doc --cov-fail-under 1.0 --model-path-filter models/

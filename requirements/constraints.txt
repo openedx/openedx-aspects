@@ -10,3 +10,8 @@
 
 # Common constraints for edx repos
 -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
+
+clickhouse-connect>=0.5,<0.7  # This has a tendency to break on minor version updates
+dbt-clickhouse==1.8.1  # We are tightly bound to this, and it breaks on even patch changes
+dbt-core~=1.8.0  # dbt-clickhouse is tightly bound to this
+shandy-sqlfmt[jinjafmt]~=0.21.2  # Not sure why this is pinned

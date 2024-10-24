@@ -1,6 +1,14 @@
-build
-docs/_build
+__pycache__/
 .DS_Store
-source/.DS_Store
+.coverage
 .idea/
 .python-version
+.tox/
+.venv
+*.pyc
+*.egg-info/
+**/tests/__init__.py
+build
+coverage.xml
+dist/
+docs/_build

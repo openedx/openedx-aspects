@@ -1,0 +1,16 @@
+# This is a dbt profile for CI use.
+# https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles
+aspects: # this needs to match the profile in your dbt_project.yml file
+  target: dev
+  outputs:
+    dev:
+      type: clickhouse
+      schema: xapi
+      host: localhost
+      port: 8123
+      user: ch_admin
+      password: "ch_password"
+      secure: False
+
+      custom_settings:
+        check_table_dependencies: 0
