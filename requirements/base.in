@@ -2,7 +2,7 @@
 -c constraints.txt
 
 click
-clickhouse-connect>=0.5,<0.7
+clickhouse-connect
 pyyaml
 requests
 smart_open[s3]

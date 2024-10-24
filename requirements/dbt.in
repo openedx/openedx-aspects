@@ -1,0 +1,8 @@
+# Core requirements for using this application
+-c constraints.txt
+
+dbt-clickhouse
+dbt-core
+shandy-sqlfmt[jinjafmt]
+dbt-coverage
+clickhouse-cityhash

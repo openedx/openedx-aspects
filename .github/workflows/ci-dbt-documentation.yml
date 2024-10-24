@@ -1,0 +1,58 @@
+# Build documentation for dbt-aspects on every PR to main.
+# Deploy documentation to gh-pages branch on every push to main.
+
+name: Build documentation
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DBT_PROFILES_DIR: ./.github/
+  CLICKHOUSE_DB: "xapi"
+  CLICKHOUSE_USER: "ch_admin"
+  CLICKHOUSE_PASSWORD: "ch_password"
+  TUTOR_ROOT: ./.ci/
+
+jobs:
+  build:
+    name: Deploy dbt docs to github pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+      - name: Install dependencies
+        run: |
+          pip install tutor-contrib-aspects
+          pip install -r requirements/dbt.txt
+          cd dbt
+          dbt deps
+      - name: Initialize Open edX
+        continue-on-error: true
+        run: |
+          tutor plugins enable aspects
+          tutor config save
+          tutor local start -d
+          tutor local do init -l aspects
+          tutor local do load-xapi-test-data
+      - name: Build docs
+        run: |
+          dbt run
+          dbt docs generate
+      - name: Deploy
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+          publish_dir: ./target
+          commit_message: "docs: update docs for "

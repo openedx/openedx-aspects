@@ -1,0 +1,23 @@
+name: Validate SQL format
+
+on:
+  - pull_request
+
+jobs:
+  format:
+    name: Validate SQL format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements/dbt.txt
+      - name: Format SQL
+        run: |
+          cd dbt
+          sqlfmt models macros --check
