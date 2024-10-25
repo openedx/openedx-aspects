@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+include requirements/base.in
+include requirements/constraints.txt
+recursive-include aspects *.html *.png *.gif *.js *.css *.jpg *.jpeg *.svg *.csv
+recursive-include dbt *

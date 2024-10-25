@@ -19,5 +19,4 @@ jobs:
           pip install -r requirements/dbt.txt
       - name: Format SQL
         run: |
-          cd dbt
-          sqlfmt models macros --check
+          sqlfmt dbt/models dbt/macros --check

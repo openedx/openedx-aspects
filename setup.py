@@ -1,7 +1,7 @@
 """
 Setup for xapi-db-load.
 """
-from setuptools import find_packages, setup
+from setuptools import setup
 
 from aspects import __version__
 
@@ -11,7 +11,8 @@ with open("README.rst", "r") as readme:
 setup(
     name="openedx-aspects",
     version=__version__,
-    packages=find_packages(),
+    packages=["dbt", "aspects"],
+    package_data={'dbt': ['**/*']},
     include_package_data=True,
     entry_points="""
         [console_scripts]
