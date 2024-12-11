@@ -79,7 +79,7 @@ Aspects can be connected with Clickhouse Cloud following the steps below:
     GRANT SELECT ON system.replication_queue TO ch_admin WITH GRANT OPTION;
 
     -- This is used in SQL query performance testing
-    SELECT ON system.query_log WITH GRANT OPTION
+    GRANT SELECT ON system.query_log to ch_admin WITH GRANT OPTION;
 
 
 6. Restart your local or production environment. After this change, you need to run the initialization
