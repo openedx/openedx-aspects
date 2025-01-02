@@ -4,7 +4,7 @@ At-Risk Learner Dashboard Reports
 In the At-Risk Learner Dashboard Reports, you can review the learners’ performance to gain a clear perspective of their engagement and performance in the course and identify those at risk of abandoning or dropping the course. In order for a learner to appear on this report, they must:
 
 * Be enrolled in the course
-* Done something other than visit the course homepage
+* Have done something other than visit the course homepage
 * Not yet have passed the course
 * Not visited the course in seven or more days
 
