@@ -215,6 +215,9 @@ Superset Localization
 Superset offers very basic localization options. Aspects builds on those to bring localization to as many pieces of the user interface as is currently technically possible. The following settings impact localization options in Superset:
 
 - ``SUPERSET_SUPPORTED_LANGUAGES`` - This list controls what is displayed in the main Superset UI, which users can select from manually. It only impacts the main Superset user interface (top level menus). Note that these are only language options, and do no include locale specific translations (ex: French is supported, Canadian French is not).
+- ``LANGUAGE_CODE`` -- This setting provides the default language for Open edX services, and is passed through to Superset if its value is found in ``SUPERSET_SUPPORTED_LANGUAGES``, falling back to `"en"` if not.
+
+  If you need to specify a different default language for Superset, override the ``BABEL_DEFAULT_LOCALE`` setting by patching ``superset-config`` or ``superset-docker-config``.
 - ``SUPERSET_DASHBOARD_LOCALES`` - This list is for the Aspects language options and include all of the default Open edX languages. Many languages are still being translated, and you may wish to disable some rather than having a mix of localized strings and English being displayed, or add other options. This setting controls the names of dashboards, charts, and columns, as well as some fields returned from the database.
 - The patch ``superset-extra-asset-translations`` allows you to augment or replace the default translations provided with Aspects.
 
