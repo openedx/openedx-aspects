@@ -74,4 +74,4 @@ References
 **********
 
 - `OEP-30: PII Markup and Auditing <https://open-edx-proposals.readthedocs.io/en/latest/architectural-decisions/oep-0030-arch-pii-markup-and-auditing.html/>`_
-- `Enabling the User Retirement Feature <https://docs.openedx.org/projects/edx-platform/en/latest/references/docs/scripts/user_retirement/docs/index.html/>`_
+- `Enabling the User Retirement Feature <https://docs.openedx.org/projects/edx-platform/en/latest/references/docs/scripts/user_retirement/docs/index.html>`_
