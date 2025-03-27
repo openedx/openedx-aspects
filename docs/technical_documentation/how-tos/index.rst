@@ -15,6 +15,7 @@ How-Tos
    Superset extra row level security <superset_row_level_security>
    Superset extra jinja filters <superset_jinja_filters>
    Superset custom roles <superset_roles>
+   Superset custom config settings <superset_config_docker>
    Clickhouse extra SQL <clickhouse_sql>
    Connect to external Clickhouse database <remote_clickhouse>
    Extending dbt <dbt_extensions>
