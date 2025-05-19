@@ -3,16 +3,26 @@
 Superset Custom Production Config Settings
 ******************************************
 
-To add or override production config settings in Superset, you can use the patch 
-`superset-config-docker`. For example, to disable any custom color schemes:
+To add or override production config settings in Superset, use the patch 
+``superset-config-docker``. Changes take effect on LMS/CMS restart. 
+
+To override *local* config settings, use ``superset-config`` patch instead.
+
+Custom Color Schemes
+--------------------
+
+**Disable/Enable all custom schemes**
 
 .. code-block::
 
     FEATURE_FLAGS = {
-        "EXTRA_CATEGORICAL_COLOR_SCHEMES": False
+        "EXTRA_CATEGORICAL_COLOR_SCHEMES": True
     }
 
-Or to add a new custom color scheme:
+
+**Add a new custom color scheme**
+
+1. Add color scheme to patch
 
 .. code-block::
     
@@ -25,4 +35,6 @@ Or to add a new custom color scheme:
         },
     )
 
-These changes will take effect on restart. To override *local* config settings, use `superset-config` patch instead.
+2. Restart and change color scheme in Dashboard settings
+
+.. image:: /_static/superset_colors.png
