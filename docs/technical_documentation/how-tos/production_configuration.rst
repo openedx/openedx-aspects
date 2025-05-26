@@ -199,6 +199,14 @@ By default, Aspects enables plugin functionality in the LMS that embeds a define
 - ``ASPECTS_LEARNER_GROUPS_HELP_MARKDOWN`` controls the content of the "Help" tab in the At-Risk Learners dashboard
 - ``ASPECTS_OPERATOR_HELP_MARKDOWN`` controls the content of the "Help" tab in the Operator dashboard
 
+In-context Metrics
+------------------
+
+Starting in the Teak Open edX release, Aspects provides in-context metrics in Studio. The following settings controls this functionality.
+
+- ``ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS`` - Enables or disables in-context metrics.
+- ``ASPECTS_IN_CONTEXT_DASHBOARDS`` - A dictionary mapping block types to in-context dashboards. You can use this option to remove or replace the in-context dashboard for a block type. The key `course` defines the in-context dashboard for course overview.
+
 
 Ralph Accessibility
 -------------------
