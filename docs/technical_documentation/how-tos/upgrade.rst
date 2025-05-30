@@ -11,6 +11,7 @@ As for any upgrade you should take a backup snapshot of your environment before 
 - To prevent orphan Superset assets from being left behind, you should remove the existing Superset assets from your Tutor environment before saving the configuration: ``rm -rf env/plugins/aspects/build/aspects-superset/openedx-assets/assets``
 - Save your tutor configuration: ``tutor config save``
 - Build your Docker images: ``tutor images build openedx aspects aspects-superset --no-cache``
+- If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image: ``tutor images build mfe --no-cache``
 - Initialize Aspects to get the latest schema and reports, for a tutor local install: ``tutor local do init -l aspects``
 
 In a case where the release has special instructions, such as when new xAPI transforms have been added and you may need to replay tracking logs, they will be included in the release announcement.
