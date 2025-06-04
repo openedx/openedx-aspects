@@ -9,3 +9,4 @@ Reference Material
    learner_groups_dashboard
    operator_reports
    course_comparison_dashboard
+   in_context_dashboards
