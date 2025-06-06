@@ -1,3 +1,5 @@
+.. _In-Context Dashboards:
+
 In-Context Dashboards
 #####################
 
