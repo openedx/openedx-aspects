@@ -9,4 +9,4 @@ Manage Roles
 ************
 New roles and assignment rules can be created for them, and their permissions must also be configured. Those can be added programmatically, allowing you better control over their deployment and synchronization, or manually. This is not recommended, as the state of the installation can not be readily determined from the source code and can cause weird behavior.
 
-To learn more about this topic, review the `technical documentation <https://docs.openedx.org/projects/openedx-aspects/en/latest/technical_documentation/how-tos/superset_roles.html>`_.
+To learn more about this topic, review the :ref:`technical documentation <superset-roles>`.

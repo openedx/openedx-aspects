@@ -1,7 +1,9 @@
+.. _create-new-role:
+
 How to Create a New Role
 ########################
 
-1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit `How to Access Aspects <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/access_aspects.html>`_ to refresh your knowledge of this process.
+1. Go to your platform's Superset site. Remember that you can use the link in the LMS Instructor Tab. Visit :ref:`How to Access Aspects <Course Team Access Aspects>` to refresh your knowledge of this process.
 
 2. Log in to Superset with your administrator credentials.
 

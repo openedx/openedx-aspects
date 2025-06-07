@@ -1,3 +1,5 @@
+.. _decision_aspects:
+
 1. Open Analytics
 ##################################
 

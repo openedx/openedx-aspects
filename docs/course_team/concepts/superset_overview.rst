@@ -1,3 +1,5 @@
+.. _Superset Overview:
+
 Superset Overview
 #################
 

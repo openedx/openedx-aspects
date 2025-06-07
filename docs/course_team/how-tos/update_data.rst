@@ -1,3 +1,5 @@
+.. _update-data:
+
 How to Update the Data
 ######################
 

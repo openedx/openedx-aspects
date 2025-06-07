@@ -1,3 +1,5 @@
+.. _Cross-filters:
+
 How to Add or Remove a Cross-filter in an Aspects Dashboard
 ############################################################
 

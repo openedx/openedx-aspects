@@ -1,3 +1,5 @@
+.. _decision_xapi:
+
 2. xAPI for Default Data Transfer and Storage
 #############################################
 

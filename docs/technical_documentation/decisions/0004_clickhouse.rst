@@ -1,3 +1,5 @@
+.. _decision_clickhouse:
+
 4. ClickHouse as Analytic Database
 ##################################
 

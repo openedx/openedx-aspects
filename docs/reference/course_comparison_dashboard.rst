@@ -1,3 +1,5 @@
+.. _Course Comparison Dashboard:
+
 Course Comparison Dashboard Reports
 ###################################
 
@@ -12,7 +14,7 @@ Course Metrics:
 
 The Course Metrics tab contains information about the selected courses, including enrollment counts, high-level problem performance and course grade information, and the video engagement of each course.
 
-Unlike the `Course Dashboards <https://docs.openedx.org/projects/openedx-aspects/en/latest/reference/course_overview_dashboard.html>`_, here you will see a compendium of the information of the courses you are comparing instead of the details of each course. However, even if you don't drill down into the details, you will have access to the most relevant values to assess the performance of one course compared to another, including the count of recently-active and at-risk students in the course, so you know how many of them may be at risk of losing or dropping out of the course.
+Unlike the :ref:`Course Dashboards <Course Dashboard Reports>`, here you will see a compendium of the information of the courses you are comparing instead of the details of each course. However, even if you don't drill down into the details, you will have access to the most relevant values to assess the performance of one course compared to another, including the count of recently-active and at-risk students in the course, so you know how many of them may be at risk of losing or dropping out of the course.
 
 .. image:: /_static/course_metrics.png
 
@@ -22,7 +24,7 @@ This tab will contain information on the different course runs, including enroll
 
 .. image:: /_static/run_metrics.png
 
-.. note:: If you select one course or organization in the Course Metrics, a cross-filter will activate in the Run Metrics data. You can learn more about `Cross filter here <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/cross_filter.html>`_.
+.. note:: If you select one course or organization in the Course Metrics, a cross-filter will activate in the Run Metrics data. Learn more about :ref:`Cross-filters`.
 
 Data Sections:
 **************
@@ -64,14 +66,14 @@ How to Access Course Comparison Dashboard?
 
 This dashboard's essential feature is that it can only be accessed from Superset. You can access it via the link to Superset in the Reports tab in the Instructor section from any course in the LMS. If the user's instance does not show the link at the top of the other dashboards, you must connect with your instance administrator. 
 
-.. seealso:: To learn more about `Superset click here <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/concepts/superset_overview.html>`_.
+.. seealso:: Learn more about :ref:`Superset <Superset Overview>`.
 
-.. seealso:: To learn more about accessing Superset, `visit this documentation <https://docs.openedx.org/projects/openedx-aspects/en/latest/administrator/how-tos/access_superset.html>`_.
+.. seealso:: To learn more about accessing Superset, see :ref:`Access Superset`.
 
 Also, depending on the combination of Django permissions of your Open edx Platform and your course role, you might or might not be able to access this dashboard.
 
 .. image:: /_static/matrix_permissions.png
 
-Another critical point is that depending on your role and permissions in Superset, you will see more or fewer data from your Open edX instance courses in this dashboard. For example, if you only have a `Course Delivery Team role <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/concepts/role_and_permissions.html>`_, you can see only the courses or course runs to which you have been added as staff. But if you have the `role of superuser or administrator <https://docs.openedx.org/projects/openedx-aspects/en/latest/administrator/concepts/role_description.html>`_, you will see all the course data.
+Another critical point is that depending on your role and permissions in Superset, you will see more or fewer data from your Open edX instance courses in this dashboard. For example, if you only have a :ref:`Course Delivery Team role <Course Team Roles and Permissions>`, you can see only the courses or course runs to which you have been added as staff. But if you have the :ref:`role of superuser or administrator <role-description>`, you will see all the course data.
 
 

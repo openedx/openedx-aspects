@@ -1,3 +1,5 @@
+.. _Aspects Home:
+
 Welcome to the Open edX Aspects documentation!
 ==============================================
 

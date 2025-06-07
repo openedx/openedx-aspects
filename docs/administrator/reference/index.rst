@@ -23,4 +23,4 @@ Branding is not currently configurable for Aspects. This means that the superset
 
 Configure Aspects for Production
 ********************************
-To have more information about the different possibilities that you have with Aspects, please visit the `Production Configuration Documents <https://docs.openedx.org/projects/openedx-aspects/en/latest/technical_documentation/how-tos/production_configuration.html>`_.
+To have more information about the different possibilities that you have with Aspects, please visit the :ref:`Production Configuration Documents <production_configuration>`.
