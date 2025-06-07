@@ -1,3 +1,5 @@
+.. _Course Comparison Dashboard:
+
 Course Comparison Dashboard Reports
 ###################################
 

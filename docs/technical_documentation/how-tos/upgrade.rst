@@ -1,4 +1,4 @@
-.. upgrade-aspects:
+.. _upgrade-aspects:
 
 How-to Upgrade Aspects
 **********************

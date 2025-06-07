@@ -1,3 +1,5 @@
+.. _Downloading Reports:
+
 Downloading Reports in Superset Dashboards
 ##########################################
 

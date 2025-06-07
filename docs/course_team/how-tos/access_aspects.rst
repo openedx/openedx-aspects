@@ -1,3 +1,5 @@
+.. _Course Team Access Aspects:
+
 How to Access Aspects as a Course Delivery Team Member
 ######################################################
 

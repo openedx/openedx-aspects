@@ -1,3 +1,5 @@
+.. _Individual Learner Dashboard Reports:
+
 Individual Learner Dashboard Reports
 ####################################
 

@@ -1,3 +1,5 @@
+.. _Course Dashboard Reports:
+
 Course Dashboard Reports
 ########################
 

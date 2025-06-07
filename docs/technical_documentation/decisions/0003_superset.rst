@@ -1,3 +1,5 @@
+.. _decision_superset:
+
 3. Superset as Data Visualizer
 ##############################
 

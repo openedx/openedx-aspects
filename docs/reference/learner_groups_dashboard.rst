@@ -1,3 +1,5 @@
+.. _At-Risk Learner Dashboard Reports:
+
 At-Risk Learner Dashboard Reports
 #################################
 
