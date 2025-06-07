@@ -54,6 +54,6 @@ The Help tab at the bottom of the course dashboard is a valuable resource for us
 
 .. image:: /_static/help_tab.png
 
-.. note:: Remember that you can change the filters of these reports by accessing Superset through the link above the reports. For more information, visit the `How to Apply Filters page <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/apply_filters.html>`_.
+.. note:: Remember that you can change the filters of these reports by accessing Superset through the link above the reports. For more information, visit the `How to Apply Filters page <apply-filters>`.
 
-.. seealso:: If you want to refresh the information displayed in the report, click the **More Options** button (three vertical dots) in the upper right corner of each metric and select the **Force Refresh** option. For more information, visit the `How to Update the Data <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/update_data.html>`_.
+.. seealso:: If you want to refresh the information displayed in the report, click the **More Options** button (three vertical dots) in the upper right corner of each metric and select the **Force Refresh** option. For more information, visit :ref:`update-data`.

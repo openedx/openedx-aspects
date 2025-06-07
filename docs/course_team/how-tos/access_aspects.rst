@@ -11,5 +11,5 @@ Once the Administrator has assigned you the course delivery team role and permit
 
 .. image:: /_static/reports_tab.png
 
-There you will see the three principal dashboards of Aspects: the `Course Dashboard <https://docs.openedx.org/projects/openedx-aspects/en/latest/reference/course_overview_dashboard.html>`_, the `Individual Learner Dashboard <https://docs.openedx.org/projects/openedx-aspects/en/latest/reference/individual_learner_dashboard.html>`_, and the `At Risk Learner Dashboard <https://docs.openedx.org/projects/openedx-aspects/en/latest/reference/learner_groups_dashboard.html>`_. From these dashboards, you will see the course and learner information that Aspects has collected.
+There you will see the three principal dashboards of Aspects: the :ref:`Course Dashboard Reports`, the :ref:`Individual Learner Dashboard Reports`, and the :ref:`At-Risk Learner Dashboard Reports`. From these dashboards, you will see the course and learner information that Aspects has collected.
 

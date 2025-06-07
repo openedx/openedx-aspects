@@ -38,7 +38,7 @@ There are three main types of filters in Superset dashboards:
 Filters for the Course Comparison Dashboard:
 ============================================
 
-The `Course Comparison Dashboard <https://docs.openedx.org/projects/openedx-aspects/en/latest/reference/course_comparison_dashboard.html>`_ has different filters that allow you to refine your search and compare and analyze the performance of other courses or versions of the same course.  Let’s find the function of these filters.
+The :ref:`Course Comparison Dashboard` has different filters that allow you to refine your search and compare and analyze the performance of other courses or versions of the same course.  Let’s find the function of these filters.
 
 - **Organization filter:** This allows you to filter the courses or course runs you are viewing and comparing throughout the Course Comparison Dashboard by the Organization with which the course or course run is associated. You can filter this by multiple organizations or leave the filter blank to compare courses or course runs across the instance.
 

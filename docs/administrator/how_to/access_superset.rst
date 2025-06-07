@@ -1,7 +1,9 @@
+.. _Access Superset:
+
 How to Access Aspects Superset
 ##############################
 
-Apache Superset is an open-source platform that is the primary data visualization and exploration tool for Aspects. You can access the different dashboards from this platform, edit them, or create new ones. You can also modify the charts and `data sets <https://docs.openedx.org/projects/openedx-aspects/en/latest/administrator/how_to/database_connections.html>`_, control the SQL connection, and `add or edit users <https://docs.openedx.org/projects/openedx-aspects/en/latest/administrator/how_to/create_new_role.html>`_ accessing the analytics system.
+Apache Superset is an open-source platform that is the primary data visualization and exploration tool for Aspects. You can access the different dashboards from this platform, edit them, or create new ones. You can also modify the charts and :ref:`data sets <manage-db-connections>`, control the SQL connection, and :ref:`add or edit users <create-new-role>` accessing the analytics system.
 
 .. image:: /_static/superset_access_overview.png
 
@@ -9,7 +11,7 @@ There are two ways to access Superset. The first one is the Superset Aspects URL
 
 Superset Aspects URL:
 *********************
-As an `administrator or site operator <https://docs.openedx.org/projects/openedx-aspects/en/latest/administrator/concepts/role_description.html>`_, you can access Superset using the URL given/created during installation.
+As an :ref:`administrator or site operator <role-description>`, you can access Superset using the URL given/created during installation.
 
 The process is quite simple.
 
@@ -21,7 +23,7 @@ The process is quite simple.
 
 Aspects’ Superset LMS Link:
 ***************************
-The other method to access Superset is through the link in the LMS. This is useful for users with different roles, like the `Course Delivery Team <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/index.html>`_. Follow these steps to access the platform.
+The other method to access Superset is through the link in the LMS. This is useful for users with different roles, like the :ref:`Course Delivery Team <course_team>`. Follow these steps to access the platform.
 
 .. note:: The site operator of the Aspects platform must enable this link to appear on the LMS Open edX instance. 
 
