@@ -1,9 +1,11 @@
+.. _Apply Filters LMS:
+
 How to Apply Filters in the LMS View
 ####################################
 
 1. Navigate to the Aspects dashboard to be filtered.
 
-.. seealso:: To learn more about how to access to the Aspects Dashboard from the LMS, visit :doc:`How to Access Aspects  <access_aspects>`. 
+.. seealso:: To learn more about how to access to the Aspects Dashboard from the LMS, visit :ref:`How to Access Aspects <Course Team Access Aspects>`. 
 
 2. Expand the filters panel by clicking the expand icon on the side of the dashboard.
 

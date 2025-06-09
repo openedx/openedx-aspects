@@ -1,3 +1,5 @@
+.. _role-description:
+
 Role Description
 ################
 
@@ -26,4 +28,4 @@ Here's a breakdown of their key responsibilities:
 
 Site Operators act as Superset's system administrators, granting access, ensuring data security, and overseeing the platform's overall functionality.
 
-.. seealso:: It may be important to review `technical documentation <https://docs.openedx.org/projects/openedx-aspects/en/latest/technical_documentation/index.html>`_ to delve into database and platform configuration issues for this role.
+.. seealso:: It may be important to review :ref:`technical-documentation` to delve into database and platform configuration issues for this role.

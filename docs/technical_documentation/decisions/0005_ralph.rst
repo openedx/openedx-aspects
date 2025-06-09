@@ -1,3 +1,5 @@
+.. _decision_Ralph:
+
 5. Ralph as Learning Record Store
 #################################
 
@@ -9,7 +11,7 @@ Accepted
 Context
 *******
 
-The xAPI specification adopted in :doc:`0002_xapi` uses a learning record store (LRS) as a
+The xAPI specification adopted in :ref:`decision_xapi` uses a learning record store (LRS) as a
 storage destination for xAPI statements. More information about LRSs can be found at `xapi.com`_.
 There are many xAPI compatible LRSs, each with their own pluses and minuses, and supporting different
 data storage backends. In discussions with the community while developing the Aspects architecture
@@ -24,7 +26,7 @@ The Aspects Analytics system (Aspects) will use `Ralph`_ as its LRS. This decisi
 several reasons:
 
 - It is a toolkit already rooted in the Open edX ecosystem, and developed by a long-term Open edX partner (OpenFUN)
-- It allows us to use `ClickHouse`_ as a database backend as decided in :doc:`0004_clickhouse`
+- It allows us to use `ClickHouse`_ as a database backend as decided in :ref:`decision_clickhouse`
 - It uses technologies that are familiar in the community, increasing the likelihood of adoption and contribution
 - It is open source (MIT License)
 - It is deployable on commodity hardware with minimal configuration, using Tutor plugins

@@ -1,3 +1,5 @@
+.. _Export Tabular Data:
+
 How to Export Tabular Data from a Chart or Table in an Aspects Dashboard
 #########################################################################
 
@@ -15,4 +17,4 @@ You can download data from Superset in different formats, but probably the most 
 
 4. The exported file will appear in your **Downloads** folder.
 
-.. seealso:: To learn how to export information as a PDF or as an image, visit `How to Downloading Reports in Superset Dashboards <https://docs.openedx.org/projects/openedx-aspects/en/latest/course_team/how-tos/download_reports.html>`_.
+.. seealso:: To learn how to export information as a PDF or as an image, visit :ref:`How to Downloading Reports in Superset Dashboards <Downloading Reports>`.

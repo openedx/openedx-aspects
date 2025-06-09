@@ -1,3 +1,5 @@
+.. _apply-filters:
+
 How to Apply Filters in a Superset Dashboard
 ############################################
 

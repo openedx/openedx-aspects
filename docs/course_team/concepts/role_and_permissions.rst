@@ -1,3 +1,5 @@
+.. _Course Team Roles and Permissions:
+
 Role Description and Permissions
 ################################
 
