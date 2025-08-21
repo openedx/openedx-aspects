@@ -1,12 +1,12 @@
 Backfill old or missing data
-*****************************
+****************************
 
 If you are bootstrapping a new Open edX platform with Aspects or experiencing service
 downtime in Ralph or Vector, you may need to backfill the old data. This guide will
 provide you with step-by-step instructions on how to perform the backfill process.
 
 Backfill xAPI data from tracking logs
-######################################
+#####################################
 
 Event routing backends provide a management command to backfill old or missing
 data. The command is called ``transform_tracking_logs``, learn more about it in the
@@ -57,7 +57,7 @@ Which will run the LMS management command:
 
 .. code-block:: console
 
-    ./manage.py lms transform_tracking_logs --transformer_type xapi --source_provider S3 --source_config '{"key": "aws-key", "secret": "aws-secret", "region": "bucket-region", "container": "bucket-name", "prefix":"any-prefix"}' --destination_provider LRS --transformer_type xapi
+    ./manage.py lms transform-tracking-logs --transformer_type xapi --source_provider S3 --source_config '{"key": "aws-key", "secret": "aws-secret", "region": "bucket-region", "container": "bucket-name", "prefix":"any-prefix"}' --destination_provider LRS --transformer_type xapi
 
 
 This will create a k8s job that will send all the tracking logs from S3 bucket to the configured
@@ -79,21 +79,39 @@ the ClickHouse S3 table function.
 .. _backfill_course_blocks:
 
 Backfill course blocks
-#######################
+######################
 
 Aspects keeps a synchronized copy of some course metadata in Clickhouse. This copy is used to
 generate reports and to provide a fast way to query the courses. The copy is updated
 every time a course is published. However, if a course is published before Aspects
 is installed, the course will not be copied to Clickhouse.
 
-Aspects provides a wrapper around the command ``dump_data_to_clickhouse`` that
-will backfill any missing courses. To learn more about the command, read the
-`Event Sink Clickhouse documentation <https://github.com/openedx/openedx-event-sink-clickhouse#commands>`_.
+Aspects provides a wrapper around the command ``dump-data-to-clickhouse`` that
+will backfill any missing courses. To learn more about the command including some important,
+options, read the
+`Platform Plugin Aspects documentation <https://github.com/openedx/platform-plugin-aspects?tab=readme-ov-file#commands>`_.
 
 To backfill the courses, run:
 
 .. code-block:: console
 
     # If you already have some courses in your clickhouse sink, its better to
-    # drop --options "--force" as it will create duplicates of the pre-existing courses.
-    tutor [dev|local|k8s] do dump_data_to_clickhouse --service cms --object course_overviews --options "--force"
+    # drop "--force" as it will create duplicates of the pre-existing courses.
+    tutor [dev|local|k8s] do dump-data-to-clickhouse --service cms --options "--object course_overviews --force"
+
+
+.. _backfill_pii:
+
+Backfill User PII
+#################
+
+If you have user PII turned on this data can also be backfilled using the
+``dump-data-to-clickhouse`` command as above.
+
+To backfill the user profile and external ids needed to identify users variations on this command
+can be run (again please see the documentation for details and other important options):
+
+.. code-block:: console
+
+    tutor [dev|local|k8s] do dump-data-to-clickhouse --service lms --options "--object user_profile"
+    tutor [dev|local|k8s] do dump-data-to-clickhouse --service lms --options "--object external_id"
