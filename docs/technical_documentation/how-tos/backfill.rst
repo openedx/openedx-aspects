@@ -44,16 +44,32 @@ Backfill course blocks
 Aspects keeps a synchronized copy of some course metadata in Clickhouse. This copy is used to
 generate reports and to provide a fast way to query the courses. The copy is updated
 every time a course is published. However, if a course is published before Aspects
-is installed, the course will not be copied to Clickhouse. 
+is installed, the course will not be copied to Clickhouse.
 
 Aspects provides a wrapper around the command ``dump_data_to_clickhouse`` that
-will backfill any missing courses. To learn more about the command, read the
+will backfill any missing courses. To learn more about the command including some important,
+options, read the
 `Event Sink Clickhouse documentation <https://github.com/openedx/openedx-event-sink-clickhouse#commands>`_.
 
 To backfill the courses, run:
 
 .. code-block:: console
 
-    # If you already have some courses in your clickhouse sink, its better to 
-    # drop --options "--force" as it will create duplicates of the pre-existing courses.
-    tutor [dev|local|k8s] do dump_data_to_clickhouse --service cms --object course_overviews --options "--force"
+    tutor [dev|local|k8s] do dump_data_to_clickhouse --service cms --object course_overviews
+
+
+.. _backfill_pii:
+
+Backfill User PII
+#################
+
+If you have user PII turned on this data can also be backfilled using the
+``dump_data_to_clickhouse`` as above.
+
+To backfill the user profile and external ids needed to identify users variations on this command
+can be run (again please see the documentation for details and other important options):
+
+.. code-block:: console
+
+    tutor [dev|local|k8s] do dump_data_to_clickhouse --service lms --object user_profile
+    tutor [dev|local|k8s] do dump_data_to_clickhouse --service lms --object external_id
