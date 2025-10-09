@@ -309,7 +309,7 @@ References
 .. _xapi filters: https://github.com/eduNEXT/eox-nelp/blob/master/eox_nelp/openedx_filters/xapi/filters.py
 .. _event-routing-backends: https://github.com/openedx/event-routing-backends
 .. _ERB's verb list: https://github.com/openedx/event-routing-backends/blob/master/event_routing_backends/processors/xapi/constants.py
-.. _ERB's xAPI filters: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#openedx-filters
+.. _ERB's xAPI filters: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/how-tos/filters.html
 .. _external ID: https://github.com/openedx/edx-platform/blob/master/openedx/core/djangoapps/external_user_ids/docs/decisions/0001-externalid.rst
 .. _openedx-filters: https://github.com/openedx/openedx-filters
 .. _pr#205: https://github.com/open-craft/openedx-completion-aggregator/pull/205
