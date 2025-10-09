@@ -84,5 +84,5 @@ that will allow site operators to use it instead of, or in addition to, xAPI in 
 References
 **********
 
-- `OEP-26: Real Time Events <https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0026-arch-realtime-events.html/>`_
+- `OEP-26`_: Real Time Events
 - `event-routing-backends <https://event-routing-backends.readthedocs.io/en/latest/>`_
