@@ -10,7 +10,7 @@ Backfill xAPI data from tracking logs
 
 Event routing backends provide a management command to backfill old or missing
 data. The command is called ``transform_tracking_logs``, learn more about it in the
-`Event Routing Backends documentation <https://event-routing-backends.readthedocs.io/en/latest/howto/how_to_bulk_transform.html>`_.
+`Event Routing Backends documentation <https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/how-tos/how_to_bulk_transform.html>`_.
 
 .. warning::
 
