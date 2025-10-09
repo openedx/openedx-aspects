@@ -386,13 +386,13 @@ In addition to the usual CPU/Memory/Disk monitoring you can also monitor a few k
 These are also captured in the Aspects Operator Dashboard as well as a filterable list of slowest ClickHouse queries to assist with troubleshooting.
 
 
-.. _business critical: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#persistence
-.. _batch requests: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#batching-configuration
-.. _using the event bus: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#event-bus-configuration
+.. _business critical: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/decisions/0009-persistence-and-retries-for-events.html
+.. _batch requests: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/quickstarts/configuration.html#batching-configuration
+.. _using the event bus: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/quickstarts/configuration.html#event-bus-configuration
 .. _integrate directly: https://clickhouse.com/docs/en/integrations/kafka
-.. _event-routing-backends docs: https://event-routing-backends.readthedocs.io/en/latest/getting_started.html#configuration
+.. _event-routing-backends docs: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/quickstarts/configuration.html
 .. _clickhouse-operator: https://github.com/Altinity/clickhouse-operator
 .. _superset security configuration: https://superset.apache.org/docs/security/
 .. _Ralph via Helm chart: https://openfun.github.io/ralph/latest/tutorials/helm/
 .. _dump_data_to_clickhouse arguments: https://github.com/openedx/platform-plugin-aspects/blob/951ed84de01dda6bec9923c60fcd96bf80d6fa54/platform_plugin_aspects/management/commands/dump_data_to_clickhouse.py#L91
-.. _transform_tracking_logs: https://event-routing-backends.readthedocs.io/en/latest/howto/how_to_bulk_transform.html
+.. _transform_tracking_logs: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/how-tos/how_to_bulk_transform.html
