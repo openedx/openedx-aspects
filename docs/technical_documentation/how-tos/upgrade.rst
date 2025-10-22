@@ -13,6 +13,7 @@ As for any upgrade you should take a backup snapshot of your environment before 
 - Build your Docker images: ``tutor images build openedx aspects aspects-superset --no-cache``
 - If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image: ``tutor images build mfe --no-cache``
 - Initialize Aspects to get the latest schema and reports, for a tutor local install: ``tutor local do init -l aspects``
+- Remove any deprecated models: ``tutor local do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
 
 In a case where the release has special instructions, such as when new xAPI transforms have been added and you may need to replay tracking logs, they will be included in the release announcement.
 
