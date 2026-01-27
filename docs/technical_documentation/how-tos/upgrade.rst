@@ -3,25 +3,69 @@
 How-to Upgrade Aspects
 **********************
 
-At least in the early phases of existence, Aspects is intended to have a faster upgrade cycle than Open edX named releases. It's expected that many operators will want to upgrade between releases to get features as they become available, but the upgrade process should be the same whether it's happening as part of a named release upgrade or in between.
+Aspects is intended to have a faster upgrade cycle than Open edX named releases since operators might want to upgrade between releases to get features as they become available. The upgrade process is the same whether it's happening as part of a named release upgrade or in between.
 
-As for any upgrade you should take a backup snapshot of your environment before beginning, especially make sure you have a recent backup of your ClickHouse database. Then follow these steps, which are basically the same as installation:
+As with any upgrade, you should take a backup snapshot of your environment before beginning, especially make sure you have a recent backup of your ClickHouse database. Then follow these steps, which are basically the same as installation.
 
-- Install the version you would like from tutor-contrib-aspects, or for the latest: ``pip install --upgrade tutor-contrib-aspects``
-- To prevent orphan Superset assets from being left behind, you should remove the existing Superset assets from your Tutor environment before saving the configuration: ``rm -rf env/plugins/aspects/build/aspects-superset/openedx-assets/assets``
-- Save your tutor configuration: ``tutor config save``
-- Build your Docker images: ``tutor images build openedx aspects aspects-superset --no-cache``
-- If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image: ``tutor images build mfe --no-cache``
-- Initialize Aspects to get the latest schema and reports, for a tutor local install: ``tutor local do init -l aspects``
-- Remove any deprecated models: ``tutor local do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
+Upgrade Steps
+-------------
+
+    1. Install the version you would like from tutor-contrib-aspects, or for the latest: 
+
+    ``pip install --upgrade tutor-contrib-aspects``
+
+    2. To prevent orphan Superset assets from being left behind, you should remove the existing Superset assets from your Tutor environment before saving the configuration: 
+
+    ``rm -rf env/plugins/aspects/build/aspects-superset/openedx-assets/assets``
+
+    3. Save your tutor configuration: 
+
+    ``tutor config save``
+
+    4. Build your Docker images: 
+
+    ``tutor images build openedx aspects aspects-superset --no-cache``
+
+    5. If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image: 
+
+    ``tutor images build mfe --no-cache``
+
+    6. Initialize Aspects to get the latest schema and reports, for a tutor local install: 
+
+    ``tutor local do init -l aspects``
+
+    7. Remove any deprecated models: 
+
+    ``tutor local do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
+
+Larger installations with 10s or 100s of millions of xAPI events should try this process on an identical staging environment before running in production as there are a large number of factors that can affect the upgrade process such as ClickHouse configuration, the version you are upgrading from, and the size of your data set.
 
 In a case where the release has special instructions, such as when new xAPI transforms have been added and you may need to replay tracking logs, they will be included in the release announcement.
+
+If you run into trouble, please reach out to the Open edX community for help. The `Data Working Group forum <https://discuss.openedx.org/c/working-groups/data/34>`_ is the best place to start.
 
 
 Major Version Upgrades
 ----------------------
 
-When upgrading between major versions of Aspects, such as from 1.x to 2.x, take special note that there *will* be breaking changes and there may be new limitations on compatibility with older versions of Open edX. For instance Aspects version 1 was designed to work with Open edX named releases Nutmeg through Redwood, while Aspects version 2 is designed to work with Redwood and later. If you are upgrading from Aspects 1.x to 2.x, you must have compatible versions of Tutor and Open edX installed.
+When upgrading between major versions of Aspects, take special note that there *will* be breaking changes and there may be new limitations on compatibility with older versions of Open edX. If you plan on upgrading, you must have compatible versions of Tutor and Open edX installed.
+
+===============  ======================================
+Aspects version  Compatible with Open edX named version
+===============  ======================================
+v1.x             Nutmeg through Quince
+v2.x             Redwood through Teak
+v3.x             Ulmo and later
+===============  ======================================
+
+
+Upgrading v2.x to v3.x
+----------------------
+
+Breaking Changes
+================
+
+In-Context Analytics in Aspects v3.0 uses Paragon v23 which was introduced in Open edX Ulmo. Therefore, Aspects v3.x requires Open edX Ulmo or later. If you are running a named release before Ulmo, you will need to upgrade to Ulmo or later before upgrading Aspects to v3.x.
 
 
 Upgrading v1.x to v2.x
@@ -84,19 +128,3 @@ These model updates are done as part of the dbt step of init, or can be executed
 Once the Superset assets are updated (the last step in the Aspects init process) the old models can and should be safely dropped. This can be done by running the following command:
 
 ``tutor [dev|local|k8s] do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
-
-1.x to 2.x Upgrade Process
-==========================
-
-For most cases the upgrade process is simply:
-
-- Update the version of the ``tutor-contrib-aspects`` plugin.
-- Optionally delete the ``/env/plugins/aspects/build/aspects-superset/`` from your Tutor directory to ensure that any old assets are removed. This depends on the version of the plugin you are upgrading from, but usually manifests as having the wrong language assets showing up in the Superset charts and dashboards.
-- ``tutor config save``
-- ``tutor images build aspects aspects-superset --no-cache``
-- ``tutor [dev|local|k8s] do init -l aspects``
-- ``tutor [dev|local|k8s] do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
-
-Larger installations with 10s or 100s of millions of xAPI events should try this process on an identical staging environment before running in production as there are a large number of factors that can affect the upgrade process such as ClickHouse configuration, the version you are upgrading from, and the size of your data set.
-
-If you run into trouble, please reach out to the Open edX community for help. The `Data Working Group forum <https://discuss.openedx.org/c/working-groups/data/34>`_ is the best place to start.
