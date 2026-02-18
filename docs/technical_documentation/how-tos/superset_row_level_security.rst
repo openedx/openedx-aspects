@@ -9,6 +9,7 @@ or use ``append`` to add additional dictionaries.
 
 Overwrite existing:
 .. code-block:: yaml
+
     SECURITY_FILTERS = [
             {
                 "schema": "{{ASPECTS_XAPI_DATABASE}}",
@@ -22,6 +23,7 @@ Overwrite existing:
 
 Add to existing:
 .. code-block:: yaml
+
     SECURITY_FILTERS.append(
             {
                 "schema": "{{ASPECTS_XAPI_DATABASE}}",
