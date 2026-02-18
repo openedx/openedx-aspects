@@ -9,7 +9,7 @@ or use ``append`` to add additional dictionaries.
 
 Overwrite existing:
 
-.. code-block:: yaml
+.. code-block::
 
     SECURITY_FILTERS = [
             {
@@ -24,7 +24,7 @@ Overwrite existing:
 
 Add to existing:
 
-.. code-block:: yaml
+.. code-block::
 
     SECURITY_FILTERS.append(
             {
