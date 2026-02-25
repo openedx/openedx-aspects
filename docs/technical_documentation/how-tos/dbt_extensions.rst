@@ -98,7 +98,7 @@ If you need any python dependencies beyond what is provided by aspects-dbt, add 
   #. Using the menus at the top of the page, navigate to the "SQL -> SQL Lab" UI.
   #. Browse the schemas and run read-only SQL queries on your data.
 
-For this tutorial, we created two new models - `course_enrollments`_ `learner_responses <https://github.com/openedx/sample-aspects-dbt/blob/main/models/learners/learner_responses.sql>`_ and which will be materialized by dbt into a view and materialized view in Clickhouse. (more information on `materialized views <https://docs.getdbt.com/docs/build/materializations#materialized-view>`_.)
+For this tutorial, we created two new models - `course_enrollments <https://github.com/openedx/sample-aspects-dbt/blob/main/models/enrollment/course_enrollments.sql>`_ and  `learner_responses <https://github.com/openedx/sample-aspects-dbt/blob/main/models/learners/learner_responses.sql>`_ and which will be materialized by dbt into a view and materialized view in Clickhouse. (more information on `materialized views <https://docs.getdbt.com/docs/build/materializations#materialized-view>`_.)
 
 
 Step 6. Add dbt tests
