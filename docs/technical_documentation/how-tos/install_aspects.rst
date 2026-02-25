@@ -1,4 +1,4 @@
-Aspects Plugin for Tutor
+Install Aspects Plugin for Tutor
 ************************
 
 Aspects is implemented as a Tutor plugin. To learn more about how to install it, please refer to the plugin GitHub site: 
