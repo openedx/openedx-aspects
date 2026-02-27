@@ -56,6 +56,9 @@ Step 2. Set up new dbt package
       # directory which will store compiled SQL files
       target-path: "target"
 
+#. Create a `requirements.txt <https://github.com/openedx/sample-aspects-dbt/blob/main/requirements.txt>`_ file at the top level of your repository with the same version of ``dbt-core`` as in Step 1. This is needed when building the aspects image.
+
+   * If you need any python dependencies beyond what is provided by aspects-dbt, add these to the requirements file.
 
 Step 3. Link to aspects-dbt
 ===========================
@@ -87,10 +90,7 @@ Before adding your custom transforms, it's a good idea to test that your dbt pac
 Step 5. Create your custom transforms
 =====================================
 
-Here is where you will need an understanding of dbt, Clickhouse, Aspects' data schemas, and the specific transforms you
-want to create.
-
-If you need any python dependencies beyond what is provided by aspects-dbt, add these to a ``requirements.txt`` file at the top level of your repository.
+Here is where you will need an understanding of dbt, Clickhouse, Aspects' data schemas, and the specific transforms you want to create.
 
 .. note:: You can use Aspects to debug your custom SQL:
 
@@ -173,6 +173,10 @@ Troubleshooting
 - Tutor commands may need to be run with ``--only_changed False`` to force a full dbt run if you have made changes to your dbt package that are not being picked up.
 
 - Don't forget to push your changes to your repo before running the tutor dbt command: it fetches a clean copy of your configured package repo + branch each time it runs.
+
+Next Steps
+==========
+With your custom dbt package, you can create new charts and dashboards in Superset using the new models created by your dbt transforms. See :ref:`superset-extra-assets` for more information.
 
 
 References
