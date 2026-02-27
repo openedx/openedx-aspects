@@ -43,12 +43,12 @@ Creating a Tutor plugin
 
 #. Create a `requirements.txt <https://github.com/openedx/tutor-contrib-aspects-sample/blob/main/requirements.txt>`_ with ``ruff`` for formatting.
 
-Importing assets from Superset
-==============================
+Import assets into plugin
+=========================
 
 #. From the Superset UI, you can export your dashboard, which will download to your local computer as a .zip file. 
    
-#. As long as you are running Aspects 1.0.3 or newer you can use this command to unzip the file to your plugin directory
+#. As long as you are running Aspects 1.0.3 or newer you can use this command to unzip the file to your plugin directory.
 
    ``tutor aspects import_superset_zip <path to your dashboard>.zip --base_assets_path <path to your extension>/templates/build/assets/``
 
@@ -64,8 +64,8 @@ Importing assets from Superset
 
     Use caution when importing datasets or databases in your project and make sure that they are only ones you have created yourself unless you truly intend to overwrite defaults.
 
-Importing assets into Superset
-==============================
+Update Superset assets
+======================
 
 Once you have your files imported to the plugin, make sure it is installed and enabled in your Tutor environment, then run ``tutor config save`` and ``tutor <local|dev|k8s> import-assets`` to update your Superset assets.
 
