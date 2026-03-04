@@ -128,7 +128,7 @@ Other unit test resources:
 Step 7. Install and use your dbt package
 ========================================
 
-Once you've pushed all the changes to your custom dbt package repo, now we're ready to use it.
+Once you've pushed all the changes to your custom dbt package repo, you're ready to use it.
 
 Use ``tutor config save`` to update the following Tutor variables to use your custom package instead of the Aspects default.
 
