@@ -8,12 +8,10 @@ As noted in :ref:`dbt`, you can install your own custom dbt package to apply you
 This guide demonstrates how to create and use a custom dbt package in Aspects by building the `sample-aspects-dbt <https://github.com/openedx/sample-aspects-dbt>`_
 repo. 
 
-Step 1. Install dbt core (if needed)
+Step 1. Install dbt
 ====================================
 
-The easiest way to install dbt core is to use pip in a python3 virtual environment.
-
-See `aspects-dbt requirements.txt <https://github.com/openedx/aspects-dbt/blob/main/requirements.txt>`_ for the specific package versions used by Aspects.
+The easiest way to install dbt is to use pip in a python3 virtual environment.
 
 .. code-block:: bash
 
@@ -21,6 +19,10 @@ See `aspects-dbt requirements.txt <https://github.com/openedx/aspects-dbt/blob/m
   python3 -m venv venv
   source venv/bin/activate
   pip install --upgrade pip
+
+Check the `aspects-dbt requirements.txt <https://github.com/openedx/aspects-dbt/blob/main/requirements.txt>`_ for the specific package versions used by Aspects. Both dbt-core and dbt-clickhouse are required.
+
+.. code-block:: bash
 
   # Install the dbt package versions used by Aspects
   pip install dbt-clickhouse==x.x.x dbt-core==x.x.x
@@ -32,11 +34,11 @@ Step 2. Set up new dbt package
 
 #. Create a new repository for your custom dbt package, and clone it to your local machine.
 
-#. In the root of your local repository, create a new dbt package by following the prompts given by the ``dbt init`` tool.
+#. In the root of your local repository, create a new dbt package by following the prompts given by the ``dbt init`` tool. See `About dbt init <https://docs.getdbt.com/reference/commands/init>`_ for more options.
 
-   * .. code-block:: bash
+   .. code-block:: bash
 
-      # Use the profile name from your ``dbt/profiles.yml`` file
+      # Use the profile name from your ``dbt/profiles.yml`` file or 'aspects'
       dbt init --profile aspects
       
       # Enter a name for your project (letters, digits, underscore):
@@ -45,20 +47,38 @@ Step 2. Set up new dbt package
       ls sample_aspects_dbt
       # analyses/  dbt_project.yml  macros/  models/  README.md  seeds/  snapshots/  tests/
 
-   * ``dbt_project.yml`` should have the same `profile name <https://github.com/openedx/sample-aspects-dbt/blob/main/dbt_project.yml#L8-L9>`_ as your local profiles file
+   .. attention ::
 
-   * See `About dbt init <https://docs.getdbt.com/reference/commands/init>`_ for more options.
+      Possible error when running ``dbt init``:
 
-#. In ``dbt_project.yml``, set the location for compiled SQL to match that used by ``aspects``:
+      .. code-block:: bash
 
-   * .. code-block:: yaml
+        No sample profile found for clickhouse
+
+      Make sure the `profile <https://github.com/openedx/sample-aspects-dbt/blob/4e5430ea52ede95d2bb09e6ad090879bd17635b2/dbt_project.yml#L8-L9>`_ matches your local ``dbt/profiles.yml`` profile name.
+
+      .. code-block:: yaml
+
+        # This setting configures which "profile" dbt uses for this project.
+        profile: "aspects"
+
+#. In ``dbt_project.yml``, set the location for compiled SQL to match the `aspects target path <https://github.com/openedx/aspects-dbt/blob/572661b7cc7a941d44092db4a4070df8dada87b3/dbt_project.yml#L21>`_:
+
+   .. code-block:: yaml
 
       # directory which will store compiled SQL files
       target-path: "target"
 
-#. Create a `requirements.txt <https://github.com/openedx/sample-aspects-dbt/blob/main/requirements.txt>`_ file at the top level of your repository with the same version of ``dbt-core`` as in Step 1. This is needed when building the aspects image.
+#. Create a `requirements.txt <https://github.com/openedx/sample-aspects-dbt/blob/main/requirements.txt>`_ file at the top level of your repository with the same version of dbt-core as in Step 1. This is needed when building the aspects image.
 
-   * If you need any python dependencies beyond what is provided by aspects-dbt, add these to the requirements file.
+   .. code-block::
+
+      # requirements.txt
+      dbt-core~=x.x.x
+
+   .. note ::
+
+    If you need any python dependencies beyond what is provided by aspects-dbt, add these to the requirements file.
 
 Step 3. Link to aspects-dbt
 ===========================
@@ -82,23 +102,35 @@ Step 4. Test dbt connection
 
 Before adding your custom transforms, it's a good idea to test that your dbt package can connect to the Clickhouse database and run the base transforms from aspects-dbt.
 
-#. Run ``dbt debug`` to test the connection to your database and the validity of your dbt project.  
-#. You might need to run ``dbt deps`` to install the dependencies for your package.
-#. Run ``dbt run`` to run the base transforms from aspects-dbt.
-#. You may need to run ``dbt run --full-refresh`` if the previous step fails.
+* Run ``dbt debug`` to test the connection to your database and the validity of your dbt project.  
+* Run ``dbt run`` to run the base transforms from aspects-dbt.
+
+  * You may need to run ``dbt run --full-refresh`` if the previous step fails.
+
+.. attention ::
+
+  Possible error when running dbt commands:
+
+  .. code-block:: bash
+    
+    Compilation Error
+    dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in dbt_packages. 
+    Run "dbt deps" to install package dependencies.
+
+  Run ``dbt deps`` to install the dependencies for your package, including aspects-dbt.
 
 Step 5. Create your custom transforms
 =====================================
 
 Here is where you will need an understanding of dbt, Clickhouse, Aspects' data schemas, and the specific transforms you want to create.
 
-.. note:: You can use Aspects to debug your custom SQL:
+.. tip:: You can use Aspects to debug your custom SQL:
 
   #. Login to Superset as an Open edX superuser.
   #. Using the menus at the top of the page, navigate to the "SQL -> SQL Lab" UI.
   #. Browse the schemas and run read-only SQL queries on your data.
 
-For this tutorial, we created two new models - `course_enrollments <https://github.com/openedx/sample-aspects-dbt/blob/main/models/enrollment/course_enrollments.sql>`_ and  `learner_responses <https://github.com/openedx/sample-aspects-dbt/blob/main/models/learners/learner_responses.sql>`_ and which will be materialized by dbt into a view and materialized view in Clickhouse. (more information on `materialized views <https://docs.getdbt.com/docs/build/materializations#materialized-view>`_.)
+For this tutorial, we created two new models - `course_enrollments <https://github.com/openedx/sample-aspects-dbt/blob/main/models/enrollment/course_enrollments.sql>`_ and  `learner_responses <https://github.com/openedx/sample-aspects-dbt/blob/main/models/learners/learner_responses.sql>`_ and which will be materialized by dbt into a view and materialized view in Clickhouse. More information on materialized views `here <https://docs.getdbt.com/docs/build/materializations#materialized-view>`_.
 
 
 Step 6. Add dbt tests
@@ -106,23 +138,38 @@ Step 6. Add dbt tests
 
 Writing tests for your transforms is important to validate and document your intended changes, and guard against data edge cases and regressions from future code changes.
 
-There are two types of dbt tests; `data tests <https://docs.getdbt.com/best-practices/writing-custom-generic-tests>`_ and `unit tests <https://docs.getdbt.com/docs/build/unit-tests>`_.
-
-Run ``dbt test`` to run both the data and unit tests for your package.
+There are two types of dbt tests; `data tests <https://docs.getdbt.com/best-practices/writing-custom-generic-tests>`_ and `unit tests <https://docs.getdbt.com/docs/build/unit-tests>`_. Run ``dbt test`` to run all tests for your package.
 
 Data tests
 ------------
-Data tests can be defined in the `schema.yml <https://github.com/openedx/sample-aspects-dbt/blob/main/models/enrollment/schema.yml#L18-L20>`_ file for each model, and are used to validate properties of the data such as types, accepted values, uniqueness, and relationships between tables.
+Data tests can be defined in the `schema.yml <https://github.com/openedx/sample-aspects-dbt/blob/2b8736c259e5410925f0d192627673da87f327be/models/enrollment/schema.yml#L18-L20>`_ file for each model, and are used to validate properties of the data such as types, accepted values, uniqueness, and relationships between tables.
+
+.. code-block:: yaml
+
+  - name: enrollment_mode
+    description: "The enrollment mode of the user"
+    data_tests:
+      - accepted_values:
+          values: ["audit", "honor", "verified"]
 
 Data tests can also be defined in a `SQL file <https://github.com/openedx/sample-aspects-dbt/blob/main/tests/test_course_enrollments.sql>`_, where the goal of the SQL statement is to return zero records. 
+
+.. code-block::
+
+  select count(*) as num_rows
+  from {{ ref('enrollment_mode') }}
+  group by org, course_key, enrollment_mode, course_name, course_run
+  having num_rows > 1
 
 Unit tests
 ----------
 Unit tests are used to validate the logic of your dbt models in isolation from the underlying data. They are defined in a `unit_tests.yaml <https://github.com/openedx/sample-aspects-dbt/blob/main/models/response/unit_tests.yaml>`_ file within the ``models`` directory.
 
-Other unit test resources:
-- `dbt Unit Testing: Why You Need Them, Tutorial & Best Practices <https://dagster.io/guides/dbt-unit-testing-why-you-need-them-tutorial-best-practices>`_
-- `dbt unit testing best practices <https://www.datafold.com/blog/dbt-unit-testing-definitions-best-practices-2024>`_
+.. seealso:: Other unit test resources:
+
+  * `dbt Unit Testing: Why You Need Them, Tutorial & Best Practices <https://dagster.io/guides/dbt-unit-testing-why-you-need-them-tutorial-best-practices>`_
+
+  * `dbt unit testing best practices <https://www.datafold.com/blog/dbt-unit-testing-definitions-best-practices-2024>`_
 
 
 Step 7. Install and use your dbt package
@@ -132,23 +179,22 @@ Once you've pushed all the changes to your custom dbt package repo, you're ready
 
 Use ``tutor config save`` to update the following Tutor variables to use your custom package instead of the Aspects default.
 
-  - ``DBT_REPOSITORY``: The git repository URL of your custom dbt package.
+* ``DBT_REPOSITORY``: The git repository URL of your custom dbt package.
 
-    Default: ``https://github.com/openedx/aspects-dbt``
+  (Default: ``https://github.com/openedx/aspects-dbt``)
 
-  - ``DBT_BRANCH``: The hash/branch/tag of your custom dbt package that you wish to use.
+* ``DBT_BRANCH``: The hash/branch/tag of your custom dbt package that you wish to use.
 
-    Default: the latest tagged version of aspects-dbt
+  (Default: the latest tagged version of aspects-dbt)
 
-  - ``EXTRA_DBT_PACKAGES``: Add any python packages that your dbt project requires here.
+Optional
+  * ``EXTRA_DBT_PACKAGES``: Add any python packages that your dbt project requires here.
 
-  - ``DBT_PROFILE_*``: variables used in the Aspects ``dbt/profiles.yml`` file, including several Clickhouse connection settings.
+  * ``DBT_PROFILE_*``: variables used in the Aspects ``dbt/profiles.yml`` file, including several Clickhouse connection settings.
 
-  - ``DBT_SSH_KEY``: The private SSH key to use when cloning the dbt project. Only necessary if you are using a private repository.
+  * ``DBT_SSH_KEY``: The private SSH key to use when cloning the dbt project. Only necessary if you are using a private repository.
 
 Once your package is configured in Tutor, you can run dbt commands directly on your deployment.
-
-See `dbt commands <https://docs.getdbt.com/reference/dbt-commands>`_ for a full list of available commands.
 
 .. code-block:: bash
 
@@ -167,17 +213,17 @@ See `dbt commands <https://docs.getdbt.com/reference/dbt-commands>`_ for a full 
   # To push your new transformations to Superset SQL Lab
   tutor dev do import-assets
 
+See `dbt commands <https://docs.getdbt.com/reference/dbt-commands>`_ for a full list of available commands.
 
 Troubleshooting
 ===============
-- Tutor commands may need to be run with ``--only_changed False`` to force a full dbt run if you have made changes to your dbt package that are not being picked up.
+* Tutor dbt commands may need to be run with ``--only_changed False`` to force a full dbt run if you have made changes to your dbt package that are not being picked up.
 
-- Don't forget to push your changes to your repo before running the tutor dbt command: it fetches a clean copy of your configured package repo + branch each time it runs.
+* Don't forget to push your changes to your repo before running the tutor dbt command: it fetches a clean copy of your configured package repo + branch each time it runs.
 
 Next Steps
 ==========
 With your custom dbt package, you can create new charts and dashboards in Superset using the new models created by your dbt transforms. See :ref:`superset-extra-assets` for more information.
-
 
 References
 ==========
