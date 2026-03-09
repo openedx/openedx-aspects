@@ -1,7 +1,7 @@
 .. _superset-extra-assets:
 
-Superset extra assets
-*********************
+Add extra Superset assets
+*************************
 
 Developers can use the ``superset-extra-assets`` patch to add extra assets (charts, datasets, dashboards, databases) to Superset that will be imported at initialization.
 

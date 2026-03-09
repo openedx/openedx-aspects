@@ -1,7 +1,7 @@
 .. _dbt-extensions:
 
-Extending dbt
-*************
+Extend dbt
+**********
 
 As noted in :ref:`dbt`, you can install your own custom dbt package to apply your own transforms to the event data in Aspects. 
 

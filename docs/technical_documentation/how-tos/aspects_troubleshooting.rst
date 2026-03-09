@@ -1,6 +1,6 @@
 .. _troubleshooting_aspects:
 
-Troubleshooting Aspects
+Troubleshoot Aspects
 #######################
 
 Most common problems with Aspects can be fixed by making sure everything is up to date by deleting

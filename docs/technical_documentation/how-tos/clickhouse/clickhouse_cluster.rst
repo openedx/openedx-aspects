@@ -1,7 +1,7 @@
 .. _clickhouse-cluster:
 
-How To Run Aspects With ClickHouse Cluster
-******************************************
+Run Aspects with a ClickHouse cluster
+*************************************
 
 ClickHouse clusters are an advanced way of running ClickHouse, but offer many benefits for large scale installations. Deciding whether to run in a clustered environment is a big decision with many cost and administrative impacts and should be carefully considered before launching a production environment. In most cases we expect Aspects to perform well without cluster scaling.
 

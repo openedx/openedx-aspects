@@ -1,6 +1,6 @@
 .. _production_configuration:
 
-Configure Aspects for Production
+Configure Aspects for production
 ********************************
 
 Choosing an xAPI Pipeline

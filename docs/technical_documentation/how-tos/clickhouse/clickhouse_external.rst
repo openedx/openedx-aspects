@@ -1,7 +1,7 @@
 .. _remote-clickhouse:
 
-Connect to external Clickhouse database
-***************************************
+Connect to an external Clickhouse database
+******************************************
 
 Connect to Clickhouse Cloud
 ###########################

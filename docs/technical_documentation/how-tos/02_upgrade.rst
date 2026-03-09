@@ -1,6 +1,6 @@
 .. _upgrade-aspects:
 
-How-to Upgrade Aspects
+Upgrade Aspects
 **********************
 
 Aspects is intended to have a faster upgrade cycle than Open edX named releases since operators might want to upgrade between releases to get features as they become available. The upgrade process is the same whether it's happening as part of a named release upgrade or in between.

@@ -1,6 +1,6 @@
 .. _changing_actor_identifier:
 
-Changing the xAPI actor identifier
+Change the xAPI actor identifier
 ##################################
 
 The xAPI :ref:`actor <actor_concept>` identifier is a unique user identifier provided
