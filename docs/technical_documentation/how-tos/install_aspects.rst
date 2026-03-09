@@ -1,3 +1,5 @@
+.. _install_aspects:
+
 Install Aspects Plugin for Tutor
 ********************************
 

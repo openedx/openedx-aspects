@@ -30,7 +30,7 @@ Assets in a tutor inline plugin using the patch would look like:
         ...      
 
 |
-In most cases, however, you will want to develop Superset dashboards, charts, datasets, and sometimes even databases in the Superset UI, and import them into a plugin that can be managed in source control. 
+| In most cases, however, you will want to develop Superset dashboards, charts, datasets, and sometimes even databases in the Superset UI, and import them into a plugin that can be managed in source control. 
 
 Creating a Tutor plugin
 =======================
