@@ -1,7 +1,7 @@
 .. _superset-config-docker:
 
-Superset Custom Production Config Settings
-******************************************
+Use Superset custom production config settings
+**********************************************
 
 To add or override production config settings in Superset, use the patch 
 ``superset-config-docker``. Changes take effect on LMS/CMS restart. 

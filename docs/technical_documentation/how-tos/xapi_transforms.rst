@@ -1,7 +1,7 @@
 .. _xapi_transforms:
 
-xAPI Transforms
-###############
+Customize xAPI transforms
+#########################
 
 Aspects converts raw Open edX tracking event JSON into :ref:`xapi-concepts` for storage and analysis. This conversion process is called "transformation".
 

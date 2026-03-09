@@ -1,7 +1,7 @@
 .. _superset-row-level-security:
 
-Superset extra row level security
-*********************************
+Customize Superset row level security
+*************************************
 
 To apply custom row level security filters to Superset, you can use the patch 
 ``superset-row-level-security``. This patch can overwrite the `default list <https://github.com/openedx/tutor-contrib-aspects/blob/main/tutoraspects/templates/aspects/apps/superset/pythonpath/openedx/create_row_level_security.py#L18-L46>`_ of roles

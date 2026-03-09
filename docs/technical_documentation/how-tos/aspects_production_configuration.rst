@@ -1,6 +1,6 @@
 .. _production_configuration:
 
-Configure Aspects for Production
+Configure Aspects for production
 ********************************
 
 Choosing an xAPI Pipeline
@@ -199,13 +199,13 @@ By default, Aspects enables plugin functionality in the LMS that embeds a define
 - ``ASPECTS_LEARNER_GROUPS_HELP_MARKDOWN`` controls the content of the "Help" tab in the At-Risk Learners dashboard
 - ``ASPECTS_OPERATOR_HELP_MARKDOWN`` controls the content of the "Help" tab in the Operator dashboard
 
-In-context Metrics
+In-Context Metrics
 ------------------
 
-Starting in the Teak Open edX release, Aspects provides in-context metrics in Studio. The following settings controls this functionality.
+Starting in the Teak Open edX release, Aspects provides :ref:`In-Context Dashboards` in Studio. Reference the `plugin <https://github.com/openedx/frontend-plugin-aspects?tab=readme-ov-file#development-setup>` for setup instructions.
 
-- ``ASPECTS_ENABLE_STUDIO_IN_CONTEXT_METRICS`` - Enables or disables in-context metrics.
-- ``ASPECTS_IN_CONTEXT_DASHBOARDS`` - A dictionary mapping block types to in-context dashboards. You can use this option to remove or replace the in-context dashboard for a block type. The key `course` defines the in-context dashboard for course overview.
+For further customization, the setting ``ASPECTS_IN_CONTEXT_DASHBOARDS`` (in `platform-plugin-aspects`_) is a dictionary mapping block types to in-context dashboards. 
+You can use this setting to remove or replace the in-context dashboard for a block type. The key `course` defines the in-context dashboard for course overview.
 
 
 Ralph Accessibility
@@ -396,3 +396,4 @@ These are also captured in the Aspects Operator Dashboard as well as a filterabl
 .. _Ralph via Helm chart: https://openfun.github.io/ralph/latest/tutorials/helm/
 .. _dump_data_to_clickhouse arguments: https://github.com/openedx/platform-plugin-aspects/blob/951ed84de01dda6bec9923c60fcd96bf80d6fa54/platform_plugin_aspects/management/commands/dump_data_to_clickhouse.py#L91
 .. _transform_tracking_logs: https://event-routing-backends.readthedocs.io/en/latest/technical_documentation/how-tos/how_to_bulk_transform.html
+.. _platform-plugin-aspects: https://github.com/openedx/platform-plugin-aspects/blob/main/platform_plugin_aspects/settings/common.py#L112

@@ -1,7 +1,7 @@
 .. _aspects-without-tutor:
 
-Running Aspects Without Tutor
-*****************************
+Run Aspects without Tutor
+*************************
 
 In cases where Open edX is deployed outside of the Tutor environment, setting up Aspects is quite challenging. This guide aims to present the steps needed to stand up and configure an Aspects environment using Tutor and tutor-contrib-aspects to create the resources needed to configure an Aspects environment with an existing non-Tutor deployment.
 

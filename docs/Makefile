@@ -14,6 +14,9 @@ help:
 
 .PHONY: help Makefile
 
+serve_docs: ## serve the built docs locally to preview the site in the browser
+	sphinx-autobuild source $(BUILDDIR)/html --ignore '**/_tags/*'
+	
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
