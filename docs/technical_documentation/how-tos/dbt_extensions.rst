@@ -62,7 +62,7 @@ Step 2. Set up new dbt package
         # This setting configures which "profile" dbt uses for this project.
         profile: "aspects"
 
-#. In ``dbt_project.yml``, set the location for compiled SQL to match the `aspects target path <https://github.com/openedx/aspects-dbt/blob/572661b7cc7a941d44092db4a4070df8dada87b3/dbt_project.yml#L21>`_:
+#. In ``dbt_project.yml``, set the location for compiled SQL to match the `aspects target path <https://github.com/openedx/aspects-dbt/blob/main/dbt_project.yml>`_:
 
    .. code-block:: yaml
 
@@ -142,7 +142,7 @@ There are two types of dbt tests; `data tests <https://docs.getdbt.com/best-prac
 
 Data tests
 ------------
-Data tests can be defined in the `schema.yml <https://github.com/openedx/sample-aspects-dbt/blob/2b8736c259e5410925f0d192627673da87f327be/models/enrollment/schema.yml#L18-L20>`_ file for each model, and are used to validate properties of the data such as types, accepted values, uniqueness, and relationships between tables.
+Data tests can be defined in the `schema.yml <https://github.com/openedx/sample-aspects-dbt/blob/main/models/enrollment/schema.yml>`_ file for each model, and are used to validate properties of the data such as types, accepted values, uniqueness, and relationships between tables.
 
 .. code-block:: yaml
 
