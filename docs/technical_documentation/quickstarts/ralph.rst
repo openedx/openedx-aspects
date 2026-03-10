@@ -5,15 +5,21 @@ Ralph
 
 Installation instructions for Aspects are available on the plugin site: https://github.com/openedx/tutor-contrib-aspects
 
-Ralph is the default option to send xAPI events to Clickhouse. To run it make sure to enable the `RUN_RALPH` option in the `config.yml` file.
+Ralph is an alternative option to send xAPI events to Clickhouse, providing full xAPI
+learning record store (LRS) statement support and deduplication (prior to Aspects version
+4.0, Ralph was the default). To use Ralph as your xAPI pipeline, you need to enable it
+and set it as the source in your `config.yml` file.
 
 .. code-block:: yaml
 
     RUN_RALPH: True
+    ASPECTS_XAPI_SOURCE: ralph
 
-    # We recommend only running Ralph or Vector for performance reasons, so
-    # suggest turning off Vector here
+    # We recommend only running one transport for performance reasons, so
+    # suggest turning off Vector if you are using Ralph for xAPI
     RUN_VECTOR: False
+
+When ``ASPECTS_XAPI_SOURCE`` is set to ``ralph``, the xAPI data will be stored in the database defined by ``RALPH_DATABASE`` (defaults to ``xapi``).
 
 
 Aspects provides the following configuration options:

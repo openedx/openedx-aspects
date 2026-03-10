@@ -4,7 +4,7 @@ Vector
 ******
 
 Vector is lightweight and ultra-fast tool for building observability pipelines.
-In the Aspects project, Vector can optionally be used as a replacement for Ralph to
+As of Aspects version 4.0, Vector is the default tool used to
 capture xAPI learner statements in the ClickHouse database, and/or as a way to
 store raw tracking log statements. It can be used as a general purpose log collector
 and forwarder.
@@ -43,6 +43,6 @@ Those tables are controlled by the variables:
 
     ASPECTS_VECTOR_DATABASE: "openedx"
     ASPECTS_VECTOR_RAW_TRACKING_LOGS_TABLE: "_tracking"
-    ASPECTS_VECTOR_RAW_XAPI_TABLE: "xapi_events_all"
+    ASPECTS_RAW_XAPI_TABLE: "xapi_events_all"
 
 To learn more about Vector, see the `Vector documentation <https://vector.dev/docs/>`_.
