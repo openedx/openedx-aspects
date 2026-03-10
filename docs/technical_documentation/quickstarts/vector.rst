@@ -15,8 +15,8 @@ To configure Vector as the xAPI event handler, you can use the following configu
     RUN_RALPH: False
     # Enable vector
     RUN_VECTOR: True
-    # Change the xAPI database to the one Vector uses
-    ASPECTS_XAPI_DATABASE: "openedx"
+    # The database will be updated set, but can be manually updated with:
+    ASPECTS_VECTOR_DATABASE: "openedx"
 
 
 Aspects provides the following configuration options:

@@ -43,6 +43,6 @@ Those tables are controlled by the variables:
 
     ASPECTS_VECTOR_DATABASE: "openedx"
     ASPECTS_VECTOR_RAW_TRACKING_LOGS_TABLE: "_tracking"
-    ASPECTS_VECTOR_RAW_XAPI_TABLE: "xapi_events_all"
+    ASPECTS_RAW_XAPI_TABLE: "xapi_events_all"
 
 To learn more about Vector, see the `Vector documentation <https://vector.dev/docs/>`_.
