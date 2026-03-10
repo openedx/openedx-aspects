@@ -5,18 +5,16 @@ Vector
 
 Installation instructions for Aspects are available on the plugin site: https://github.com/openedx/tutor-contrib-aspects
 
-Vector is an alternative option to send xAPI events to Clickhouse. It can be run along with Ralph, but to optimize resources we encourage you to only use one.
-
-To configure Vector as the xAPI event handler, you can use the following configuration:
+Vector is the default option to send xAPI events to Clickhouse in Aspects. It is enabled by default with the following settings:
 
 .. code-block:: yaml
 
-    # Disable ralph
-    RUN_RALPH: False
-    # Enable vector
+    # Default settings
     RUN_VECTOR: True
-    # Change the xAPI database to the one Vector uses
-    ASPECTS_XAPI_DATABASE: "openedx"
+    RUN_RALPH: False
+    ASPECTS_XAPI_SOURCE: vector
+
+When ``ASPECTS_XAPI_SOURCE`` is set to ``vector``, the xAPI data will be stored in the database defined by ``ASPECTS_VECTOR_DATABASE`` (defaults to ``openedx``).
 
 
 Aspects provides the following configuration options:
