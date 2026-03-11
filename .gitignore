@@ -4,3 +4,6 @@ docs/_build
 source/.DS_Store
 .idea/
 .python-version
+.venv/
+*.pyc
+__pycache__/

@@ -13,31 +13,22 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	@awk -F ':.*?## ' '/^[a-zA-Z]/ && NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
 
-.PHONY: help Makefile upgrade requirements
+.PHONY: help Makefile upgrade requirements install
 
-# Define PIP_COMPILE_OPTS=-v to get more information during make upgrade.
-PIP_COMPILE = pip-compile --upgrade $(PIP_COMPILE_OPTS)
+sync-constraints:		## download and sync common_constraints.txt to pyproject.toml
+	uv run python sync_constraints.py
 
-upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
-upgrade: ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
-	pip install -r requirements/pip-tools.txt
-	# Make sure to compile files after any other files they include!
-	$(PIP_COMPILE) --allow-unsafe --rebuild -o requirements/pip.txt requirements/pip.in
-	$(PIP_COMPILE) -o requirements/pip-tools.txt requirements/pip-tools.in
-	pip install -r requirements/pip-tools.txt
-	$(PIP_COMPILE) -o requirements/base.txt requirements/base.in
-	$(PIP_COMPILE) -o requirements/docs.txt requirements/docs.in
+upgrade: sync-constraints
+	uv lock --upgrade
 
-requirements:
-	pip install -r requirements/pip-tools.txt
-	pip-sync requirements/base.txt
+requirements: ## install dependencies using uv
+	uv sync
 
-serve_docs:
-	sphinx-autobuild -W docs/ docs/_build/html/
+serve_docs: ## serve documentation locally with auto-reload
+	uv run sphinx-autobuild -W docs/ docs/_build/html/
 
-# Emulate the build step on RTD to flush out errors ahead pushing
-check_docs:
-	sphinx-build -T -E -W --keep-going docs/ docs/_build/html
+check_docs: ## emulate the build step on RTD to flush out errors ahead pushing
+	uv run sphinx-build -T -E -W --keep-going docs/ docs/_build/html
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).

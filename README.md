@@ -2,6 +2,27 @@
 
 Learner analytics for Open edX!
 
+## Development Setup
+
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management. To get started:
+
+```bash
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install dependencies
+make install
+
+# Serve documentation locally
+make serve_docs
+
+# Check documentation builds correctly
+make check_docs
+
+# Upgrade dependencies
+make upgrade
+```
+
 ## What is Aspects?
 
 Aspects is an optional implementation of analytics for the Open edX LMS. It is the combined solution of Cairn by Overhang.io and the OARS project developed by Axim Collaborative with a huge amount of help from the Open edX community. Primarily it is intended to be a "batteries included" set of configurations and plugins to combine 3rd party tools into a powerful and flexible system for learner analytics.

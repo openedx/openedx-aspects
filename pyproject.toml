@@ -1,0 +1,52 @@
+[project]
+name = "openedx-aspects"
+version = "3.0.0"
+description = "Learner analytics documentation for Open edX"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "AGPL-3.0"}
+authors = [
+    {name = "Axim Collaborative", email = "oscm@axim.org"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "sphinx",
+    "sphinx-book-theme",
+    "sphinx-autobuild",
+    "sphinx-copybutton",
+    "sphinxcontrib-mermaid",
+    "sphinxcontrib-contentui",
+]
+
+[project.urls]
+Homepage = "https://docs.openedx.org/projects/openedx-aspects"
+Documentation = "https://docs.openedx.org/projects/openedx-aspects"
+Repository = "https://github.com/openedx/openedx-aspects"
+"Issue Tracker" = "https://github.com/openedx/openedx-aspects/issues"
+
+[tool.uv]
+constraint-dependencies = [
+    # Downloaded from edx-lint common_constraints.txt
+    # DO NOT EDIT - Use 'python sync_constraints.py' to update
+    "Django<6.0",
+    "elasticsearch<7.14.0",
+    # Local constraint
+    "greenlet>3.0.1",  # playwright and sqlalchemy requirements conflict for greenlet<=3.0.1
+]
+# Common constraints from edx-lint
+override-dependencies = [
+    "Django<6.0",  # using LTS django version
+    "elasticsearch<7.14.0",  # 7.14.0+ contains breaking changes
+]
