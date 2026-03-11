@@ -41,15 +41,39 @@ fail to load, showing only a message like:
 - ``Something went wrong with embedded authentication. Check the dev console for details.``
 - or ``Error: invalid_request Invalid client_id``
 
-This most often happens when moving between Tutor deployment types (dev/local/k8s) but can also
-happen when the hostnames or ports your LMS or Superset change (such as when populating a staging
-environment from a production database). This is usually an issue with the OAuth Application entry
-not matching the Superset URL. Make sure you ``config.yml`` settings are correct for your
-environment (especially ``SUPERSET_HOST`` and ``SUPERSET_PORT``) then:
+There are numerous potential causes of these errors, but most they often happen when moving between
+Tutor deployment types (dev/local/k8s) but can also happen when the hostnames or ports your LMS or
+Superset change (such as when populating a staging environment from a production database).
+
+This root issue is usually an the OAuth Application LMS database entry not matching the Superset
+URL. Make sure your ``config.yml`` settings are correct for your environment (especially
+``SUPERSET_HOST`` and ``SUPERSET_PORT``) then:
 
 - Go into the Django admin: ``{LMS_ROOT}/admin/oauth2_provider/application/``
 - Delete the Application entries for `superset-sso` and ``superset-sso-dev`` if they exist
 - Re-run ``tutor [dev|local|k8s] do init -l aspects`` to recreate the entries
+
+Some configurations of ``tutor local`` (usually when selecting HTTPS for a localhost development
+installation, which cannot support HTTPS) can cause this error as well. In those cases you can
+get around the error by using the following Tutor patch.
+
+
+.. warning::
+
+    This patch turns off an important security setting and potentially creates a vulnerability in
+    your application. If you run into the above error in a production environment please reach out
+    for assistance instead of using this patch!
+
+
+.. code-block:: yaml
+
+    name: superset-auth-override
+    version: "1.0.0"
+    patches:
+        openedx-common-settings: |
+            import os
+            os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+            SUPERSET_CONFIG["internal_service_url"] = "http://superset:8088"
 
 
 General Troubleshooting
