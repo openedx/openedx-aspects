@@ -69,7 +69,7 @@ In-Context Analytics in Aspects v3.0 uses Paragon v23 which was introduced in Op
 
 
 Upgrading to `v2.5 <https://github.com/openedx/tutor-contrib-aspects/releases/tag/v2.5.0>`_
------------------
+-------------------------------------------------------------------------------------------
 
 There were multiple changes to dbt views which will need to be manually refreshed. Do this by running:
 
