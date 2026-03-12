@@ -59,13 +59,23 @@ v3.x             Ulmo and later
 ===============  ======================================
 
 
-Upgrading v2.x to v3.x
+Upgrading v2.5 to v3.x
 ----------------------
 
 Breaking Changes
 ================
 
 In-Context Analytics in Aspects v3.0 uses Paragon v23 which was introduced in Open edX Ulmo. Therefore, Aspects v3.x requires Open edX Ulmo or later. If you are running a named release before Ulmo, you will need to upgrade to Ulmo or later before upgrading Aspects to v3.x.
+
+
+Upgrading to `v2.5 <https://github.com/openedx/tutor-contrib-aspects/releases/tag/v2.5.0>`_
+-------------------------------------------------------------------------------------------
+
+There were multiple changes to dbt views which will need to be manually refreshed. Do this by running:
+
+.. code-block:: bash
+
+    tutor [local/dev/k8s] do dbt --only_changed False -c 'run --full-refresh --select dim_problem_responses+ fact_video_segments+ dim_course_blocks+ fact_navigation_completion+ fact_pageview_engagement+ problem_events+ dim_learner_last_response+ dim_problem_results+ dim_subsection_problem_results+ fact_problem_engagement+ dim_problem_coursewide_avg+ dim_subsection_performance+'
 
 
 Upgrading v1.x to v2.x
