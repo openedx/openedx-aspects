@@ -202,7 +202,7 @@ By default, Aspects enables plugin functionality in the LMS that embeds a define
 In-Context Metrics
 ------------------
 
-Starting in the Teak Open edX release, Aspects provides :ref:`In-Context Dashboards` in Studio. Reference the `plugin <https://github.com/openedx/frontend-plugin-aspects?tab=readme-ov-file#development-setup>` for setup instructions.
+Starting in the Teak Open edX release, Aspects provides :ref:`In-Context Dashboards` in Studio. Reference the `plugin <https://github.com/openedx/frontend-plugin-aspects?tab=readme-ov-file#development-setup>`_ for setup instructions.
 
 For further customization, the setting ``ASPECTS_IN_CONTEXT_DASHBOARDS`` (in `platform-plugin-aspects`_) is a dictionary mapping block types to in-context dashboards. 
 You can use this setting to remove or replace the in-context dashboard for a block type. The key `course` defines the in-context dashboard for course overview.
