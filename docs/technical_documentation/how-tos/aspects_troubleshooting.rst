@@ -32,8 +32,8 @@ dashboard.
 Solution: Make sure you have published your courses since installing / reinstalling Aspects, or :ref:`backfill course blocks <backfill_course_blocks>` .
 
 
-Embedded Dashboard Errors
-=========================
+Embedded Dashboard / Superset Login Errors
+==========================================
 
 Symptom: In the Instructor Dashboard "Reports" tab or In-Context Metrics in Studio the dashboards
 fail to load, showing only a message like:
@@ -41,15 +41,56 @@ fail to load, showing only a message like:
 - ``Something went wrong with embedded authentication. Check the dev console for details.``
 - or ``Error: invalid_request Invalid client_id``
 
-This most often happens when moving between Tutor deployment types (dev/local/k8s) but can also
-happen when the hostnames or ports your LMS or Superset change (such as when populating a staging
-environment from a production database). This is usually an issue with the OAuth Application entry
-not matching the Superset URL. Make sure you ``config.yml`` settings are correct for your
-environment (especially ``SUPERSET_HOST`` and ``SUPERSET_PORT``) then:
+There are numerous potential causes of these errors, but most they often happen when moving between
+Tutor deployment types (dev/local/k8s) but can also happen when the hostnames or ports in your LMS or
+Superset configuration change (such as when populating a staging environment from a production database).
+
+This root issue is usually an the OAuth Application LMS database entry not matching the Superset
+URL. Make sure your ``config.yml`` settings are correct for your environment (especially
+``SUPERSET_HOST`` and ``SUPERSET_PORT``).
+
+External Proxy
+--------------
+
+If you are running behind a proxy separate from Tutor's Caddy there may be mismatches between
+the expected http/https redirect URIs that Aspects sets by default. In this case you can set
+the ``SUPERSET_PROXY_FIX`` Tutor setting to True in your config. It tells Superset to use the
+headers set by the proxy to confirm the URL. See the
+`Flask documentation <https://flask.palletsprojects.com/en/latest/deploying/proxy_fix/>`_
+for important details and security implications.
+
+Outdated Settings
+-----------------
+
+If you are not running behind an external proxy you can take these steps:
 
 - Go into the Django admin: ``{LMS_ROOT}/admin/oauth2_provider/application/``
 - Delete the Application entries for `superset-sso` and ``superset-sso-dev`` if they exist
 - Re-run ``tutor [dev|local|k8s] do init -l aspects`` to recreate the entries
+
+Tutor Local HTTPS
+-----------------
+
+Some configurations of ``tutor local`` (usually when selecting HTTPS for a localhost development
+installation, which cannot support HTTPS) can cause this error as well. In those cases you can
+get around the error by using the following Tutor patch.
+
+.. warning::
+
+    This patch turns off an important security setting and potentially creates a vulnerability in
+    your application. If you run into the above error in a production environment please reach out
+    for assistance instead of using this patch!
+
+
+.. code-block:: yaml
+
+    name: superset-auth-override
+    version: "1.0.0"
+    patches:
+        openedx-common-settings: |
+            import os
+            os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+            SUPERSET_CONFIG["internal_service_url"] = "http://superset:8088"
 
 
 General Troubleshooting
