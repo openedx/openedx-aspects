@@ -27,7 +27,6 @@ dependencies = [
     "sphinx-autobuild",
     "sphinx-copybutton",
     "sphinxcontrib-mermaid",
-    "sphinxcontrib-contentui",
 ]
 
 [project.urls]
