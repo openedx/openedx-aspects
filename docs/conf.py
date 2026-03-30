@@ -19,7 +19,7 @@ import os
 # -- Project information -----------------------------------------------------
 
 project = "Open edX Aspects"
-copyright = "2023, Open edX Community"
+copyright = "2026, Open edX Community"
 author = "Open edX Community"
 
 # The full version, including alpha/beta/rc tags
