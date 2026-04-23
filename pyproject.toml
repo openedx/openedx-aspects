@@ -31,17 +31,23 @@ Documentation = "https://docs.openedx.org/projects/openedx-aspects"
 Repository = "https://github.com/openedx/openedx-aspects"
 "Issue Tracker" = "https://github.com/openedx/openedx-aspects/issues"
 
+
 [tool.uv]
+#  DO NOT EDIT constraint-dependencies DIRECTLY.
+#  This list is managed by `edx_lint write_uv_constraints`
+#  and will be overwritten the next time `make upgrade` is run.
+#  - GLOBAL constraints: edit edx_lint/files/common_constraints.txt
+#  - REPO-SPECIFIC constraints: edit [tool.edx_lint].uv_constraints in this file
 constraint-dependencies = [
-    # Downloaded from edx-lint common_constraints.txt
-    # DO NOT EDIT - Use 'python sync_constraints.py' to update
     "Django<6.0",
     "elasticsearch<7.14.0",
-    # Local constraint
-    "greenlet>3.0.1",  # playwright and sqlalchemy requirements conflict for greenlet<=3.0.1
+    "greenlet>3.0.1",
 ]
-# Common constraints from edx-lint
-override-dependencies = [
-    "Django<6.0",  # using LTS django version
-    "elasticsearch<7.14.0",  # 7.14.0+ contains breaking changes
+
+[tool.edx_lint]
+# Repo-specific uv constraints merged with edx-lint's global constraints.
+# Local entries override global ones for the same package.
+# Run `make upgrade` to regenerate [tool.uv].constraint-dependencies.
+uv_constraints = [
+    "greenlet>3.0.1",  # playwright and sqlalchemy requirements conflict for greenlet<=3.0.1
 ]
