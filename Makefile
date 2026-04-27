@@ -13,12 +13,10 @@ help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	@awk -F ':.*?## ' '/^[a-zA-Z]/ && NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
 
-.PHONY: help Makefile upgrade requirements install
+.PHONY: help Makefile upgrade requirements install serve_docs check_docs
 
-sync-constraints:		## download and sync common_constraints.txt to pyproject.toml
-	uv run python sync_constraints.py
-
-upgrade: sync-constraints
+upgrade: ## upgrade all packages in uv.lock and sync constraints from edx-lint
+	uv run --with edx-lint edx_lint write_uv_constraints pyproject.toml
 	uv lock --upgrade
 
 requirements: ## install dependencies using uv
