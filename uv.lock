@@ -8,10 +8,6 @@ constraints = [
     { name = "elasticsearch", specifier = "<7.14.0" },
     { name = "greenlet", specifier = ">3.0.1" },
 ]
-overrides = [
-    { name = "django", specifier = "<6.0" },
-    { name = "elasticsearch", specifier = "<7.14.0" },
-]
 
 [[package]]
 name = "accessible-pygments"
