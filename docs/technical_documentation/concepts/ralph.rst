@@ -14,9 +14,12 @@ Although Ralph has usages such as:
 - Validate xAPI statements.
 - Store events to different backends `backends <https://openfun.github.io/ralph/latest/features/backends/>`_.
 
-In the aspects project, Ralph is optionally used as the API server that connects Open edX
+In the aspects project, Ralph is an optional API server that connects Open edX
 and Clickhouse database. Ralph receives the xAPI statements from Open edX and stores them
 in the Clickhouse database after validating the data.
+
+To use Ralph as your xAPI transport, you must set ``ASPECTS_XAPI_SOURCE: ralph`` and
+``RUN_RALPH: True`` in your Tutor configuration.
 
 By default, Ralph is connected to the Open edX platform via Event Routing Backends without any filter
 and receives all the xAPI statements. To learn more about event-routing-backends, please

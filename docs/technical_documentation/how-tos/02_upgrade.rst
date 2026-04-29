@@ -59,8 +59,38 @@ v3.x             Ulmo and later
 ===============  ======================================
 
 
+Upgrading v3.x to v4.x
+-----------------------
+
+Breaking Changes
+================
+
+The default data pipeline has changed from Ralph to Vector. This change improves performance and simplifies the architecture by eliminating the need to scale multiple Ralph containers and Celery workers for high-throughput scenarios.
+
+Key changes:
+
+- Vector is now the default for xAPI event ingestion
+- The ``ASPECTS_VECTOR_RAW_XAPI_TABLE`` setting has been replaced with ``ASPECTS_RAW_XAPI_TABLE``
+- The default database has changed from ``xapi`` (Ralph) to ``openedx`` (Vector)
+- A new S3 sink is available to backup xAPI events for recovery
+
+To keep using Ralph as your data pipeline:
+
+.. code-block:: bash
+
+   tutor config save --set ASPECTS_XAPI_SOURCE=ralph
+   tutor config save --set RUN_RALPH=True
+   tutor config save --set RUN_VECTOR=False
+
+This will configure Aspects to use Ralph with the ``xapi`` database, preserving your existing data.
+
+If you have customized ``ASPECTS_VECTOR_RAW_XAPI_TABLE`` in your configuration, update it to use ``ASPECTS_RAW_XAPI_TABLE`` instead.
+
+For new installations or users switching to Vector, your data will be stored in the ``openedx`` database. You can migrate existing data from the ``xapi`` database to ``openedx`` if needed.
+
+
 Upgrading v2.5 to v3.x
-----------------------
+-----------------------
 
 Breaking Changes
 ================
