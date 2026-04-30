@@ -55,9 +55,18 @@ Aspects version  Compatible with Open edX named version
 ===============  ======================================
 v1.x             Nutmeg through Quince
 v2.x             Redwood through Teak
-v3.x             Ulmo and later
+v3.x             Ulmo
+v4.x             Verawood and later
 ===============  ======================================
 
+
+Upgrading v3.x to v4.x
+----------------------
+
+Breaking Changes
+================
+
+Aspects v4 now uses Python 3.12 to match the Verawood release of Tutor. If you are running a named release before Verawood, you will need to upgrade to Verawood or later before upgrading Aspects to v4.
 
 Upgrading v2.5 to v3.x
 ----------------------
