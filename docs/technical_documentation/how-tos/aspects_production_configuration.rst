@@ -10,6 +10,29 @@ Aspects can be configured to send xAPI events to ClickHouse in several different
 
 At a high level the options are:
 
+Vector (default)
+----------------
+
+**Recommended for:** Most deployments, from resource-constrained Tutor local environments to larger production stacks.
+
+Vector is a log forwarding service that monitors the logs from docker containers or Kubernetes pods. It writes events directly to ClickHouse and automatically batches events based on volume. The LMS is configured to transform and log xAPI events in-process and Vector picks them up by reading the logs.
+
+Pros:
+
+- Removes the need to run or scale Ralph
+- Automatic batching adjustments
+- Fastest delivery times to ClickHouse
+- Vector failures do not impact other systems
+- Allows to backup and restore data from an S3 compatible backend
+
+Cons:
+
+- It is a new service for most operators
+- Events are not de-duplicated before insert, which can result in some duplicate or incorrect data in a log replay or disaster recovery situation
+- Needs a Vector agent pod on every Kubernetes node, plus an aggregator with persistent storage
+- When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
+
+
 Celery tasks without batching (default as of 1.0.0)
 ---------------------------------------------------
 
@@ -52,29 +75,6 @@ Cons:
 - Batching is not as well tested (as of Redwood) and may have edge cases until it has been used in production
 
 
-Vector
-------
-
-**Recommended for:** Resource-constrained Tutor local environments, experienced operators on larger deployments.
-
-Vector is a log forwarding service that monitors the logs from docker containers or Kubernetes pods. It writes events directly to ClickHouse and automatically batches events based on volume. The LMS can be configured to transform and log xAPI events in-process and Vector will pick them up by reading the logs.
-
-Pros:
-
-- Removes the need to run or scale Ralph
-- Automatic batching adjustments
-- Fastest delivery times to ClickHouse
-- Vector failures do not impact other systems
-
-Cons:
-
-- It is a new service for most operators
-- Events are not de-duplicated before insert, which can result in some (mostly temporary) incorrect data in a disaster recovery
-- Disaster recovery hasn't been tested with Aspects yet
-- Needs a pod run for every LMS or CMS Kubernetes worker
-- When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
-
-
 Event Bus (experimental)
 ------------------------
 
@@ -108,7 +108,9 @@ When in doubt, the simplest place to start with a production configuration is Ce
 Vector
 ------
 
-Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments you will need to make sure that a Vector pod is attached to each LMS/CMS worker.
+Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments Aspects deploys a ``vector-agent`` DaemonSet, which reads pod logs on every node, and a ``vector-aggregator`` StatefulSet, which parses the events and writes them to ClickHouse. The aggregator uses a persistent volume for its disk buffers, so make sure your cluster can provision a volume of ``ASPECTS_VECTOR_AGGREGATOR_STORAGE_SIZE``. You can scale the aggregator with ``ASPECTS_VECTOR_AGGREGATOR_REPLICAS``.
+
+We recommend enabling the S3 backup sink in production so that events can be restored quickly if ClickHouse loses data. See the :ref:`Quick Start - Vector guide <quick-start-vector>` for the settings and :ref:`backfill_s3` for how to restore.
 
 Event bus
 ---------
@@ -314,7 +316,8 @@ This is the time between now and the last xAPI event arriving. The frequency of 
         count(*) as ttl_count,
         max(emission_time) as most_recent,
         date_diff('second', max(emission_time), now()) as lag_seconds
-    FROM xapi.xapi_events_all
+    -- use xapi.xapi_events_all if you are running the Ralph pipeline
+    FROM openedx.xapi_events_all
     FINAL
     FORMAT JSON
 

@@ -141,7 +141,7 @@ In the next steps you'll combine the new services created by Tutor with your exi
 - superset / superset-worker / superset-beat
 - clickhouse (if enabled)
 - ralph (if enabled)
-- vector (if enabled)
+- vector (if enabled; on Kubernetes this is a vector-agent DaemonSet and a vector-aggregator StatefulSet)
 - aspects-docs (if enabled)
 
 Step 2a: Docker Compose

@@ -57,7 +57,40 @@ v1.x             Nutmeg through Quince
 v2.x             Redwood through Teak
 v3.x             Ulmo
 v4.x             Verawood and later
+v5.x             Verawood and later
 ===============  ======================================
+
+
+Upgrading v4.x to v5.x
+----------------------
+
+Breaking Changes
+================
+
+The default data pipeline has changed from Ralph to Vector. This change improves performance and simplifies the architecture by eliminating the need to scale multiple Ralph containers and Celery workers for high-throughput scenarios.
+
+Key changes:
+
+- Vector is now the default for xAPI event ingestion (``RUN_VECTOR: True``, ``RUN_RALPH: False``, ``ASPECTS_XAPI_SOURCE: vector``)
+- The ``ASPECTS_VECTOR_RAW_XAPI_TABLE`` setting has been replaced with ``ASPECTS_RAW_XAPI_TABLE``
+- The default database has changed from ``xapi`` (Ralph) to ``openedx`` (Vector). ``ASPECTS_XAPI_DATABASE`` is now derived from ``ASPECTS_XAPI_SOURCE`` and should not normally be set directly.
+- Alembic migration state is now stored in the database named by the new ``ASPECTS_ALEMBIC_MIGRATIONS_DATABASE`` setting, which defaults to ``RALPH_DATABASE`` (``xapi``). This keeps the migration history stable when switching pipelines. Existing installs should leave this at the default so Alembic does not try to re-run all migrations.
+- On Kubernetes, Vector is now deployed as a ``vector-agent`` DaemonSet plus a ``vector-aggregator`` StatefulSet with a persistent volume. The previous single ``vector`` DaemonSet configuration (``k8s.toml``) has been removed. See :ref:`vector`.
+- A new, optional S3 sink can back up xAPI events and a new ``xapi_block_storage_backfill`` command restores them. See :ref:`backfill_s3`.
+
+To keep using Ralph as your data pipeline:
+
+.. code-block:: bash
+
+   tutor config save --set ASPECTS_XAPI_SOURCE=ralph
+   tutor config save --set RUN_RALPH=True
+   tutor config save --set RUN_VECTOR=False
+
+This will configure Aspects to use Ralph with the ``xapi`` database, preserving your existing data.
+
+If you have customized ``ASPECTS_VECTOR_RAW_XAPI_TABLE`` in your configuration, update it to use ``ASPECTS_RAW_XAPI_TABLE`` instead.
+
+For new installations or users switching to Vector, your data will be stored in the ``openedx`` database. You can migrate existing data from the ``xapi`` database to ``openedx`` if needed.
 
 
 Upgrading v3.x to v4.x
@@ -68,8 +101,9 @@ Breaking Changes
 
 Aspects v4 now uses Python 3.12 to match the Verawood release of Tutor. If you are running a named release before Verawood, you will need to upgrade to Verawood or later before upgrading Aspects to v4.
 
+
 Upgrading v2.5 to v3.x
-----------------------
+-----------------------
 
 Breaking Changes
 ================

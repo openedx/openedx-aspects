@@ -74,8 +74,55 @@ by:
   to your LMS performance)
 
 If you are running into repeated problems, you may wish to transform the tracking logs to file(s) on
-S3 or Minio that can be loaded directly into the ClickHouse ``xapi.xapi_events_all`` table using
-the ClickHouse S3 table function.
+S3 or Minio that can be loaded directly into the ClickHouse raw xAPI table
+(``openedx.xapi_events_all`` for Vector, ``xapi.xapi_events_all`` for Ralph) using the ClickHouse
+S3 table function.
+
+
+.. _backfill_s3:
+
+Restore xAPI data from the Vector S3 backup
+###########################################
+
+If you have enabled the Vector S3 sink (see :ref:`quick-start-vector`), every xAPI event is also
+written to your bucket as it is ingested. Those files can be loaded back into ClickHouse without
+replaying tracking logs, which is much faster and is useful for:
+
+- Restoring data after a ClickHouse outage or data loss
+- Importing data from another environment that writes to the same bucket
+- Re-processing historical events
+
+The ``xapi_block_storage_backfill`` command runs on the ClickHouse service and inserts the matching
+files directly into the raw xAPI table using the ClickHouse S3 table function. It uses the
+``ASPECTS_XAPI_S3_*`` settings for the bucket, endpoint, and credentials.
+
+.. code-block:: console
+
+    # Import every file in the bucket
+    tutor [dev|local|k8s] do xapi_block_storage_backfill
+
+    # Filter by date, from year down to hour (24 hour clock). Single and double
+    # digit values are equivalent.
+    tutor local do xapi_block_storage_backfill --year 2026 --month 3
+    tutor local do xapi_block_storage_backfill --year 2026 --month 03 --day 19
+    tutor local do xapi_block_storage_backfill --year 2026 --month 03 --day 19 --hour 14
+
+    # Or give a glob path inside the bucket directly. This cannot be combined
+    # with the date options.
+    tutor local do xapi_block_storage_backfill --path 'xapi/2026/03/19/14/*.log.zst'
+
+Events restored this way may already exist in ClickHouse, so the command can optionally run an
+``OPTIMIZE TABLE ... FINAL`` on the raw table and the main downstream tables afterwards to collapse
+duplicates:
+
+.. code-block:: console
+
+    tutor local do xapi_block_storage_backfill --year 2026 --month 3 --deduplicate
+
+.. warning::
+
+    ``OPTIMIZE TABLE FINAL`` can be resource intensive on large tables. Run it during low traffic
+    periods if you have a large dataset.
 
 
 .. _backfill_course_blocks:

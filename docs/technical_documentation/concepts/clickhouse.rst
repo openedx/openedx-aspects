@@ -27,8 +27,15 @@ the variable **ASPECTS_RAW_XAPI_TABLE**:
 
 .. code-block:: yaml
 
-    ASPECTS_XAPI_DATABASE: "xapi"
+    # Derived from ASPECTS_XAPI_SOURCE: "openedx" (ASPECTS_VECTOR_DATABASE) when
+    # using Vector, "xapi" (RALPH_DATABASE) when using Ralph
+    ASPECTS_XAPI_DATABASE: "openedx"
     ASPECTS_RAW_XAPI_TABLE: "xapi_events_all"
+
+Since ``ASPECTS_XAPI_DATABASE`` changes with the pipeline, the Alembic migration state is kept in a
+separate, fixed database controlled by **ASPECTS_ALEMBIC_MIGRATIONS_DATABASE** (defaults to the
+value of ``RALPH_DATABASE``, ``xapi``). This prevents Alembic from losing track of which migrations
+have run when switching between Ralph and Vector.
 
 From here, the main table is split into different tables and views for performance and reporting purposes:
 
