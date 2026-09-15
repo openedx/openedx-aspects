@@ -108,7 +108,8 @@ When running with the Vector data pipeline:
 
 - lms
 - cms
-- vector
+- vector (Tutor local / dev)
+- vector-agent and vector-aggregator (Tutor k8s)
 
 When running with the event bus data pipeline:
 

@@ -29,7 +29,7 @@ Cons:
 
 - It is a new service for most operators
 - Events are not de-duplicated before insert, which can result in some duplicate or incorrect data in a log replay or disaster recovery situation
-- Needs a pod run for every LMS or CMS Kubernetes worker
+- Needs a Vector agent pod on every Kubernetes node, plus an aggregator with persistent storage
 - When run in-process, adds a small amount of overhead to any LMS request that sends an xAPI statement
 
 
@@ -108,7 +108,9 @@ When in doubt, the simplest place to start with a production configuration is Ce
 Vector
 ------
 
-Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments you will need to make sure that a Vector pod is attached to each LMS/CMS worker.
+Generally the Aspects created Vector configuration should work in most cases. In Kubernetes environments Aspects deploys a ``vector-agent`` DaemonSet, which reads pod logs on every node, and a ``vector-aggregator`` StatefulSet, which parses the events and writes them to ClickHouse. The aggregator uses a persistent volume for its disk buffers, so make sure your cluster can provision a volume of ``ASPECTS_VECTOR_AGGREGATOR_STORAGE_SIZE``. You can scale the aggregator with ``ASPECTS_VECTOR_AGGREGATOR_REPLICAS``.
+
+We recommend enabling the S3 backup sink in production so that events can be restored quickly if ClickHouse loses data. See the :ref:`Quick Start - Vector guide <quick-start-vector>` for the settings and :ref:`backfill_s3` for how to restore.
 
 Event bus
 ---------
@@ -314,7 +316,8 @@ This is the time between now and the last xAPI event arriving. The frequency of 
         count(*) as ttl_count,
         max(emission_time) as most_recent,
         date_diff('second', max(emission_time), now()) as lag_seconds
-    FROM xapi.xapi_events_all
+    -- use xapi.xapi_events_all if you are running the Ralph pipeline
+    FROM openedx.xapi_events_all
     FINAL
     FORMAT JSON
 

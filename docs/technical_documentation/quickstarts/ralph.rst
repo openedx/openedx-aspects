@@ -7,7 +7,7 @@ Installation instructions for Aspects are available on the plugin site: https://
 
 Ralph is an alternative option to send xAPI events to Clickhouse, providing full xAPI
 learning record store (LRS) statement support and deduplication (prior to Aspects version
-4.0, Ralph was the default). To use Ralph as your xAPI pipeline, you need to enable it
+5.0, Ralph was the default). To use Ralph as your xAPI pipeline, you need to enable it
 and set it as the source in your `config.yml` file.
 
 .. code-block:: yaml

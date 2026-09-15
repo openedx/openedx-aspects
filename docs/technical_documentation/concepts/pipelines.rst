@@ -6,15 +6,15 @@ Aspects provide two Pipelines which are detailed below.
 Vector Pipeline
 ###############
 
-As of Aspects version 4.0, the Vector pipeline is the default pipeline (previous
+As of Aspects version 5.0, the Vector pipeline is the default pipeline (previous
 versions defaulted to a Celery / Ralph pipeline). It works by capturing the standard
 output from the LMS logs and sending them directly to configured "sinks" or data
 destinations. It implements two similar pipelines: one for xAPI data (enabled by default)
 and one for tracking logs (disabled by default).
 
 Vector is lighter weight, and generally data will arrive faster.
-It can also be a good choice if you want to add other listeners for that data
-(ex: to store xAPI statements to S3).
+It can also write a copy of every xAPI statement to an S3 compatible bucket as a backup,
+which can later be restored to ClickHouse (see :ref:`backfill_s3`).
 
 To learn more about Vector, see the `Vector documentation <https://vector.dev/docs/>`_.
 
@@ -24,8 +24,8 @@ To configure Vector as your pipeline, see the :ref:`Quick Start - Vector guide <
 Ralph Pipeline
 ##############
 
-Prior to version 4.0, the Ralph pipeline was the default. It is now an alternative
-pipeline, and remains the most robust . It will retry the
+Prior to version 5.0, the Ralph pipeline was the default. It is now an alternative
+pipeline, and remains the most robust. It will retry the
 most important failed events, and will catch most duplicates before they hit the database.
 This pipeline consist of a plugin in the LMS (`event-routing-backends`) that will send
 through HTTP the events to the Ralph API.
