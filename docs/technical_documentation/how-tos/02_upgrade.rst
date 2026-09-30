@@ -10,31 +10,31 @@ As with any upgrade, you should take a backup snapshot of your environment befor
 Upgrade Steps
 -------------
 
-    1. Install the version you would like from tutor-contrib-aspects, or for the latest: 
+    1. Install the version you would like from tutor-contrib-aspects, or for the latest:
 
     ``pip install --upgrade tutor-contrib-aspects``
 
-    2. To prevent orphan Superset assets from being left behind, you should remove the existing Superset assets from your Tutor environment before saving the configuration: 
+    2. To prevent orphan Superset assets from being left behind, you should remove the existing Superset assets from your Tutor environment before saving the configuration:
 
     ``rm -rf env/plugins/aspects/build/aspects-superset/openedx-assets/assets``
 
-    3. Save your tutor configuration: 
+    3. Save your tutor configuration:
 
     ``tutor config save``
 
-    4. Build your Docker images: 
+    4. Build your Docker images:
 
     ``tutor images build openedx aspects aspects-superset --no-cache``
 
-    5. If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image: 
+    5. If using in-context metrics (only available starting in the Teak Open edX release), build also the `mfe` image:
 
     ``tutor images build mfe --no-cache``
 
-    6. Initialize Aspects to get the latest schema and reports, for a tutor local install: 
+    6. Initialize Aspects to get the latest schema and reports, for a tutor local install:
 
     ``tutor local do init -l aspects``
 
-    7. Remove any deprecated models: 
+    7. Remove any deprecated models:
 
     ``tutor local do dbt -c 'run-operation remove_deprecated_models' --only_changed False``
 
@@ -56,8 +56,8 @@ Aspects version  Compatible with Open edX named version
 v1.x             Nutmeg through Quince
 v2.x             Redwood through Teak
 v3.x             Ulmo
-v4.x             Verawood and later
-v5.x             Verawood and later
+v4.x             Verawood
+v5.x             Willow and later
 ===============  ======================================
 
 
