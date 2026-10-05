@@ -56,9 +56,18 @@ Aspects version  Compatible with Open edX named version
 v1.x             Nutmeg through Quince
 v2.x             Redwood through Teak
 v3.x             Ulmo
-v4.x             Verawood
-v5.x             Willow and later
+v4.x or v5.x     Verawood
+v6.x             Willow and later
 ===============  ======================================
+
+
+Upgrading v5.x to v6.x
+----------------------
+
+Breaking Changes
+================
+
+Aspects now uses frontend-base v2.0 for In Context Metrics (Studio) and the Reports tab in Instructor Dashboard. This version of Aspects will only work starting with Willow.
 
 
 Upgrading v4.x to v5.x
