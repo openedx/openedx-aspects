@@ -61,6 +61,25 @@ v6.x             Willow and later
 ===============  ======================================
 
 
+Upgrading to v6.2
+-----------------
+
+Breaking Changes
+================
+
+``dim_most_recent_taxonomies`` has a new ``taxonomy_type`` column (``competency`` for a competency taxonomy, ``tags`` otherwise). dbt does not alter an existing materialized view to add a column, so after ``tutor [local/dev/k8s] do init -l aspects`` rebuild the model and its dependents with a full refresh:
+
+.. code-block:: bash
+
+    tutor [local/dev/k8s] do dbt --only_changed False -c 'run --full-refresh --select dim_most_recent_taxonomies+'
+
+The ClickHouse migrations that add the ``taxonomy_type`` column and the competency tables (0043 to 0045) run during ``init`` and must be applied before this command. Taxonomies dumped before the upgrade report ``tags`` as their type until they are dumped again:
+
+.. code-block:: bash
+
+    tutor [local/dev/k8s] do dump_data_to_clickhouse --service cms --options "--object taxonomy --force"
+
+
 Upgrading v5.x to v6.x
 ----------------------
 
